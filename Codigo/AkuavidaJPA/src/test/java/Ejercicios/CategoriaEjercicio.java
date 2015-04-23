@@ -5,12 +5,13 @@
  */
 package Ejercicios;
 
-import edu.co.sena.akuavida.integracion.entitis.Categorias;
-import edu.co.sena.akuavida.integracion.entitis.Departamento;
-import edu.co.sena.akuavida.integracion.entitis.Municipio;
-import edu.co.sena.akuavida.integracion.entitis.Producto;
-import edu.co.sena.akuavida.integracion.jpa.util.EntityManagerHelper;
+import edu.co.sena.akuavida.modelo.entitis.Categorias;
+import edu.co.sena.akuavida.modelo.entitis.Departamento;
+import edu.co.sena.akuavida.modelo.entitis.Municipio;
+import edu.co.sena.akuavida.modelo.entitis.Producto;
+import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -122,7 +123,7 @@ public class CategoriaEjercicio {
     // public void hello() {}
     @Test
     public void insertarCategoriasProductos() {
-        categoria.setProductoList(productos);
+        categoria.setProductoCollection(productos);
         em = EntityManagerHelper.getEntityManager();
         EntityManagerHelper.beginTransaction();
         em.merge(categoria);
@@ -155,7 +156,7 @@ public class CategoriaEjercicio {
         EntityManagerHelper.closeEntityManager();
         EntityManagerHelper.closeEntityManagerFactory();
         
-        List<Municipio> listaMun = dep.getMunicipioList();
+        Collection<Municipio> listaMun = dep.getMunicipioCollection();
         for (Municipio listaMun1 : listaMun) {
             System.out.println(listaMun1.toString());
         }
