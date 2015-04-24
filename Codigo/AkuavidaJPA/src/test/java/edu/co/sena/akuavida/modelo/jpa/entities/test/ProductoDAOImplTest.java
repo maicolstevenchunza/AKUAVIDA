@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.akuavida.modelo.jpa.entitiestsest;
+package edu.co.sena.akuavida.modelo.jpa.entities.test;
 
 import edu.co.sena.akuavida.modelo.entitis.Categorias;
 import edu.co.sena.akuavida.modelo.entitis.Producto;

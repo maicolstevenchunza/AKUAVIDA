@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.akuavida.modelo.jpa.entitiestsest;
+package edu.co.sena.akuavida.modelo.jpa.entities.test;
 
-import edu.co.sena.akuavida.modelo.entitis.CarritoDeCompras;
-import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.CarritoComprasDAOImpl;
+import edu.co.sena.akuavida.modelo.entitis.Categorias;
+import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.CategoriaDAOImpl;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,9 +18,10 @@ import static org.junit.Assert.*;
  *
  * @author Tatiana
  */
-public class CarritoDeComprasDAOImplTest {
-    CarritoDeCompras entity= new CarritoDeCompras();
-    public CarritoDeComprasDAOImplTest() {
+public class CategoriaDAOImplTest {
+    Categorias entity=new  Categorias();
+    
+    public CategoriaDAOImplTest() {
     }
     
     @BeforeClass
@@ -33,9 +34,11 @@ public class CarritoDeComprasDAOImplTest {
     
     @Before
     public void setUp() {
-        entity.setIDCarrito("1");
-        entity.setTotal(0);
-        entity.setSubtotal(0);
+        entity.setIDCategoria(1);
+        entity.setNombre("Categoria prueba");
+        entity.setActiva(true);
+        entity.setPariente(1);
+        
     }
     
     @After
@@ -50,9 +53,10 @@ public class CarritoDeComprasDAOImplTest {
     @Test
     public void testInsert() {
         System.out.println("insert");
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
+        CategoriaDAOImpl instance = new CategoriaDAOImpl();
         instance.insert(entity);
         
     }
 
+    
 }
