@@ -48,6 +48,7 @@ public class UsuarioTestJPA {
         usuario.setContrasena("123456789");
         usuario.setRol("Cliente");
         usuario.setEstado("Activo");
+        usuario.setCorreo("jdmontero0@misena.edu.co");
 
     }
 
