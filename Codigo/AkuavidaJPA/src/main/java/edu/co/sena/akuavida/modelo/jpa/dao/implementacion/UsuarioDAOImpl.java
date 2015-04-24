@@ -66,7 +66,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-            em.remove(em.find(Usuario.class, entity.getIdUsusario()));
+            em.remove(em.find(Usuario.class, entity.getIdUsuario()));
             EntityManagerHelper.commit();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -84,7 +84,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
 
-            usuarioTemporal = em.find(Usuario.class, findByIDUsuario().getIdUsusario());
+            usuarioTemporal = em.find(Usuario.class, findByIDUsuario().getIdUsuario());
 
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());

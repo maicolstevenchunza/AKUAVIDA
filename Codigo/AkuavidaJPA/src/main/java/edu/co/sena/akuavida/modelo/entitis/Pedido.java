@@ -143,7 +143,9 @@ public class Pedido implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.Pedido[ facturaIDFactura=" + facturaIDFactura + " ]";
+        return "Pedido{" + "facturaIDFactura=" + facturaIDFactura + ", fecha=" + fecha + ", subtotal=" + subtotal + ", total=" + total + '}';
     }
+
+ 
     
 }

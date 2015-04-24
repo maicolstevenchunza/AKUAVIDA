@@ -22,7 +22,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/akuavida?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="28071996"/>
+      <property name="javax.persistence.jdbc.password" value="123456789"/>
     </properties>
   </persistence-unit>
 </persistence>

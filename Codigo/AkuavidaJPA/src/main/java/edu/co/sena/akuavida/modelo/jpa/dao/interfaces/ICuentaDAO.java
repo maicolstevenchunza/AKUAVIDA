@@ -18,11 +18,7 @@ public interface ICuentaDAO {
     public void update(Cuenta entity);
     public void delete(Cuenta entity);
     
-    public Cuenta findBy();
-    
-    public List<Cuenta> findByAll();
-    public List<Cuenta> findByTipoDocumento(Object tipoDocumento);
-    public List<Cuenta> findByNumeroDocumento(Object numeroDocumento);   
+    public List<Cuenta> findByAll();   
     public List<Cuenta> findByPrimerNombre(Object primerNombre);   
     public List<Cuenta> findBySegundoNombre(Object segundoNombre);   
     public List<Cuenta> findByPrimerApellido(Object primerApellido);   

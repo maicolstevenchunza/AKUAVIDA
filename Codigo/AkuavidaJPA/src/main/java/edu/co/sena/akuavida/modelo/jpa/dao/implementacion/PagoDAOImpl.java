@@ -45,7 +45,6 @@ public class PagoDAOImpl implements IPagoDAO {
 
     @Override
     public void update(Pago entity) {
-        //EntityManager em = EntityManagerHelper.getEntityManager();
         EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
@@ -66,7 +65,8 @@ public class PagoDAOImpl implements IPagoDAO {
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-            em.remove(em.find(Pago.class, entity.getFacturaIDFactura()));
+            entity = getEntityManager().getReference(Pago.class, entity.getFacturaIDFactura());
+            em.remove(entity);
             EntityManagerHelper.commit();
         } catch (RuntimeException re) {
             System.out.println(" Error : " + re.getMessage());
@@ -93,10 +93,11 @@ public class PagoDAOImpl implements IPagoDAO {
     }
 
     @Override
-    public Pago findByFacturaIDFactura(Object idFactura) {
+    public Pago findByFacturaIDFactura(int idFactura) {
         EntityManager em = getEntityManager();
         List<Pago> pagoTemporal = null;
         Query query = em.createNamedQuery("Pago.findByFacturaIDFactura");
+        query.setParameter(PagoDAOImpl.IDFACTURA, idFactura);
         try {
             pagoTemporal = query.getResultList();
         } catch (RuntimeException re) {
@@ -109,7 +110,7 @@ public class PagoDAOImpl implements IPagoDAO {
     
 
     @Override
-    public List<Pago> findByTipoPago(Object tipoPago) {
+    public List<Pago> findByTipoPago(String tipoPago) {
         EntityManager em = getEntityManager();
         List<Pago> pagoTemporal = null;
 
@@ -127,7 +128,7 @@ public class PagoDAOImpl implements IPagoDAO {
     }
 
     @Override
-    public List<Pago> findByNumeroTarjeta(Object numeroTarjeta) {
+    public List<Pago> findByNumeroTarjeta(String numeroTarjeta) {
        
         EntityManager em = getEntityManager();
         List<Pago> pagoTemporal = null;

@@ -10,12 +10,22 @@ import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.ICuentaDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
  * @author toshiba_
  */
 public class CuentaDAOImpl implements ICuentaDAO {
+
+    public static final String PRIMERNOMBRE = "primerNombre";
+    public static final String SEGUNDONOMBRE = "segundoNombre";
+    public static final String PRIMERAAPELLIDO = "primerApellido";
+    public static final String SEGUNDOAPELLIDO = "segundoApellido";
+    public static final String DIRECCION = "direccion";
+    public static final String TELEFONO = "telefono";
+    public static final String ROOL = "rool";
+    public static final String ACTIVO = "activo";
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -61,75 +71,158 @@ public class CuentaDAOImpl implements ICuentaDAO {
             EntityManagerHelper.beginTransaction();
             em.remove(em.find(Cuenta.class, entity.getCuentaPK()));
             EntityManagerHelper.commit();
-     } catch (RuntimeException re) {
+        } catch (RuntimeException re) {
             System.out.println("Error : " + re.getMessage());
-        }finally{
-            if(em != null){
-             EntityManagerHelper.closeEntityManager();
+        } finally {
+            if (em != null) {
+                EntityManagerHelper.closeEntityManager();
             }
         }
     }
 
-  
 
     @Override
     public List<Cuenta> findByAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Cuenta> findByTipoDocumento(Object tipoDocumento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Cuenta> findByNumeroDocumento(Object numeroDocumento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = getEntityManager();
+        List<Cuenta> cuentaTemporal = null;
+        Query query = em.createNamedQuery("Cuenta.findAll");
+        try {
+            cuentaTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println(" Error : " + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return cuentaTemporal;
     }
 
     @Override
     public List<Cuenta> findByPrimerNombre(Object primerNombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = getEntityManager();
+        List<Cuenta> cuentaTemporal = null;
+        Query query = em.createNamedQuery("Cuenta.findByPrimerNombre");
+        query.setParameter(CuentaDAOImpl.PRIMERNOMBRE, primerNombre);
+        try {
+            cuentaTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("Error : " + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return cuentaTemporal;
     }
 
     @Override
     public List<Cuenta> findBySegundoNombre(Object segundoNombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = getEntityManager();
+        List<Cuenta> cuentaTemporal = null;
+        Query query = em.createNamedQuery("Cuenta.findBySegundoNombre");
+        query.setParameter(CuentaDAOImpl.PRIMERNOMBRE, segundoNombre);
+        try {
+            cuentaTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("Error : " + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return cuentaTemporal;
     }
 
     @Override
     public List<Cuenta> findByPrimerApellido(Object primerApellido) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = getEntityManager();
+        List<Cuenta> cuentaTemporal = null;
+        Query query = em.createNamedQuery("Cuenta.findByPrimerApellido");
+        query.setParameter(CuentaDAOImpl.PRIMERAAPELLIDO, primerApellido);
+        try {
+            cuentaTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("Error : " + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return cuentaTemporal;
     }
 
     @Override
     public List<Cuenta> findBySegundoApellido(Object segundoApellido) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = getEntityManager();
+        List<Cuenta> cuentaTemporal = null;
+        Query query = em.createNamedQuery("Cuenta.findBySegundoApellido");
+        query.setParameter(CuentaDAOImpl.SEGUNDOAPELLIDO, segundoApellido);
+        try {
+            cuentaTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("Error : " + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return cuentaTemporal;
     }
 
     @Override
     public List<Cuenta> findByDireccion(Object direccion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = getEntityManager();
+        List<Cuenta> cuentaTemporal = null;
+        Query query = em.createNamedQuery("Cuenta.findByDireccion");
+        query.setParameter(CuentaDAOImpl.DIRECCION, direccion);
+        try {
+            cuentaTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("Error : " + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return cuentaTemporal;
     }
 
     @Override
     public List<Cuenta> findByTelefono(Object telefono) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = getEntityManager();
+        List<Cuenta> cuentaTemporal = null;
+        Query query = em.createNamedQuery("Cuenta.findByTelefono");
+        query.setParameter(CuentaDAOImpl.TELEFONO, telefono);
+        try {
+            cuentaTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("Error : " + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return cuentaTemporal;
     }
 
     @Override
     public List<Cuenta> findByRool(Object rool) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = getEntityManager();
+        List<Cuenta> cuentaTemporal = null;
+        Query query = em.createNamedQuery("Cuenta.findByRool");
+        query.setParameter(CuentaDAOImpl.ROOL, rool);
+        try {
+            cuentaTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("Error : " + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return cuentaTemporal;
     }
 
     @Override
     public List<Cuenta> findByActivo(Object activo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        EntityManager em = getEntityManager();
+        List<Cuenta> cuentaTemporal = null;
+        Query query = em.createNamedQuery("Cuenta.findByActivo");
+        query.setParameter(CuentaDAOImpl.ACTIVO, activo);
+        try {
+            cuentaTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("Error : " + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return cuentaTemporal;
 
-    @Override
-    public Cuenta findBy() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -17,9 +17,9 @@ public interface IPagoDAO {
     public void update(Pago entity);
     public void delete(Pago entity);
 
-    public Pago findByFacturaIDFactura(Object idFactura);
+    public Pago findByFacturaIDFactura(int idFactura);
     
     public List<Pago> findByAll();
-    public List<Pago> findByTipoPago(Object tipoPago); 
-    public List<Pago> findByNumeroTarjeta(Object numeroTarjeta); 
+    public List<Pago> findByTipoPago(String tipoPago); 
+    public List<Pago> findByNumeroTarjeta(String numeroTarjeta); 
 }

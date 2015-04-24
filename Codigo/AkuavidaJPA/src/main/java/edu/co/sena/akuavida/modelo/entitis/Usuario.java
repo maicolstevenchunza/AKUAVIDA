@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-    @NamedQuery(name = "Usuario.findByIdUsusario", query = "SELECT u FROM Usuario u WHERE u.idUsusario = :idUsusario"),
+    @NamedQuery(name = "Usuario.findByIdUsusario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
     @NamedQuery(name = "Usuario.findByRol", query = "SELECT u FROM Usuario u WHERE u.rol = :rol"),
     @NamedQuery(name = "Usuario.findByEstado", query = "SELECT u FROM Usuario u WHERE u.estado = :estado"),
     @NamedQuery(name = "Usuario.findByContrasena", query = "SELECT u FROM Usuario u WHERE u.contrasena = :contrasena"),
@@ -38,8 +38,8 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "idUsusario")
-    private String idUsusario;
+    @Column(name = "idUsuario")
+    private String idUsuario;
     @Basic(optional = false)
     @Column(name = "rol")
     private String rol;
@@ -52,30 +52,32 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "correo")
     private String correo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ususarioidUsusario", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioidUsuario", fetch = FetchType.EAGER)
     private Collection<Cuenta> cuentaCollection;
 
     public Usuario() {
     }
 
-    public Usuario(String idUsusario) {
-        this.idUsusario = idUsusario;
+    public Usuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Usuario(String idUsusario, String rol, String estado, String contrasena, String correo) {
-        this.idUsusario = idUsusario;
+ 
+
+    public Usuario(String idUsuario, String rol, String estado, String contrasena, String correo) {
+        this.idUsuario = idUsuario;
         this.rol = rol;
         this.estado = estado;
         this.contrasena = contrasena;
         this.correo = correo;
     }
 
-    public String getIdUsusario() {
-        return idUsusario;
+    public String getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdUsusario(String idUsusario) {
-        this.idUsusario = idUsusario;
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getRol() {
@@ -122,7 +124,7 @@ public class Usuario implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idUsusario != null ? idUsusario.hashCode() : 0);
+        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
         return hash;
     }
 
@@ -133,7 +135,7 @@ public class Usuario implements Serializable {
             return false;
         }
         Usuario other = (Usuario) object;
-        if ((this.idUsusario == null && other.idUsusario != null) || (this.idUsusario != null && !this.idUsusario.equals(other.idUsusario))) {
+        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
             return false;
         }
         return true;
@@ -141,7 +143,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.Usuario[ idUsusario=" + idUsusario + " ]";
+        return "edu.co.sena.akuavida.integracion.entitis.Usuario[ idUsuario=" + idUsuario + " ]";
     }
     
 }

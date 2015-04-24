@@ -56,7 +56,7 @@ public class CuentaTestJPA {
         cuenta.setTelefono("3217915742");
         cuenta.setRool("Cliente");
         cuenta.setActivo(true);
-        cuenta.setUsusarioidUsusario(new Usuario("1"));
+        cuenta.setUsuarioidUsuario(new Usuario("1"));
     }
 
     @After
@@ -143,7 +143,7 @@ public class CuentaTestJPA {
         List<Cuenta> lis = q.getResultList();
         for (Cuenta cuentaT : lis) {
             System.out.println("Id Cuenta: " + cuentaT.getCuentaPK() + " / Primer NOmbre: " + cuentaT.getPrimerNombre() + " / Segundo Nombre: " + cuentaT.getSegundoNombre() + " / Primer Apellido: " + cuentaT.getPrimerApellido() + " / Segundo Apelido: "
-                    + cuentaT.getSegundoApellido() +  " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsusarioidUsusario());
+                    + cuentaT.getSegundoApellido() +  " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsuarioidUsuario());
         }
 
         EntityManagerHelper.commit();
@@ -192,7 +192,7 @@ public class CuentaTestJPA {
         List<Cuenta> lista = query.getResultList();
         for (Cuenta cuentaT : lista) {
             System.out.println("Id Cuenta: " + cuentaT.getCuentaPK() + " / Primer NOmbre: " + cuentaT.getPrimerNombre() + " / Segundo Nombre: " + cuentaT.getSegundoNombre() + " / Primer Apellido: " + cuentaT.getPrimerApellido() + " / Segundo Apelido: "
-                    + cuentaT.getSegundoApellido() +  " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsusarioidUsusario());
+                    + cuentaT.getSegundoApellido() +  " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsuarioidUsuario());
 
         }
 
@@ -217,7 +217,7 @@ public class CuentaTestJPA {
         List<Cuenta> lista = query.getResultList();
         for (Cuenta cuentaT : lista) {
             System.out.println("Id Cuenta: " + cuentaT.getCuentaPK() + " / Primer NOmbre: " + cuentaT.getPrimerNombre() + " / Segundo Nombre: " + cuentaT.getSegundoNombre() + " / Primer Apellido: " + cuentaT.getPrimerApellido() + " / Segundo Apelido: "
-                    + cuentaT.getSegundoApellido() + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsusarioidUsusario());
+                    + cuentaT.getSegundoApellido() + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsuarioidUsuario());
 
         }
 
@@ -242,7 +242,7 @@ public class CuentaTestJPA {
         List<Cuenta> lista = query.getResultList();
         for (Cuenta cuentaT : lista) {
             System.out.println("Id Cuenta: " + cuentaT.getCuentaPK() + " / Primer NOmbre: " + cuentaT.getPrimerNombre() + " / Segundo Nombre: " + cuentaT.getSegundoNombre() + " / Primer Apellido: " + cuentaT.getPrimerApellido() + " / Segundo Apelido: "
-                    + cuentaT.getSegundoApellido() + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsusarioidUsusario());
+                    + cuentaT.getSegundoApellido() + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsuarioidUsuario());
 
         }
 
@@ -267,7 +267,7 @@ public class CuentaTestJPA {
         List<Cuenta> lista = query.getResultList();
         for (Cuenta cuentaT : lista) {
             System.out.println("Id Cuenta: " + cuentaT.getCuentaPK() + " / Primer NOmbre: " + cuentaT.getPrimerNombre() + " / Segundo Nombre: " + cuentaT.getSegundoNombre() + " / Primer Apellido: " + cuentaT.getPrimerApellido() + " / Segundo Apelido: "
-                    + cuentaT.getSegundoApellido()  + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsusarioidUsusario());
+                    + cuentaT.getSegundoApellido()  + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsuarioidUsuario());
 
         }
 
@@ -292,7 +292,7 @@ public class CuentaTestJPA {
         List<Cuenta> lista = query.getResultList();
         for (Cuenta cuentaT : lista) {
             System.out.println("Id Cuenta: " + cuentaT.getCuentaPK() + " / Primer NOmbre: " + cuentaT.getPrimerNombre() + " / Segundo Nombre: " + cuentaT.getSegundoNombre() + " / Primer Apellido: " + cuentaT.getPrimerApellido() + " / Segundo Apelido: "
-                    + cuentaT.getSegundoApellido()  + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsusarioidUsusario());
+                    + cuentaT.getSegundoApellido()  + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsuarioidUsuario());
 
         }
 
@@ -317,7 +317,7 @@ public class CuentaTestJPA {
         List<Cuenta> lista = query.getResultList();
         for (Cuenta cuentaT : lista) {
             System.out.println("Id Cuenta: " + cuentaT.getCuentaPK() + " / Primer NOmbre: " + cuentaT.getPrimerNombre() + " / Segundo Nombre: " + cuentaT.getSegundoNombre() + " / Primer Apellido: " + cuentaT.getPrimerApellido() + " / Segundo Apelido: "
-                    + cuentaT.getSegundoApellido()  + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsusarioidUsusario());
+                    + cuentaT.getSegundoApellido()  + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsuarioidUsuario());
 
         }
 
@@ -342,7 +342,7 @@ public class CuentaTestJPA {
         List<Cuenta> lista = query.getResultList();
         for (Cuenta cuentaT : lista) {
             System.out.println("Id Cuenta: " + cuentaT.getCuentaPK() + " / Primer NOmbre: " + cuentaT.getPrimerNombre() + " / Segundo Nombre: " + cuentaT.getSegundoNombre() + " / Primer Apellido: " + cuentaT.getPrimerApellido() + " / Segundo Apelido: "
-                    + cuentaT.getSegundoApellido()  + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsusarioidUsusario());
+                    + cuentaT.getSegundoApellido()  + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsuarioidUsuario());
 
         }
 
@@ -367,7 +367,7 @@ public class CuentaTestJPA {
         List<Cuenta> lista = query.getResultList();
         for (Cuenta cuentaT : lista) {
             System.out.println("Id Cuenta: " + cuentaT.getCuentaPK() + " / Primer NOmbre: " + cuentaT.getPrimerNombre() + " / Segundo Nombre: " + cuentaT.getSegundoNombre() + " / Primer Apellido: " + cuentaT.getPrimerApellido() + " / Segundo Apelido: "
-                    + cuentaT.getSegundoApellido()  + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsusarioidUsusario());
+                    + cuentaT.getSegundoApellido()  + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsuarioidUsuario());
 
         }
 
@@ -391,7 +391,7 @@ public class CuentaTestJPA {
         List<Cuenta> lista = query.getResultList();
         for (Cuenta cuentaT : lista) {
             System.out.println("Id Cuenta: " + cuentaT.getCuentaPK() + " / Primer NOmbre: " + cuentaT.getPrimerNombre() + " / Segundo Nombre: " + cuentaT.getSegundoNombre() + " / Primer Apellido: " + cuentaT.getPrimerApellido() + " / Segundo Apelido: "
-                    + cuentaT.getSegundoApellido() + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsusarioidUsusario());
+                    + cuentaT.getSegundoApellido() + " / Direccion: " + cuentaT.getDireccion() + " / Telefono: " + cuentaT.getTelefono() + " / Rool: " + cuentaT.getRool() + " / Activo: " + cuentaT.getActivo() + " / Id Usuario: " + cuentaT.getUsuarioidUsuario());
 
         }
 
