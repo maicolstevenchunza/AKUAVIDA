@@ -65,6 +65,7 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
         try {
             EntityManagerHelper.beginTransaction();
             em.remove(em.find(Categorias.class, entity.getIDCategoria()));
+            em.remove(entity);
             EntityManagerHelper.commit();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
