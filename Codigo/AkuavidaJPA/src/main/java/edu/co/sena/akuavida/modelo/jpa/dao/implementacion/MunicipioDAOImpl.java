@@ -5,8 +5,8 @@
  */
 package edu.co.sena.akuavida.modelo.jpa.dao.implementacion;
 
-import edu.co.sena.akuavida.modelo.entitis.CarritoDeCompras;
-import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.ICarritosComprasDAO;
+import edu.co.sena.akuavida.modelo.entitis.Municipio;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IMunicipioDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,22 +14,19 @@ import javax.persistence.Query;
 
 /**
  *
- * @author ColsutecR
+ * @author maicolsteven
  */
-public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
+public class MunicipioDAOImpl implements IMunicipioDAO{
     
-    public static final String TOTAL = "total";
-    public static final String SUBTOTAL = "subtotal";
+    public static final String NOMBREMUNICIPIO = "nombreMunicipio";
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
-        
     }
 
-    
     @Override
-    public void insert(CarritoDeCompras entity) {
-
+    public void insert(Municipio entity) {
+    
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
@@ -42,11 +39,11 @@ public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
                 EntityManagerHelper.closeEntityManager();
             }
         }
-
     }
 
     @Override
-    public void update(CarritoDeCompras entity) {
+    public void update(Municipio entity) {
+    
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
@@ -62,11 +59,12 @@ public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
     }
 
     @Override
-    public void delete(CarritoDeCompras entity) {
+    public void delete(Municipio entity) {
+       
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-            em.remove(em.find(CarritoDeCompras.class, entity.getIDCarrito()));
+            em.remove(em.find(Municipio.class, entity.getIdMunicipio()));
             EntityManagerHelper.commit();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -75,15 +73,17 @@ public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
                 EntityManagerHelper.closeEntityManager();
             }
         }
+        
     }
 
     @Override
-    public CarritoDeCompras findByIDCarrito() {
-        CarritoDeCompras carritoTemporal = null;
+    public Municipio findByIDMunicipio() {
+    
+        Municipio municipioTemporal = null;
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
 
-            carritoTemporal = em.find(CarritoDeCompras.class, findByIDCarrito().getIDCarrito());
+            municipioTemporal = em.find(Municipio.class, findByIDMunicipio().getIdMunicipio());
 
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -92,59 +92,43 @@ public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
                 EntityManagerHelper.closeEntityManager();
             }
         }
-        return carritoTemporal;
-    }
-
-    @Override
-    public List<CarritoDeCompras> findByAll() {
-
-        EntityManager em = EntityManagerHelper.getEntityManager();
-        List<CarritoDeCompras> carritoTemporal = null;
-        Query query = em.createNamedQuery("CarritoDeCompras.findAll");
-        try {
-            carritoTemporal = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
-        } finally {
-            EntityManagerHelper.closeEntityManager();
-        }
-        return carritoTemporal;
-
-    }
-
-    @Override
-    public List<CarritoDeCompras> findByTotal(Object total) {
-
-         EntityManager em = EntityManagerHelper.getEntityManager();
-        List<CarritoDeCompras> carritoTemporal = null;
-        Query query = em.createNamedQuery("CarritoDeCompras.findByTotal");
-        query.setParameter(CarritoComprasDAOImpl.TOTAL, total);
-        try {
-            carritoTemporal = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
-        } finally {
-            EntityManagerHelper.closeEntityManager();
-        }
-        return carritoTemporal;
-    }
-
-    @Override
-    public List<CarritoDeCompras> findBySubtotal(Object subtotal) {
-    
-        EntityManager em = EntityManagerHelper.getEntityManager();
-        List<CarritoDeCompras> carritoTemporal = null;
-        Query query = em.createNamedQuery("CarritoDeCompras.findBySubtotal");
-        query.setParameter(CarritoComprasDAOImpl.SUBTOTAL, subtotal);
-        try {
-            carritoTemporal = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
-        } finally {
-            EntityManagerHelper.closeEntityManager();
-        }
-        return carritoTemporal;
+        return municipioTemporal;
     
     }
 
+    @Override
+    public List<Municipio> findByAll() {
+    
+        EntityManager em = EntityManagerHelper.getEntityManager();
+        List<Municipio> municipioTemporal = null;
+        Query query = em.createNamedQuery("Municipio.findAll");
+        try {
+            municipioTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("erorrr:----------------" + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return municipioTemporal;
+    
+    }
+
+    @Override
+    public List<Municipio> findByNombre(Object nombreMunicipio) {
+    
+        EntityManager em = EntityManagerHelper.getEntityManager();
+        List<Municipio> municipioTemporal = null;
+        Query query = em.createNamedQuery("Municipio.findByNombreMunicipio");
+        query.setParameter(MunicipioDAOImpl.NOMBREMUNICIPIO, nombreMunicipio);
+        try {
+            municipioTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("erorrr:----------------" + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return municipioTemporal;
+    
+    }
+    
 }

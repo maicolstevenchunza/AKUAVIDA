@@ -5,8 +5,8 @@
  */
 package edu.co.sena.akuavida.modelo.jpa.dao.implementacion;
 
-import edu.co.sena.akuavida.modelo.entitis.Categorias;
-import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.ICategoriaDAO;
+import edu.co.sena.akuavida.modelo.entitis.Domicilio;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IDomicilioDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,21 +14,22 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Tatiana
+ * @author maicolsteven
  */
-public class CategoriaDAOImpl implements ICategoriaDAO {
-
-    public static final String NOMBRE = "nombre";
-    public static final String ACTIVA = "activa";
-    public static final String PARIENTE = "pariente";
+public class DomicilioDAOImpl implements IDomicilioDAO{
+    
+    public static final String CIUDAD = "ciudad";
+    public static final String DIRECCION = "direccion";
+    public static final String TELEFONO = "telefono";
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
     }
 
     @Override
-    public void insert(Categorias entity) {
-        EntityManager em = getEntityManager();
+    public void insert(Domicilio entity) {
+            
+        EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
@@ -40,12 +41,12 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
                 EntityManagerHelper.closeEntityManager();
             }
         }
-
     }
 
     @Override
-    public void update(Categorias entity) {
-        EntityManager em = getEntityManager();
+    public void update(Domicilio entity) {
+    
+        EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
@@ -60,12 +61,12 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
     }
 
     @Override
-    public void delete(Categorias entity) {
-       EntityManager em = getEntityManager();
+    public void delete(Domicilio entity) {
+    
+        EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-            em.remove(em.find(Categorias.class, entity.getIDCategoria()));
-            em.remove(entity);
+            em.remove(em.find(Domicilio.class, entity.getDomicilioPK().getCuentaTipoDocumento()));
             EntityManagerHelper.commit();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -77,12 +78,13 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
     }
 
     @Override
-    public Categorias findByIDCategoria(int idCategoria) {
-        EntityManager em = getEntityManager();
-        Categorias categoriaTemporal = null;
+    public Domicilio findByIDDomicilio() {
+    
+        Domicilio domicilioTemporal = null;
+        EntityManager em = EntityManagerHelper.getEntityManager();
         try {
 
-            categoriaTemporal = em.find(Categorias.class, idCategoria);
+            domicilioTemporal = em.find(Domicilio.class, findByIDDomicilio().getDomicilioPK().getCuentaTipoDocumento());
 
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -90,73 +92,76 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
             }
-
         }
-        return categoriaTemporal;
+        return domicilioTemporal;
     }
 
     @Override
-    public List<Categorias> findByAll() {
-        EntityManager em = getEntityManager();
-        List<Categorias> categoriasTemporales = null;
-        Query query = em.createNamedQuery("Categorias.findAll");
+    public List<Domicilio> findByAll() {
+    
+         EntityManager em = EntityManagerHelper.getEntityManager();
+        List<Domicilio> domicilioTemporal = null;
+        Query query = em.createNamedQuery("Domicilio.findAll");
         try {
-            categoriasTemporales = query.getResultList();
+            domicilioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return categoriasTemporales;
+        return domicilioTemporal;
+    
     }
 
     @Override
-    public List<Categorias> findByNombre(String nombre) {
-        EntityManager em = getEntityManager();
-        List<Categorias> categoriasTemporales = null;
-        Query query = em.createNamedQuery("Categorias.findByNombre");
-        query.setParameter(CategoriaDAOImpl.NOMBRE, nombre);
-
+    public List<Domicilio> findByCiudad(Object ciudad) {
+    
+        EntityManager em = EntityManagerHelper.getEntityManager();
+        List<Domicilio> domicilioTemporal = null;
+        Query query = em.createNamedQuery("Domicilio.findByCiudad");
+        query.setParameter(DomicilioDAOImpl.CIUDAD, ciudad);
         try {
-            categoriasTemporales = query.getResultList();
+            domicilioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return categoriasTemporales;
+        return domicilioTemporal;
     }
 
     @Override
-    public List<Categorias> findByActiva(boolean activa) {
-        EntityManager em = getEntityManager();
-        List<Categorias> categoriasTemporales = null;
-        Query query = em.createNamedQuery("Categorias.findByActiva");
-        query.setParameter(CategoriaDAOImpl.ACTIVA, activa);
+    public List<Domicilio> findByDireccion(Object direccion) {
+    
+         EntityManager em = EntityManagerHelper.getEntityManager();
+        List<Domicilio> domicilioTemporal = null;
+        Query query = em.createNamedQuery("Domicilio.findByDireccion");
+        query.setParameter(DomicilioDAOImpl.DIRECCION, direccion);
         try {
-            categoriasTemporales = query.getResultList();
+            domicilioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return categoriasTemporales;
+        return domicilioTemporal;
     }
 
     @Override
-    public List<Categorias> findByPariente(int pariente) {
-        EntityManager em = getEntityManager();
-        List<Categorias> categoriasTemporales = null;
-        Query query = em.createNamedQuery("Categorias.findByPariente");
-        query.setParameter(CategoriaDAOImpl.PARIENTE, pariente);
+    public List<Domicilio> findByTelefono(Object telefono) {
+    
+        EntityManager em = EntityManagerHelper.getEntityManager();
+        List<Domicilio> domicilioTemporal = null;
+        Query query = em.createNamedQuery("Domicilio.findByTelefono");
+        query.setParameter(DomicilioDAOImpl.TELEFONO, telefono);
         try {
-            categoriasTemporales = query.getResultList();
+            domicilioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return categoriasTemporales;
+        return domicilioTemporal;
     }
-
+    
 }

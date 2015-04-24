@@ -5,8 +5,8 @@
  */
 package edu.co.sena.akuavida.modelo.jpa.dao.implementacion;
 
-import edu.co.sena.akuavida.modelo.entitis.Producto;
-import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IProductoDAO;
+import edu.co.sena.akuavida.modelo.entitis.Usuario;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IUsuarioDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,18 +14,22 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Tatiana
+ * @author maicolsteven
  */
-public class ProductoDAOImpl implements IProductoDAO{
-    public static final String NOMBRE = "nombre";
-    public static final String PRECIO = "precio";
-    public static final String CANTIDAD = "cantidad";
-    public static final String ACTIVO = "activo";
-    public static final String IMPUESTO = "impuesto";
+public class UsuarioDAOImpl implements IUsuarioDAO {
+
+    public static final String ROL = "rol";
+    public static final String ESTADO = "estado";
+    public static final String CONTRASENA = "contrasena";
+    public static final String CORREO = "correo";
+
+    private EntityManager getEntityManager() {
+        return EntityManagerHelper.getEntityManager();
+    }
 
     @Override
-    public void insert(Producto entity) {
-       EntityManager em = EntityManagerHelper.getEntityManager();
+    public void insert(Usuario entity) {
+        EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
@@ -40,8 +44,9 @@ public class ProductoDAOImpl implements IProductoDAO{
     }
 
     @Override
-    public void update(Producto entity) {
-         EntityManager em = EntityManagerHelper.getEntityManager();
+    public void update(Usuario entity) {
+
+        EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
@@ -56,12 +61,12 @@ public class ProductoDAOImpl implements IProductoDAO{
     }
 
     @Override
-    public void delete(Producto entity) {
+    public void delete(Usuario entity) {
+
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-            em.remove(em.find(Producto.class, entity.getIDproducto()));
-            em.remove(entity);
+            em.remove(em.find(Usuario.class, entity.getIdUsusario()));
             EntityManagerHelper.commit();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -73,12 +78,13 @@ public class ProductoDAOImpl implements IProductoDAO{
     }
 
     @Override
-    public Producto findByIDproducto(String idProducto) {
+    public Usuario findByIDUsuario() {
+
+        Usuario usuarioTemporal = null;
         EntityManager em = EntityManagerHelper.getEntityManager();
-        Producto productoTemporal = null;
         try {
 
-            productoTemporal = em.find(Producto.class, idProducto);
+            usuarioTemporal = em.find(Usuario.class, findByIDUsuario().getIdUsusario());
 
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -86,114 +92,90 @@ public class ProductoDAOImpl implements IProductoDAO{
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
             }
-
         }
-        return productoTemporal;
+        return usuarioTemporal;
     }
 
     @Override
-    public List<Producto> findByAll() {
+    public List<Usuario> findByAll() {
         EntityManager em = EntityManagerHelper.getEntityManager();
-        List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findAll");
+        List<Usuario> usuarioTemporal = null;
+        Query query = em.createNamedQuery("Usuario.findAll");
         try {
-            productosTemporales = query.getResultList();
+            usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return productosTemporales;
+        return usuarioTemporal;
     }
 
     @Override
-    public List<Producto> findByNombre(String nombre) {
+    public List<Usuario> findByRol(Object rol) {
         EntityManager em = EntityManagerHelper.getEntityManager();
-        List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findByNombre");
-        query.setParameter(ProductoDAOImpl.NOMBRE, nombre);
-        
+        List<Usuario> usuarioTemporal = null;
+        Query query = em.createNamedQuery("Usuario.findByRol");
+        query.setParameter(UsuarioDAOImpl.ROL, rol);
         try {
-            productosTemporales = query.getResultList();
+            usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return productosTemporales;
-        
+        return usuarioTemporal;
     }
 
     @Override
-    public List<Producto> findByPrecio(float precio) {
-        EntityManager em = EntityManagerHelper.getEntityManager();
-        List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findByPrecio");
-        query.setParameter(ProductoDAOImpl.PRECIO, precio);
-        
-        try {
-            productosTemporales = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
-        } finally {
-            EntityManagerHelper.closeEntityManager();
-        }
-        return productosTemporales;
-    }
-
-    @Override
-    public List<Producto> findByCantidad(int cantidad) {
-         EntityManager em = EntityManagerHelper.getEntityManager();
-        List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findByCantidad");
-        query.setParameter(ProductoDAOImpl.CANTIDAD, cantidad);
-        
-        try {
-            productosTemporales = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
-        } finally {
-            EntityManagerHelper.closeEntityManager();
-        }
-        return productosTemporales;
-        
-    }
-
-    @Override
-    public List<Producto> findByActivo(boolean activo) {
-        EntityManager em = EntityManagerHelper.getEntityManager();
-        List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findByActivo");
-        query.setParameter(ProductoDAOImpl.ACTIVO, activo);
-        
-        try {
-            productosTemporales = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
-        } finally {
-            EntityManagerHelper.closeEntityManager();
-        }
-        return productosTemporales;
-        
-    }
-
-    @Override
-    public List<Producto> findByImpuesto(float impuesto) {
-        EntityManager em = EntityManagerHelper.getEntityManager();
-        List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findByImpuesto");
-        query.setParameter(ProductoDAOImpl.IMPUESTO, impuesto);
-        
-        try {
-            productosTemporales = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
-        } finally {
-            EntityManagerHelper.closeEntityManager();
-        }
-        return productosTemporales;
-        
-        
-    }
+    public List<Usuario> findByEstado(Object estado) {
     
+        EntityManager em = EntityManagerHelper.getEntityManager();
+        List<Usuario> usuarioTemporal = null;
+        Query query = em.createNamedQuery("Usuario.findByEstado");
+        query.setParameter(UsuarioDAOImpl.ESTADO, estado);
+        try {
+            usuarioTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("erorrr:----------------" + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return usuarioTemporal;
+    }
+
+    @Override
+    public List<Usuario> findByContrasena(Object contrasena) {
+    
+        EntityManager em = EntityManagerHelper.getEntityManager();
+        List<Usuario> usuarioTemporal = null;
+        Query query = em.createNamedQuery("Usuario.findByContrasena");
+        query.setParameter(UsuarioDAOImpl.CONTRASENA, contrasena);
+        try {
+            usuarioTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("erorrr:----------------" + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return usuarioTemporal;
+    }
+
+    @Override
+    public List<Usuario> findByCorreo(Object correo) {
+    
+        EntityManager em = EntityManagerHelper.getEntityManager();
+        List<Usuario> usuarioTemporal = null;
+        Query query = em.createNamedQuery("Usuario.findByCorreo");
+        query.setParameter(UsuarioDAOImpl.CORREO, correo);
+        try {
+            usuarioTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("erorrr:----------------" + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return usuarioTemporal;
+    }
+
 }
