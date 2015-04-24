@@ -5,8 +5,8 @@
  */
 package edu.co.sena.akuavida.modelo.jpa.dao.implementacion;
 
-import edu.co.sena.akuavida.modelo.entitis.Categorias;
-import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.ICategoriaDAO;
+import edu.co.sena.akuavida.modelo.entitis.Inventario;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IInventarioDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,21 +14,22 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Tatiana
+ * @author Andrea
  */
-public class CategoriaDAOImpl implements ICategoriaDAO {
-
-    public static final String NOMBRE = "nombre";
-    public static final String ACTIVA = "activa";
-    public static final String PARIENTE = "pariente";
-
+public class InventarioDAOImpl implements IInventarioDAO{
+    
+     public static final String PRODID = "producto";
+    public static final String CANTIDADPROD = "cantidadProd";
+    public static final String FECHA = "fechaDeCompra";
+    
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
     }
 
     @Override
-    public void insert(Categorias entity) {
-        EntityManager em = getEntityManager();
+    public void insert(Inventario entity) {
+     
+          EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
@@ -40,12 +41,12 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
                 EntityManagerHelper.closeEntityManager();
             }
         }
-
     }
 
     @Override
-    public void update(Categorias entity) {
-        EntityManager em = getEntityManager();
+    public void update(Inventario entity) {
+        
+         EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
@@ -60,12 +61,12 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
     }
 
     @Override
-    public void delete(Categorias entity) {
-       EntityManager em = getEntityManager();
+    public void delete(Inventario entity) {
+        
+        EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-            em.remove(em.find(Categorias.class, entity.getIDCategoria()));
-            em.remove(entity);
+            em.remove(em.find(Inventario.class, entity.getInventarioPK()));
             EntityManagerHelper.commit();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -77,12 +78,13 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
     }
 
     @Override
-    public Categorias findByIDCategoria(int idCategoria) {
-        EntityManager em = getEntityManager();
-        Categorias categoriaTemporal = null;
+    public Inventario findByIDInventario(int idInventario) {
+        
+         EntityManager em = getEntityManager();
+        Inventario inventarioTemporal = null;
         try {
 
-            categoriaTemporal = em.find(Categorias.class, idCategoria);
+            inventarioTemporal = em.find(Inventario.class, idInventario);
 
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -92,71 +94,80 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
             }
 
         }
-        return categoriaTemporal;
+        return inventarioTemporal;
     }
 
     @Override
-    public List<Categorias> findByAll() {
+    public List<Inventario> findByAll() {
+       
         EntityManager em = getEntityManager();
-        List<Categorias> categoriasTemporales = null;
-        Query query = em.createNamedQuery("Categorias.findAll");
+        List<Inventario> inventarioTemporales = null;
+        Query query = em.createNamedQuery("Inventario.findAll");
         try {
-            categoriasTemporales = query.getResultList();
+            inventarioTemporales = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return categoriasTemporales;
+        return inventarioTemporales;
     }
 
     @Override
-    public List<Categorias> findByNombre(String nombre) {
-        EntityManager em = getEntityManager();
-        List<Categorias> categoriasTemporales = null;
-        Query query = em.createNamedQuery("Categorias.findByNombre");
-        query.setParameter(CategoriaDAOImpl.NOMBRE, nombre);
+    public List<Inventario> findByProductoIDproducto(Object prod) {
+       
+         EntityManager em = getEntityManager();
+        List<Inventario> inventarioTemporales = null;
+        Query query = em.createNamedQuery("Inventario.findByProductoIDproducto");
+        query.setParameter(InventarioDAOImpl.PRODID, prod);
 
         try {
-            categoriasTemporales = query.getResultList();
+            inventarioTemporales = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return categoriasTemporales;
+        return inventarioTemporales;
     }
 
     @Override
-    public List<Categorias> findByActiva(boolean activa) {
+    public List<Inventario> findByCantidadProductoComprado(Object cantProdComprado) {
+        
         EntityManager em = getEntityManager();
-        List<Categorias> categoriasTemporales = null;
-        Query query = em.createNamedQuery("Categorias.findByActiva");
-        query.setParameter(CategoriaDAOImpl.ACTIVA, activa);
+        List<Inventario> inventarioTemporales = null;
+        Query query = em.createNamedQuery("Inventario.findByCantidadProductoComprado");
+        query.setParameter(InventarioDAOImpl.CANTIDADPROD, cantProdComprado);
+
         try {
-            categoriasTemporales = query.getResultList();
+            inventarioTemporales = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return categoriasTemporales;
+        return inventarioTemporales;
     }
 
     @Override
-    public List<Categorias> findByPariente(int pariente) {
-        EntityManager em = getEntityManager();
-        List<Categorias> categoriasTemporales = null;
-        Query query = em.createNamedQuery("Categorias.findByPariente");
-        query.setParameter(CategoriaDAOImpl.PARIENTE, pariente);
+    public List<Inventario> findByFechaDeCompra(Object fecha) {
+       
+         EntityManager em = getEntityManager();
+        List<Inventario> inventarioTemporales = null;
+        Query query = em.createNamedQuery("Inventario.findByFechaDeCompra");
+        query.setParameter(InventarioDAOImpl.FECHA, fecha);
+
         try {
-            categoriasTemporales = query.getResultList();
+            inventarioTemporales = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return categoriasTemporales;
+        return inventarioTemporales;
     }
-
+    
+   
+    
+     
 }
