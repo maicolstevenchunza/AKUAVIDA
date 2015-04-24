@@ -5,8 +5,8 @@
  */
 package edu.co.sena.akuavida.modelo.jpa.dao.implementacion;
 
-import edu.co.sena.akuavida.modelo.entitis.CarritoDeCompras;
-import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.ICarritosComprasDAO;
+import edu.co.sena.akuavida.modelo.entitis.Usuario;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IUsuarioDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,22 +14,21 @@ import javax.persistence.Query;
 
 /**
  *
- * @author ColsutecR
+ * @author maicolsteven
  */
-public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
-    
-    public static final String TOTAL = "total";
-    public static final String SUBTOTAL = "subtotal";
+public class UsuarioDAOImpl implements IUsuarioDAO {
+
+    public static final String ROL = "rol";
+    public static final String ESTADO = "estado";
+    public static final String CONTRASENA = "contrasena";
+    public static final String CORREO = "correo";
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
-        
     }
 
-    
     @Override
-    public void insert(CarritoDeCompras entity) {
-
+    public void insert(Usuario entity) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
@@ -42,11 +41,11 @@ public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
                 EntityManagerHelper.closeEntityManager();
             }
         }
-
     }
 
     @Override
-    public void update(CarritoDeCompras entity) {
+    public void update(Usuario entity) {
+
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
@@ -62,11 +61,12 @@ public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
     }
 
     @Override
-    public void delete(CarritoDeCompras entity) {
+    public void delete(Usuario entity) {
+
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-            em.remove(em.find(CarritoDeCompras.class, entity.getIDCarrito()));
+            em.remove(em.find(Usuario.class, entity.getIdUsusario()));
             EntityManagerHelper.commit();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -78,12 +78,13 @@ public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
     }
 
     @Override
-    public CarritoDeCompras findByIDCarrito() {
-        CarritoDeCompras carritoTemporal = null;
+    public Usuario findByIDUsuario() {
+
+        Usuario usuarioTemporal = null;
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
 
-            carritoTemporal = em.find(CarritoDeCompras.class, findByIDCarrito().getIDCarrito());
+            usuarioTemporal = em.find(Usuario.class, findByIDUsuario().getIdUsusario());
 
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -92,59 +93,89 @@ public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
                 EntityManagerHelper.closeEntityManager();
             }
         }
-        return carritoTemporal;
+        return usuarioTemporal;
     }
 
     @Override
-    public List<CarritoDeCompras> findByAll() {
-
+    public List<Usuario> findByAll() {
         EntityManager em = EntityManagerHelper.getEntityManager();
-        List<CarritoDeCompras> carritoTemporal = null;
-        Query query = em.createNamedQuery("CarritoDeCompras.findAll");
+        List<Usuario> usuarioTemporal = null;
+        Query query = em.createNamedQuery("Usuario.findAll");
         try {
-            carritoTemporal = query.getResultList();
+            usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return carritoTemporal;
-
+        return usuarioTemporal;
     }
 
     @Override
-    public List<CarritoDeCompras> findByTotal(Object total) {
-
-         EntityManager em = EntityManagerHelper.getEntityManager();
-        List<CarritoDeCompras> carritoTemporal = null;
-        Query query = em.createNamedQuery("CarritoDeCompras.findByTotal");
-        query.setParameter(CarritoComprasDAOImpl.TOTAL, total);
+    public List<Usuario> findByRol(Object rol) {
+        EntityManager em = EntityManagerHelper.getEntityManager();
+        List<Usuario> usuarioTemporal = null;
+        Query query = em.createNamedQuery("Usuario.findByRol");
+        query.setParameter(UsuarioDAOImpl.ROL, rol);
         try {
-            carritoTemporal = query.getResultList();
+            usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return carritoTemporal;
+        return usuarioTemporal;
     }
 
     @Override
-    public List<CarritoDeCompras> findBySubtotal(Object subtotal) {
+    public List<Usuario> findByEstado(Object estado) {
     
         EntityManager em = EntityManagerHelper.getEntityManager();
-        List<CarritoDeCompras> carritoTemporal = null;
-        Query query = em.createNamedQuery("CarritoDeCompras.findBySubtotal");
-        query.setParameter(CarritoComprasDAOImpl.SUBTOTAL, subtotal);
+        List<Usuario> usuarioTemporal = null;
+        Query query = em.createNamedQuery("Usuario.findByEstado");
+        query.setParameter(UsuarioDAOImpl.ESTADO, estado);
         try {
-            carritoTemporal = query.getResultList();
+            usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return carritoTemporal;
+        return usuarioTemporal;
+    }
+
+    @Override
+    public List<Usuario> findByContrasena(Object contrasena) {
     
+        EntityManager em = EntityManagerHelper.getEntityManager();
+        List<Usuario> usuarioTemporal = null;
+        Query query = em.createNamedQuery("Usuario.findByContrasena");
+        query.setParameter(UsuarioDAOImpl.CONTRASENA, contrasena);
+        try {
+            usuarioTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("erorrr:----------------" + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return usuarioTemporal;
+    }
+
+    @Override
+    public List<Usuario> findByCorreo(Object correo) {
+    
+        EntityManager em = EntityManagerHelper.getEntityManager();
+        List<Usuario> usuarioTemporal = null;
+        Query query = em.createNamedQuery("Usuario.findByCorreo");
+        query.setParameter(UsuarioDAOImpl.CORREO, correo);
+        try {
+            usuarioTemporal = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("erorrr:----------------" + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return usuarioTemporal;
     }
 
 }
