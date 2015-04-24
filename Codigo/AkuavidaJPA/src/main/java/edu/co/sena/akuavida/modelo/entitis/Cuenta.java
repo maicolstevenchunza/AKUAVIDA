@@ -215,7 +215,9 @@ public class Cuenta implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.Cuenta[ cuentaPK=" + cuentaPK + " ]";
+        return "Cuenta{" + "cuentaPK=" + cuentaPK + ", primerNombre=" + primerNombre + ", segundoNombre=" + segundoNombre + ", primerApellido=" + primerApellido + ", segundoApellido=" + segundoApellido + ", direccion=" + direccion + ", telefono=" + telefono + ", rool=" + rool + ", activo=" + activo + ", domicilio=" + domicilio + ", usuarioidUsuario=" + usuarioidUsuario.getIdUsuario() + '}';
     }
+
+    
     
 }

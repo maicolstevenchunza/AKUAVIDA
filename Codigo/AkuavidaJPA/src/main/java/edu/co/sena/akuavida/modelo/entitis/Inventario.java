@@ -120,7 +120,8 @@ public class Inventario implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.Inventario[ inventarioPK=" + inventarioPK + " ]";
+        return "Inventario{" + "inventarioPK=" + inventarioPK + ", cantidadProductoComprado=" + cantidadProductoComprado + ", fechaDeCompra=" + fechaDeCompra + ", producto=" + producto + '}';
     }
-    
+
+     
 }

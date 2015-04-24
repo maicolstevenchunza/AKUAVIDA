@@ -73,7 +73,9 @@ public class CuentaPK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.CuentaPK[ tipoDocumento=" + tipoDocumento + ", numeroDocumento=" + numeroDocumento + " ]";
+        return "CuentaPK{" + "tipoDocumento=" + tipoDocumento + ", numeroDocumento=" + numeroDocumento + '}';
     }
+
+    
     
 }

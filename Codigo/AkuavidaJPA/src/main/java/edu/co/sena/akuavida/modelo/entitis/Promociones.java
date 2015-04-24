@@ -126,7 +126,9 @@ public class Promociones implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.Promociones[ idPromocion=" + idPromocion + " ]";
+        return "Promociones{" + "idPromocion=" + idPromocion + ", descuentos=" + descuentos + ", nombre=" + nombre + ", precio=" + precio + ", productoIDproducto=" + productoIDproducto + '}';
     }
+
+    
     
 }

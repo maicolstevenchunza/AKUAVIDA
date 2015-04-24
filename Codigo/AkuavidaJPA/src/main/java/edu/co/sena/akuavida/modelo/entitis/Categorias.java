@@ -131,7 +131,9 @@ public class Categorias implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.Categorias[ iDCategoria=" + iDCategoria + " ]";
+        return "Categorias{" + "iDCategoria=" + iDCategoria + ", nombre=" + nombre + ", activa=" + activa + ", pariente=" + pariente + '}';
     }
+
+    
     
 }

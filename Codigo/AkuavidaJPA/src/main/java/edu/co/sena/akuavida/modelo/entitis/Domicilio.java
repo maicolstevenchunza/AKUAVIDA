@@ -144,7 +144,8 @@ public class Domicilio implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.Domicilio[ domicilioPK=" + domicilioPK + " ]";
+        return "Domicilio{" + "domicilioPK=" + domicilioPK + ", ciudad=" + ciudad + ", direccion=" + direccion + ", telefono=" + telefono + ", municipioidMunicipio=" + municipioidMunicipio + '}';
     }
+
     
 }

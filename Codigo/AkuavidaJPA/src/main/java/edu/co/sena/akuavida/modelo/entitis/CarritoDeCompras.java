@@ -115,7 +115,10 @@ public class CarritoDeCompras implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.CarritoDeCompras[ iDCarrito=" + iDCarrito + " ]";
+        return "CarritoDeCompras{" + "iDCarrito=" + iDCarrito + ", total=" + total + ", subtotal=" + subtotal + '}';
     }
+
+   
+    
     
 }

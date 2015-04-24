@@ -225,7 +225,9 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.Producto[ iDproducto=" + iDproducto + " ]";
+        return "Producto{" + "iDproducto=" + iDproducto + ", nombre=" + nombre + ", precio=" + precio + ", imagen=" + imagen + ", descripcion=" + descripcion + ", cantidad=" + cantidad + ", activo=" + activo + ", impuesto=" + impuesto + ", categoriasIDCategoria=" + categoriasIDCategoria + '}';
     }
+
+    
     
 }

@@ -115,7 +115,9 @@ public class Municipio implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.Municipio[ idMunicipio=" + idMunicipio + " ]";
+        return "Municipio{" + "idMunicipio=" + idMunicipio + ", nombreMunicipio=" + nombreMunicipio + ", departamentoidDepartamento=" + departamentoidDepartamento + '}';
     }
+
+    
     
 }

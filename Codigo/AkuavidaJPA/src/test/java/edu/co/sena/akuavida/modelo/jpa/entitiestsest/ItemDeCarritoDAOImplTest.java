@@ -5,7 +5,6 @@
  */
 package edu.co.sena.akuavida.modelo.jpa.entitiestsest;
 
-import edu.co.sena.akuavida.modelo.jpa.entities.itemdecarrito.*;
 import edu.co.sena.akuavida.modelo.entitis.ItemsDelCarrito;
 import edu.co.sena.akuavida.modelo.entitis.ItemsDelCarritoPK;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.ItemCarritoDeComprasDAOImpl;

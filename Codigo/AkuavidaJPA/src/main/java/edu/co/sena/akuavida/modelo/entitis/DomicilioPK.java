@@ -73,7 +73,9 @@ public class DomicilioPK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.DomicilioPK[ cuentaTipoDocumento=" + cuentaTipoDocumento + ", cuentaNumeroDocumento=" + cuentaNumeroDocumento + " ]";
+        return "DomicilioPK{" + "cuentaTipoDocumento=" + cuentaTipoDocumento + ", cuentaNumeroDocumento=" + cuentaNumeroDocumento + '}';
     }
+
+    
     
 }

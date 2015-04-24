@@ -73,7 +73,9 @@ public class InventarioPK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.InventarioPK[ iDInventario=" + iDInventario + ", productoIDproducto=" + productoIDproducto + " ]";
+        return "InventarioPK{" + "iDInventario=" + iDInventario + ", productoIDproducto=" + productoIDproducto + '}';
     }
+
+    
     
 }

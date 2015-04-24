@@ -73,7 +73,9 @@ public class ItemPK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.ItemPK[ productoIDproducto=" + productoIDproducto + ", pedidoFacturaIDFactura=" + pedidoFacturaIDFactura + " ]";
+        return "ItemPK{" + "productoIDproducto=" + productoIDproducto + ", pedidoFacturaIDFactura=" + pedidoFacturaIDFactura + '}';
     }
+
+    
     
 }

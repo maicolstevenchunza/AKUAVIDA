@@ -126,7 +126,9 @@ public class Factura implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.Factura[ iDFactura=" + iDFactura + " ]";
+        return "Factura{" + "iDFactura=" + iDFactura + ", fecha=" + fecha + ", pago=" + pago + ", cuenta=" + cuenta.getCuentaPK() + ", pedido=" + pedido + '}';
     }
+
+    
     
 }

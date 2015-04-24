@@ -73,7 +73,9 @@ public class ItemsDelCarritoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.ItemsDelCarritoPK[ productoIDproducto=" + productoIDproducto + ", carritoDeComprasIDCarrito=" + carritoDeComprasIDCarrito + " ]";
+        return "ItemsDelCarritoPK{" + "productoIDproducto=" + productoIDproducto + ", carritoDeComprasIDCarrito=" + carritoDeComprasIDCarrito + '}';
     }
+
+    
     
 }

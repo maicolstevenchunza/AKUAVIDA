@@ -140,7 +140,9 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.Item[ itemPK=" + itemPK + " ]";
+        return "Item{" + "itemPK=" + itemPK + ", cantidad=" + cantidad + ", costoTotal=" + costoTotal + ", costoUnitario=" + costoUnitario + ", producto=" + producto + ", pedido=" + pedido + '}';
     }
+
+    
     
 }

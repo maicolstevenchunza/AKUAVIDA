@@ -102,7 +102,8 @@ public class Departamento implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.Departamento[ idDepartamento=" + idDepartamento + " ]";
+        return "Departamento{" + "idDepartamento=" + idDepartamento + ", nombreDepartamento=" + nombreDepartamento + '}';
     }
+
     
 }

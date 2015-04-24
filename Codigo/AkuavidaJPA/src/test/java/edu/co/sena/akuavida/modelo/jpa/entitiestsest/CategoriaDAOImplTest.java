@@ -5,7 +5,6 @@
  */
 package edu.co.sena.akuavida.modelo.jpa.entitiestsest;
 
-import edu.co.sena.akuavida.modelo.jpa.entities.categoria.*;
 import edu.co.sena.akuavida.modelo.entitis.Categorias;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.CategoriaDAOImpl;
 import org.junit.After;
