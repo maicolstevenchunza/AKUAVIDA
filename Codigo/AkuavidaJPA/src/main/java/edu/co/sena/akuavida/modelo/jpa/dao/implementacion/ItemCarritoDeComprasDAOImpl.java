@@ -133,7 +133,7 @@ public class ItemCarritoDeComprasDAOImpl implements IItemCarritoDeComprasDAO{
     public List<ItemsDelCarrito> findByCostoUnitario(float costoUnitario) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<ItemsDelCarrito> itemDecarritoTemporales = null;
-        Query query = em.createNamedQuery("ItemsDelCarrito.findByCantidad");
+        Query query = em.createNamedQuery("ItemsDelCarrito.findByCostoUnitario");
         query.setParameter(ItemCarritoDeComprasDAOImpl.COSTOUNITARIO, costoUnitario);
         
         try {
@@ -150,7 +150,7 @@ public class ItemCarritoDeComprasDAOImpl implements IItemCarritoDeComprasDAO{
     public List<ItemsDelCarrito> findByCostoTotal(float costoTotal) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<ItemsDelCarrito> itemDecarritoTemporales = null;
-        Query query = em.createNamedQuery("ItemsDelCarrito.findByCantidad");
+        Query query = em.createNamedQuery("ItemsDelCarrito.findByCostoTotal");
         query.setParameter(ItemCarritoDeComprasDAOImpl.COSTOTOTAL, costoTotal);
         
         try {
