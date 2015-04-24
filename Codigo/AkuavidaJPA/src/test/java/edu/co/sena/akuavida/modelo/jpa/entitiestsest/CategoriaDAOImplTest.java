@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.akuavida.modelo.jpa.entities.producto;
+package edu.co.sena.akuavida.modelo.jpa.entitiestsest;
 
+import edu.co.sena.akuavida.modelo.jpa.entities.categoria.*;
 import edu.co.sena.akuavida.modelo.entitis.Categorias;
-import edu.co.sena.akuavida.modelo.entitis.Producto;
-import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.ProductoDAOImpl;
+import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.CategoriaDAOImpl;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,10 +19,10 @@ import static org.junit.Assert.*;
  *
  * @author Tatiana
  */
-public class ProductoDAOImplTest {
-    Producto entity= new Producto();
+public class CategoriaDAOImplTest {
+    Categorias entity=new  Categorias();
     
-    public ProductoDAOImplTest() {
+    public CategoriaDAOImplTest() {
     }
     
     @BeforeClass
@@ -35,14 +35,11 @@ public class ProductoDAOImplTest {
     
     @Before
     public void setUp() {
-        entity.setIDproducto("1");
-        entity.setNombre("All star");
-        entity.setPrecio(180000);
-        entity.setDescripcion("Este purificador es uno de los mejores que tenemos ya que esta hecho con la ultima tecnologia");
-        entity.setCantidad(30);
-        entity.setActivo(true);
-        entity.setImpuesto(16);
-        entity.setCategoriasIDCategoria(new Categorias(1));
+        entity.setIDCategoria(1);
+        entity.setNombre("Categoria prueba");
+        entity.setActiva(true);
+        entity.setPariente(1);
+        
     }
     
     @After
@@ -54,12 +51,13 @@ public class ProductoDAOImplTest {
     //
     // @Test
     // public void hello() {}
-    
     @Test
     public void testInsert() {
         System.out.println("insert");
-        ProductoDAOImpl instance = new ProductoDAOImpl();
+        CategoriaDAOImpl instance = new CategoriaDAOImpl();
         instance.insert(entity);
         
     }
+
+    
 }

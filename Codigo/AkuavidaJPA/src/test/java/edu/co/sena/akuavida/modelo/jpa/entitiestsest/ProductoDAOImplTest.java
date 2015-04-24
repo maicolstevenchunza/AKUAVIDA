@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.akuavida.modelo.jpa.entities.carritodecompras;
+package edu.co.sena.akuavida.modelo.jpa.entitiestsest;
 
-import edu.co.sena.akuavida.modelo.entitis.CarritoDeCompras;
-import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.CarritoComprasDAOImpl;
+import edu.co.sena.akuavida.modelo.entitis.Categorias;
+import edu.co.sena.akuavida.modelo.entitis.Producto;
+import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.ProductoDAOImpl;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,9 +19,10 @@ import static org.junit.Assert.*;
  *
  * @author Tatiana
  */
-public class CarritoDeComprasDAOImplTest {
-    CarritoDeCompras entity= new CarritoDeCompras();
-    public CarritoDeComprasDAOImplTest() {
+public class ProductoDAOImplTest {
+    Producto entity= new Producto();
+    
+    public ProductoDAOImplTest() {
     }
     
     @BeforeClass
@@ -33,9 +35,14 @@ public class CarritoDeComprasDAOImplTest {
     
     @Before
     public void setUp() {
-        entity.setIDCarrito("1");
-        entity.setTotal(0);
-        entity.setSubtotal(0);
+        entity.setIDproducto("1");
+        entity.setNombre("All star");
+        entity.setPrecio(180000);
+        entity.setDescripcion("Este purificador es uno de los mejores que tenemos ya que esta hecho con la ultima tecnologia");
+        entity.setCantidad(30);
+        entity.setActivo(true);
+        entity.setImpuesto(16);
+        entity.setCategoriasIDCategoria(new Categorias(1));
     }
     
     @After
@@ -47,12 +54,12 @@ public class CarritoDeComprasDAOImplTest {
     //
     // @Test
     // public void hello() {}
+    
     @Test
     public void testInsert() {
         System.out.println("insert");
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
+        ProductoDAOImpl instance = new ProductoDAOImpl();
         instance.insert(entity);
         
     }
-
 }
