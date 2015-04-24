@@ -128,7 +128,7 @@ public class ProductoDAOImpl implements IProductoDAO{
     public List<Producto> findByPrecio(float precio) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findByNombre");
+        Query query = em.createNamedQuery("Producto.findByPrecio");
         query.setParameter(ProductoDAOImpl.PRECIO, precio);
         
         try {
@@ -145,7 +145,7 @@ public class ProductoDAOImpl implements IProductoDAO{
     public List<Producto> findByCantidad(int cantidad) {
          EntityManager em = EntityManagerHelper.getEntityManager();
         List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findByNombre");
+        Query query = em.createNamedQuery("Producto.findByCantidad");
         query.setParameter(ProductoDAOImpl.CANTIDAD, cantidad);
         
         try {
@@ -163,7 +163,7 @@ public class ProductoDAOImpl implements IProductoDAO{
     public List<Producto> findByActivo(boolean activo) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findByNombre");
+        Query query = em.createNamedQuery("Producto.findByActivo");
         query.setParameter(ProductoDAOImpl.ACTIVO, activo);
         
         try {
@@ -181,7 +181,7 @@ public class ProductoDAOImpl implements IProductoDAO{
     public List<Producto> findByImpuesto(float impuesto) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findByNombre");
+        Query query = em.createNamedQuery("Producto.findByImpuesto");
         query.setParameter(ProductoDAOImpl.IMPUESTO, impuesto);
         
         try {
