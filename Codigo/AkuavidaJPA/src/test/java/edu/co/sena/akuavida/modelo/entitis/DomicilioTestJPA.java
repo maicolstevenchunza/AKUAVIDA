@@ -5,10 +5,7 @@
  */
 package edu.co.sena.akuavida.modelo.entitis;
 
-import edu.co.sena.akuavida.modelo.entitis.Cuenta;
-import edu.co.sena.akuavida.modelo.entitis.Municipio;
-import edu.co.sena.akuavida.modelo.entitis.Domicilio;
-import edu.co.sena.akuavida.modelo.entitis.DomicilioPK;
+
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -20,7 +17,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
