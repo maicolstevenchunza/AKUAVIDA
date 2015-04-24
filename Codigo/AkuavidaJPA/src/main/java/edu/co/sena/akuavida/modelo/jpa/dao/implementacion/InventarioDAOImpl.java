@@ -6,6 +6,7 @@
 package edu.co.sena.akuavida.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.akuavida.modelo.entitis.Inventario;
+import edu.co.sena.akuavida.modelo.entitis.InventarioPK;
 import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IInventarioDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
@@ -78,13 +79,13 @@ public class InventarioDAOImpl implements IInventarioDAO{
     }
 
     @Override
-    public Inventario findByIDInventario(int idInventario) {
+    public Inventario findByIDInventario(InventarioPK inventarioPK) {
         
          EntityManager em = getEntityManager();
         Inventario inventarioTemporal = null;
         try {
 
-            inventarioTemporal = em.find(Inventario.class, idInventario);
+            inventarioTemporal = em.find(Inventario.class, inventarioPK);
 
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());

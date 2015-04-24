@@ -6,6 +6,7 @@
 package edu.co.sena.akuavida.modelo.jpa.dao.interfaces;
 
 import edu.co.sena.akuavida.modelo.entitis.Inventario;
+import edu.co.sena.akuavida.modelo.entitis.InventarioPK;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public interface IInventarioDAO {
     public void update(Inventario entity);
     public void delete(Inventario entity);
     
-    public Inventario findByIDInventario(int idCarrito);
+    public Inventario findByIDInventario(InventarioPK inventarioPK);
     
     
     public List<Inventario> findByAll();
