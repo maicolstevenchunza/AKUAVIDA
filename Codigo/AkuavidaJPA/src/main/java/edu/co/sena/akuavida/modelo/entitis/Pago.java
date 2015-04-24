@@ -113,7 +113,9 @@ public class Pago implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.akuavida.integracion.entitis.Pago[ facturaIDFactura=" + facturaIDFactura + " ]";
+        return "Pago{" + "facturaIDFactura=" + facturaIDFactura + ", tipoPago=" + tipoPago + ", numeroTarjeta=" + numeroTarjeta + ", factura=" + factura + '}';
     }
+
+
     
 }

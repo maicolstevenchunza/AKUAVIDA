@@ -71,9 +71,9 @@ public class Cuenta implements Serializable {
     private Collection<Factura> facturaCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "cuenta", fetch = FetchType.EAGER)
     private Domicilio domicilio;
-    @JoinColumn(name = "Ususario_idUsusario", referencedColumnName = "idUsusario")
+    @JoinColumn(name = "Usuario_idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Usuario ususarioidUsusario;
+    private Usuario usuarioidUsuario;
 
     public Cuenta() {
     }
@@ -166,6 +166,8 @@ public class Cuenta implements Serializable {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+    
+    
 
     @XmlTransient
     public Collection<Factura> getFacturaCollection() {
@@ -183,13 +185,12 @@ public class Cuenta implements Serializable {
     public void setDomicilio(Domicilio domicilio) {
         this.domicilio = domicilio;
     }
-
-    public Usuario getUsusarioidUsusario() {
-        return ususarioidUsusario;
+    public Usuario getUsuarioidUsuario() {
+        return usuarioidUsuario;
     }
 
-    public void setUsusarioidUsusario(Usuario ususarioidUsusario) {
-        this.ususarioidUsusario = ususarioidUsusario;
+    public void setUsuarioidUsuario(Usuario usuarioidUsuario) {
+        this.usuarioidUsuario = usuarioidUsuario;
     }
 
     @Override

@@ -15,11 +15,11 @@ import java.util.List;
 public interface IProductoDAO {
     public void insert(Producto entity);
     public void update(Producto entity);
-    public void delete(Producto entity);
+      public void delete(Producto entity);
     
-    public Producto findByIDproducto(String idProducto);  
+       public Producto findByIDproducto(String idProducto);  
     
-     public List<Producto> findByAll();
+      public List<Producto> findByAll();
       public List<Producto> findByNombre(String nombre);
       public List<Producto> findByPrecio(float precio);
       public List<Producto> findByCantidad(int cantidad);

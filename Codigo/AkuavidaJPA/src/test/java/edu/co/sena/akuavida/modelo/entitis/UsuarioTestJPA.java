@@ -44,10 +44,11 @@ public class UsuarioTestJPA {
     @Before
     public void setUp() {
         usuario = new Usuario();
-        usuario.setIdUsusario("1");
+        usuario.setIdUsuario("1");
         usuario.setContrasena("123456789");
         usuario.setRol("Cliente");
         usuario.setEstado("Activo");
+        usuario.setCorreo("jdmontero0@misena.edu.co");
 
     }
 
@@ -76,7 +77,7 @@ public class UsuarioTestJPA {
         String idUsu = JOptionPane.showInputDialog("Escriba el id del Usuario");
         String actRol = JOptionPane.showInputDialog("Escriba El Rol");
 
-        usuario.setIdUsusario(idUsu);
+        usuario.setIdUsuario(idUsu);
         usuario.setRol(actRol);
 
         em = EntityManagerHelper.getEntityManager();
@@ -128,7 +129,7 @@ public class UsuarioTestJPA {
         Query q = em.createNamedQuery("Ususario.findAll");
         List<Usuario> lis = q.getResultList();
         for (Usuario usuarioT : lis) {
-            System.out.println("ID Usuario " + usuarioT.getIdUsusario() + " / Contrasena: " + usuarioT.getContrasena()+ " / Rol: " + usuarioT.getRol() + " / Estado: " + usuarioT.getEstado());
+            System.out.println("ID Usuario " + usuarioT.getIdUsuario() + " / Contrasena: " + usuarioT.getContrasena()+ " / Rol: " + usuarioT.getRol() + " / Estado: " + usuarioT.getEstado());
         }
 
         EntityManagerHelper.commit();
@@ -149,7 +150,7 @@ public class UsuarioTestJPA {
 
         List<Usuario> lis = query.getResultList();
         for (Usuario usuarioT : lis) {
-            System.out.println("ID Usuario " + usuarioT.getIdUsusario() + " / Contrasena: " + usuarioT.getContrasena() + " / Rol: " + usuarioT.getRol() + " / Estado: " + usuarioT.getEstado());
+            System.out.println("ID Usuario " + usuarioT.getIdUsuario() + " / Contrasena: " + usuarioT.getContrasena() + " / Rol: " + usuarioT.getRol() + " / Estado: " + usuarioT.getEstado());
         }
 
         EntityManagerHelper.commit();
@@ -169,7 +170,7 @@ public class UsuarioTestJPA {
 
         List<Usuario> lis = query.getResultList();
         for (Usuario usuarioT : lis) {
-            System.out.println("ID Usuario " + usuarioT.getIdUsusario() + " / Contrasena: " + usuarioT.getContrasena() + " / Rol: " + usuarioT.getRol() + " / Estado: " + usuarioT.getEstado());
+            System.out.println("ID Usuario " + usuarioT.getIdUsuario() + " / Contrasena: " + usuarioT.getContrasena() + " / Rol: " + usuarioT.getRol() + " / Estado: " + usuarioT.getEstado());
         }
 
         EntityManagerHelper.commit();
@@ -189,7 +190,7 @@ public class UsuarioTestJPA {
 
         List<Usuario> lis = query.getResultList();
         for (Usuario usuarioT : lis) {
-            System.out.println("ID Usuario " + usuarioT.getIdUsusario() + " / Contrasena: " + usuarioT.getContrasena() + " / Rol: " + usuarioT.getRol() + " / Estado: " + usuarioT.getEstado());
+            System.out.println("ID Usuario " + usuarioT.getIdUsuario() + " / Contrasena: " + usuarioT.getContrasena() + " / Rol: " + usuarioT.getRol() + " / Estado: " + usuarioT.getEstado());
         }
 
         EntityManagerHelper.commit();
