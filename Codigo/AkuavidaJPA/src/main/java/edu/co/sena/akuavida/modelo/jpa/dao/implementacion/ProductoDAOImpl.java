@@ -61,6 +61,7 @@ public class ProductoDAOImpl implements IProductoDAO{
         try {
             EntityManagerHelper.beginTransaction();
             em.remove(em.find(Producto.class, entity.getIDproducto()));
+            em.remove(entity);
             EntityManagerHelper.commit();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
