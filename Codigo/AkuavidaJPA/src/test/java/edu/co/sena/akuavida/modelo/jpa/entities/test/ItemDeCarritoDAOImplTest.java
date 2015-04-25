@@ -8,7 +8,9 @@ package edu.co.sena.akuavida.modelo.jpa.entities.test;
 import edu.co.sena.akuavida.modelo.entitis.ItemsDelCarrito;
 import edu.co.sena.akuavida.modelo.entitis.ItemsDelCarritoPK;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.ItemCarritoDeComprasDAOImpl;
+import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
+import javax.persistence.EntityManager;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -23,6 +25,11 @@ import static org.junit.Assert.*;
  */
 public class ItemDeCarritoDAOImplTest {
     ItemsDelCarrito entity=new ItemsDelCarrito();
+    private EntityManager getEntityManager() {
+        return EntityManagerHelper.getEntityManager();
+    }
+        
+
     
     public ItemDeCarritoDAOImplTest() {
     }
@@ -70,18 +77,29 @@ public class ItemDeCarritoDAOImplTest {
     public void testDelete() {
         System.out.println("delete");
        ItemCarritoDeComprasDAOImpl instance = new ItemCarritoDeComprasDAOImpl();
-        ItemsDelCarrito ct = instance.findByIDCarrito("1");
+        ItemsDelCarrito ct = instance.findByIDItemDeCarrito(new ItemsDelCarritoPK("1", "1"));
         instance.delete(ct);
         
     }
+    
     @Test
     public void testFindByAll() {
         System.out.println("findByAll");
        ItemCarritoDeComprasDAOImpl instance = new ItemCarritoDeComprasDAOImpl();
         List<ItemsDelCarrito> result = instance.findByAll();
         for (ItemsDelCarrito result1 : result) {
-            System.out.println(result1.getItemsDelCarritoPK());
+            System.out.println(result1.toString());
         }
+    }
+    @Test
+    public void testFindByIdItemCarrito() {
+        ItemsDelCarrito it;
+        String idProducto="1";
+        String idCarrito="1";
+        ItemCarritoDeComprasDAOImpl instance = new ItemCarritoDeComprasDAOImpl();
+        it=instance.findByIDItemDeCarrito(new ItemsDelCarritoPK(idProducto, idCarrito));
+        System.out.println(it.toString());     
+        
     }
     @Test
     public void testFindByCostoTotal() {
@@ -90,9 +108,21 @@ public class ItemDeCarritoDAOImplTest {
         ItemCarritoDeComprasDAOImpl instance = new ItemCarritoDeComprasDAOImpl();
         List<ItemsDelCarrito> result = instance.findByCostoTotal(costoTotal);
         for (ItemsDelCarrito result1 : result) {
-            System.out.println(result1.getItemsDelCarritoPK());
+            System.out.println(result1.toString());
         }
     }
-
-
+     @Test
+    public void testFindByCostoUnitario() {
+        System.out.println("findByCostoUnitario");
+        float costoUnitario = 170000;
+        ItemCarritoDeComprasDAOImpl instance = new ItemCarritoDeComprasDAOImpl();
+        List<ItemsDelCarrito> result = instance.findByCostoTotal(costoUnitario);
+        for (ItemsDelCarrito result1 : result) {
+            System.out.println(result1.toString());
+        }
+    }
+    
+  
+        
+       
 }

@@ -8,6 +8,7 @@ package edu.co.sena.akuavida.modelo.jpa.entities.test;
 import edu.co.sena.akuavida.modelo.entitis.Categorias;
 import edu.co.sena.akuavida.modelo.entitis.Producto;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.ProductoDAOImpl;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -42,7 +43,7 @@ public class ProductoDAOImplTest {
         entity.setCantidad(30);
         entity.setActivo(true);
         entity.setImpuesto(16);
-        entity.setCategoriasIDCategoria(new Categorias(1));
+        entity.setCategoriasIDCategoria(new Categorias(3));
     }
     
     @After
@@ -62,4 +63,92 @@ public class ProductoDAOImplTest {
         instance.insert(entity);
         
     }
+    @Test
+    public void testUpdate() throws Exception{
+        System.out.println("update");  
+        ProductoDAOImpl instance = new ProductoDAOImpl();
+        instance.findByIDproducto("1");
+        entity.setNombre("moe1");        
+        instance.update(entity);
+   }
+     @Test
+    public void testDelete() {
+        System.out.println("delete");
+        ProductoDAOImpl instance = new ProductoDAOImpl();
+        Producto pt = instance.findByIDproducto("1");
+        instance.delete(pt);        
+    }
+    @Test
+    public void testFindByIdProducto() {
+        System.out.println("FindByIdProducto");
+        Producto pt;        
+        ProductoDAOImpl instance = new ProductoDAOImpl();
+        pt = instance.findByIDproducto("1");
+        System.out.println(pt.getIDproducto());
+
+    }
+     @Test
+    public void testFindByAll() {
+        System.out.println("findByAll");
+         ProductoDAOImpl instance = new ProductoDAOImpl();
+        List<Producto> result = instance.findByAll();
+        for (Producto result1 : result) {
+            System.out.println(result1.toString());
+        }
+    }
+    
+    @Test
+    public void testFindByNombre() {
+        System.out.println("findByNombre");
+        String nombre = "moe1";
+        ProductoDAOImpl instance = new ProductoDAOImpl();
+        List<Producto> result = instance.findByNombre(nombre);
+        for (Producto result1 : result) {
+            System.out.println(result1.toString());
+        }
+    }
+    @Test
+    public void testFindByPrecio() {
+        System.out.println("findByPrecio");
+        float precio = 180000;
+        ProductoDAOImpl instance = new ProductoDAOImpl();
+        List<Producto> result = instance.findByPrecio(precio);
+        for (Producto result1 : result) {
+            System.out.println(result1.toString());
+        }
+    }
+     @Test
+    public void testFindByCantidad() {
+        System.out.println("findByCantidad");
+        int cantidad = 30;
+        ProductoDAOImpl instance = new ProductoDAOImpl();
+        List<Producto> result = instance.findByCantidad(cantidad);
+        for (Producto result1 : result) {
+            System.out.println(result1.toString());
+        }
+    }
+    
+     @Test
+    public void testFindByActivo() {
+        System.out.println("findByActivo");
+        boolean activo = true;
+        ProductoDAOImpl instance = new ProductoDAOImpl();
+        List<Producto> result = instance.findByActivo(activo);
+        for (Producto result1 : result) {
+            System.out.println(result1.toString());
+        }
+    }
+     @Test
+    public void testFindByImpuesto() {
+        System.out.println("findByImpuesto");
+        float impuesto = 16;
+        ProductoDAOImpl instance = new ProductoDAOImpl();
+        List<Producto> result = instance.findByImpuesto(impuesto);
+        for (Producto result1 : result) {
+            System.out.println(result1.toString());
+        }
+    }
+   
+    
 }
+

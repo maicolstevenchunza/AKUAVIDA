@@ -60,7 +60,8 @@ public class ProductoDAOImpl implements IProductoDAO{
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-            em.remove(em.find(Producto.class, entity.getIDproducto()));
+           entity = em.getReference(Producto.class,
+                    entity.getIDproducto());
             em.remove(entity);
             EntityManagerHelper.commit();
         } catch (RuntimeException re) {

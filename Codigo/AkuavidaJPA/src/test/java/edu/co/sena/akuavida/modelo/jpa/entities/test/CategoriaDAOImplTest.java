@@ -7,6 +7,7 @@ package edu.co.sena.akuavida.modelo.jpa.entities.test;
 
 import edu.co.sena.akuavida.modelo.entitis.Categorias;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.CategoriaDAOImpl;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -57,6 +58,75 @@ public class CategoriaDAOImplTest {
         instance.insert(entity);
         
     }
+    @Test
+    public void testUpdate() throws Exception{
+        System.out.println("update");  
+        CategoriaDAOImpl instance = new CategoriaDAOImpl();
+        instance.findByIDCategoria(1);
+        entity.setNombre("moe");        
+        instance.update(entity);
+    }
+    @Test
+    public void testDelete() {
+        System.out.println("delete");
+        CategoriaDAOImpl instance = new CategoriaDAOImpl();
+        Categorias ct = instance.findByIDCategoria(1);
+        instance.delete(ct);        
+    }
+    @Test
+    public void testFindByIdCategoria() {
+        System.out.println("findByIdCategoria");
+        Categorias ct;
+        int idCategoria = 3;
+        CategoriaDAOImpl instance = new CategoriaDAOImpl();
+        ct = instance.findByIDCategoria(idCategoria);
+        System.out.println(ct.getIDCategoria());
+
+    }
+     @Test
+    public void testFindByAll() {
+        System.out.println("findByAll");
+         CategoriaDAOImpl instance = new CategoriaDAOImpl();
+        List<Categorias> result = instance.findByAll();
+        for (Categorias result1 : result) {
+            System.out.println(result1.toString());
+        }
+    }
+    @Test
+    public void testFindByNombre() {
+        System.out.println("findByNombre");
+        String nombre = "moe";
+        CategoriaDAOImpl instance = new CategoriaDAOImpl();
+        List<Categorias> result = instance.findByNombre(nombre);
+        for (Categorias result1 : result) {
+            System.out.println(result1.toString());
+        }
+    }
+    
+    @Test
+    public void testFindByActiva() {
+        System.out.println("findByActiva");
+        boolean activa=true;
+        CategoriaDAOImpl instance = new CategoriaDAOImpl();
+        List<Categorias> result = instance.findByActiva(activa);
+        for (Categorias result1 : result) {
+            System.out.println(result1.toString());
+        }
+    }
+    
+    @Test
+    public void testFindByPariente() {
+        System.out.println("findByPariente");
+        int pariente=1;
+        CategoriaDAOImpl instance = new CategoriaDAOImpl();
+        List<Categorias> result = instance.findByPariente(pariente);
+        for (Categorias result1 : result) {
+            System.out.println(result1.toString());
+        }
+    }
+    
+
+
 
     
 }

@@ -6,6 +6,7 @@
 package edu.co.sena.akuavida.modelo.jpa.dao.interfaces;
 
 import edu.co.sena.akuavida.modelo.entitis.ItemsDelCarrito;
+import edu.co.sena.akuavida.modelo.entitis.ItemsDelCarritoPK;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public interface IItemCarritoDeComprasDAO  {
     public void update(ItemsDelCarrito entity);
     public void delete(ItemsDelCarrito entity);
     
-    public ItemsDelCarrito findByIDCarrito(String idCarrito); 
+    public ItemsDelCarrito findByIDItemDeCarrito(ItemsDelCarritoPK itemsDelCarritoPK); 
     
     public List<ItemsDelCarrito> findByAll();
            
