@@ -6,6 +6,7 @@
 package edu.co.sena.akuavida.modelo.jpa.dao.interfaces;
 
 import edu.co.sena.akuavida.modelo.entitis.Item;
+import edu.co.sena.akuavida.modelo.entitis.ItemPK;
 import java.util.List;
 
 /**
@@ -17,9 +18,10 @@ public interface IItemDAO {
     public void update(Item entity);
     public void delete(Item entity);
     
-    public Item findByAll();
+    public Item findByIDItem(ItemPK itemsPK); 
     
-    public List<Item> findByCantidad (Object cantidad);
-    public List<Item> findByCostoTotal (Object costoTotal);
-    public List<Item> findByCostoUnitario(Object costoUnitario);  
+    public List<Item> findByAll();
+    public List<Item> findByCantidad (int cantidad);
+    public List<Item> findByCostoTotal (float costoTotal);
+    public List<Item> findByCostoUnitario(float costoUnitario);  
 }

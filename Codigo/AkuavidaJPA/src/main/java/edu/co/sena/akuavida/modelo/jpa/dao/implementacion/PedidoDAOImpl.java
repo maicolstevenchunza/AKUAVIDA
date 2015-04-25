@@ -8,10 +8,8 @@ package edu.co.sena.akuavida.modelo.jpa.dao.implementacion;
 import edu.co.sena.akuavida.modelo.entitis.Pedido;
 import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IPedidoDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -21,6 +19,7 @@ import javax.persistence.Query;
  */
 public class PedidoDAOImpl implements IPedidoDAO {
 
+    public static final String IDFACTURA = "facturaIDFactura";
     public static final String SUBTOTAL = "subtotal";
     public static final String TOTAL = "total";
     public static final String FECHA = "fecha";
@@ -95,54 +94,72 @@ public class PedidoDAOImpl implements IPedidoDAO {
     }
 
     @Override
-    public List<Pedido> findByFecha(Object fecha) {
-        Calendar hoy = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
-        hoy.set(2015, 3, 24);
-        Date fechaTemporal = hoy.getTime();
+    public List<Pedido> findByFecha(Date fecha) {
         EntityManager em = EntityManagerHelper.getEntityManager();
-        List<Pedido> itemTemporal = null;
-        Query query = em.createNamedQuery("Item.findByFecha");
-        query.setParameter(PedidoDAOImpl.FECHA, fecha);
+        List<Pedido> pedidoTemporal = null;
         try {
-            itemTemporal = query.getResultList();
+            Query query = em.createNamedQuery("Pedido.findByFecha");
+            query.setParameter(PedidoDAOImpl.FECHA, fecha);
+            pedidoTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("Error : " + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return itemTemporal;
+        return pedidoTemporal;
     }
 
     @Override
-    public List<Pedido> findBySubtotal(Object subtotal) {
+    public List<Pedido> findBySubtotal(float subtotal) {
         EntityManager em = EntityManagerHelper.getEntityManager();
-        List<Pedido> itemTemporal = null;
-        Query query = em.createNamedQuery("Item.findBySubtotal");
-        query.setParameter(PedidoDAOImpl.SUBTOTAL, subtotal);
+        List<Pedido> pedidoTemporal = null;
+
         try {
-            itemTemporal = query.getResultList();
+            Query query = em.createNamedQuery("Pedido.findBySubtotal");
+            query.setParameter(PedidoDAOImpl.SUBTOTAL, subtotal);
+            pedidoTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("Error : " + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return itemTemporal;
+        return pedidoTemporal;
     }
 
     @Override
-    public List<Pedido> findByTotal(Object total) {
+    public List<Pedido> findByTotal(float total) {
         EntityManager em = EntityManagerHelper.getEntityManager();
-        List<Pedido> itemTemporal = null;
-        Query query = em.createNamedQuery("Item.findByTotal");
-        query.setParameter(PedidoDAOImpl.TOTAL, total);
+        List<Pedido> pedidoTemporal = null;
+
         try {
-            itemTemporal = query.getResultList();
+            Query query = em.createNamedQuery("Pedido.findByTotal");
+            query.setParameter(PedidoDAOImpl.TOTAL, total);
+            pedidoTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("Error : " + re.getMessage());
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return itemTemporal;
+        return pedidoTemporal;
+    }
+
+    @Override
+    public Pedido findByFacturaIDFactura(int idFactura) {
+        EntityManager em = EntityManagerHelper.getEntityManager();
+        Pedido pedidoTemporal = null;
+        try {
+
+            pedidoTemporal = em.find(Pedido.class, idFactura);
+
+        } catch (RuntimeException re) {
+            System.out.println(" Error : " + re.getMessage());
+        } finally {
+            if (em != null) {
+                EntityManagerHelper.closeEntityManager();
+            }
+
+        }
+        return pedidoTemporal;
     }
 
 }

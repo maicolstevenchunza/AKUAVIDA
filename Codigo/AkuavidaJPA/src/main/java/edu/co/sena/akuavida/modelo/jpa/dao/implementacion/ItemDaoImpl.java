@@ -6,6 +6,7 @@
 package edu.co.sena.akuavida.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.akuavida.modelo.entitis.Item;
+import edu.co.sena.akuavida.modelo.entitis.ItemPK;
 import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IItemDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
@@ -77,24 +78,38 @@ public class ItemDaoImpl implements IItemDAO {
     }
 
     @Override
-    public Item findByAll() {
-        Item itemTemporal = null;
-        EntityManager em = EntityManagerHelper.getEntityManager();
+    public Item findByIDItem(ItemPK itemsPK) {
+        EntityManager em = getEntityManager();
+        Item itemTemporales = null;
         try {
-            itemTemporal = em.find(Item.class, findByAll().getItemPK());
-
+            itemTemporales = em.find(Item.class, itemsPK);
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            System.out.println(" Error : " + re.getMessage());
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
             }
         }
-        return itemTemporal;
+        return itemTemporales;
     }
 
     @Override
-    public List<Item> findByCantidad(Object cantidad) {
+    public List<Item> findByAll() {
+        EntityManager em = getEntityManager();
+        List<Item> itemTemporales = null;
+        Query query = em.createNamedQuery("Item.findAll");
+        try {
+            itemTemporales = query.getResultList();
+        } catch (RuntimeException re) {
+            System.out.println("erorrr:----------------" + re.getMessage());
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+        return itemTemporales;
+    }
+
+    @Override
+    public List<Item> findByCantidad(int cantidad) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Item> itemTemporal = null;
         Query query = em.createNamedQuery("Item.findByCantidad");
@@ -110,12 +125,12 @@ public class ItemDaoImpl implements IItemDAO {
     }
 
     @Override
-    public List<Item> findByCostoTotal(Object costoTotal) {
+    public List<Item> findByCostoTotal(float costoTotal) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Item> itemTemporal = null;
-        Query query = em.createNamedQuery("Item.findByCostoTotal");
-        query.setParameter(ItemDaoImpl.COSTOTOTAL, costoTotal);
         try {
+            Query query = em.createNamedQuery("Item.findByCostoTotal");
+            query.setParameter(ItemDaoImpl.COSTOTOTAL, costoTotal);
             itemTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("Error : " + re.getMessage());
@@ -126,12 +141,12 @@ public class ItemDaoImpl implements IItemDAO {
     }
 
     @Override
-    public List<Item> findByCostoUnitario(Object costoUnitario) {
+    public List<Item> findByCostoUnitario(float costoUnitario) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Item> itemTemporal = null;
-        Query query = em.createNamedQuery("Item.findByCostoUnitario");
-        query.setParameter(ItemDaoImpl.COSTOUNITARIO, costoUnitario);
         try {
+            Query query = em.createNamedQuery("Item.findByCostoUnitario");
+            query.setParameter(ItemDaoImpl.COSTOUNITARIO, costoUnitario);
             itemTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("Error : " + re.getMessage());

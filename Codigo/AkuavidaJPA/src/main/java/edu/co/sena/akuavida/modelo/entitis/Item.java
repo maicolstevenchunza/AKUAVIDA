@@ -140,7 +140,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "Item{" + "itemPK=" + itemPK + ", cantidad=" + cantidad + ", costoTotal=" + costoTotal + ", costoUnitario=" + costoUnitario + ", producto=" + producto + ", pedido=" + pedido + '}';
+        return "Item{" + "itemPK=" + itemPK + ", cantidad=" + cantidad + ", costoTotal=" + costoTotal + ", costoUnitario=" + costoUnitario + ", producto=" + producto.getIDproducto() + ", pedido=" + pedido.getFacturaIDFactura() + '}';
     }
 
     

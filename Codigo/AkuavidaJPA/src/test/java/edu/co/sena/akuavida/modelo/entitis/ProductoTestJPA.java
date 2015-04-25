@@ -53,7 +53,7 @@ public class ProductoTestJPA {
         producto.setCantidad(25);
         producto.setActivo(true);
         producto.setImpuesto(16);
-        producto.setCategoriasIDCategoria(new Categorias(2));
+        producto.setCategoriasIDCategoria(new Categorias(1));
     }
 
     @After

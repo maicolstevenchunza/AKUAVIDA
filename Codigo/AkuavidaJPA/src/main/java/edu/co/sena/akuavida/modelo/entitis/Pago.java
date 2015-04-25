@@ -113,7 +113,7 @@ public class Pago implements Serializable {
 
     @Override
     public String toString() {
-        return "Pago{" + "facturaIDFactura=" + facturaIDFactura + ", tipoPago=" + tipoPago + ", numeroTarjeta=" + numeroTarjeta + ", factura=" + factura + '}';
+        return "Pago{" + "facturaIDFactura=" + facturaIDFactura + ", tipoPago=" + tipoPago + ", numeroTarjeta=" + numeroTarjeta  + '}';
     }
 
 

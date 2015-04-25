@@ -18,7 +18,7 @@ import javax.persistence.Query;
  */
 public class PagoDAOImpl implements IPagoDAO {
 
-    public static final String IDFACTURA = "idFactura";
+    public static final String IDFACTURA = "facturaIDFactura";
     public static final String TIPOPAGO = "tipoPago";
     public static final String NUMEROTARJETA = "numeroTarjeta";
 
@@ -94,20 +94,20 @@ public class PagoDAOImpl implements IPagoDAO {
 
     @Override
     public Pago findByFacturaIDFactura(int idFactura) {
-        EntityManager em = getEntityManager();
-        List<Pago> pagoTemporal = null;
-        Query query = em.createNamedQuery("Pago.findByFacturaIDFactura");
-        query.setParameter(PagoDAOImpl.IDFACTURA, idFactura);
+        EntityManager em = EntityManagerHelper.getEntityManager();
+        Pago pagoTemporal = null;
         try {
-            pagoTemporal = query.getResultList();
+            pagoTemporal = em.find(Pago.class, idFactura);
+
         } catch (RuntimeException re) {
             System.out.println(" Error : " + re.getMessage());
         } finally {
-            EntityManagerHelper.closeEntityManager();
+            if (em != null) {
+                EntityManagerHelper.closeEntityManager();
+            }
         }
-        return (Pago) pagoTemporal;
+        return pagoTemporal;
     }
-    
 
     @Override
     public List<Pago> findByTipoPago(String tipoPago) {
@@ -129,7 +129,7 @@ public class PagoDAOImpl implements IPagoDAO {
 
     @Override
     public List<Pago> findByNumeroTarjeta(String numeroTarjeta) {
-       
+
         EntityManager em = getEntityManager();
         List<Pago> pagoTemporal = null;
         try {

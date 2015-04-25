@@ -6,6 +6,7 @@
 package edu.co.sena.akuavida.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.akuavida.modelo.entitis.Cuenta;
+import edu.co.sena.akuavida.modelo.entitis.CuentaPK;
 import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.ICuentaDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
@@ -80,6 +81,21 @@ public class CuentaDAOImpl implements ICuentaDAO {
         }
     }
 
+    @Override
+    public Cuenta finByCuentaPk(CuentaPK cuentaPKLlaves) {
+        EntityManager em = getEntityManager();
+        Cuenta cuentaTemporales = null;
+        try {
+            cuentaTemporales = em.find(Cuenta.class, cuentaPKLlaves);
+        } catch (RuntimeException re) {
+            System.out.println(" Error : " + re.getMessage());
+        } finally {
+            if (em != null) {
+                EntityManagerHelper.closeEntityManager();
+            }
+        }
+        return cuentaTemporales;
+    }
 
     @Override
     public List<Cuenta> findByAll() {
@@ -97,12 +113,12 @@ public class CuentaDAOImpl implements ICuentaDAO {
     }
 
     @Override
-    public List<Cuenta> findByPrimerNombre(Object primerNombre) {
+    public List<Cuenta> findByPrimerNombre(String primerNombre) {
         EntityManager em = getEntityManager();
         List<Cuenta> cuentaTemporal = null;
-        Query query = em.createNamedQuery("Cuenta.findByPrimerNombre");
-        query.setParameter(CuentaDAOImpl.PRIMERNOMBRE, primerNombre);
         try {
+            Query query = em.createNamedQuery("Cuenta.findByPrimerNombre");
+            query.setParameter(CuentaDAOImpl.PRIMERNOMBRE, primerNombre);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("Error : " + re.getMessage());
@@ -113,12 +129,12 @@ public class CuentaDAOImpl implements ICuentaDAO {
     }
 
     @Override
-    public List<Cuenta> findBySegundoNombre(Object segundoNombre) {
+    public List<Cuenta> findBySegundoNombre(String segundoNombre) {
         EntityManager em = getEntityManager();
         List<Cuenta> cuentaTemporal = null;
-        Query query = em.createNamedQuery("Cuenta.findBySegundoNombre");
-        query.setParameter(CuentaDAOImpl.PRIMERNOMBRE, segundoNombre);
         try {
+            Query query = em.createNamedQuery("Cuenta.findBySegundoNombre");
+            query.setParameter(CuentaDAOImpl.SEGUNDONOMBRE, segundoNombre);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("Error : " + re.getMessage());
@@ -129,12 +145,12 @@ public class CuentaDAOImpl implements ICuentaDAO {
     }
 
     @Override
-    public List<Cuenta> findByPrimerApellido(Object primerApellido) {
+    public List<Cuenta> findByPrimerApellido(String primerApellido) {
         EntityManager em = getEntityManager();
         List<Cuenta> cuentaTemporal = null;
-        Query query = em.createNamedQuery("Cuenta.findByPrimerApellido");
-        query.setParameter(CuentaDAOImpl.PRIMERAAPELLIDO, primerApellido);
         try {
+            Query query = em.createNamedQuery("Cuenta.findByPrimerApellido");
+            query.setParameter(CuentaDAOImpl.PRIMERAAPELLIDO, primerApellido);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("Error : " + re.getMessage());
@@ -145,12 +161,12 @@ public class CuentaDAOImpl implements ICuentaDAO {
     }
 
     @Override
-    public List<Cuenta> findBySegundoApellido(Object segundoApellido) {
+    public List<Cuenta> findBySegundoApellido(String segundoApellido) {
         EntityManager em = getEntityManager();
         List<Cuenta> cuentaTemporal = null;
-        Query query = em.createNamedQuery("Cuenta.findBySegundoApellido");
-        query.setParameter(CuentaDAOImpl.SEGUNDOAPELLIDO, segundoApellido);
         try {
+            Query query = em.createNamedQuery("Cuenta.findBySegundoApellido");
+            query.setParameter(CuentaDAOImpl.SEGUNDOAPELLIDO, segundoApellido);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("Error : " + re.getMessage());
@@ -161,12 +177,12 @@ public class CuentaDAOImpl implements ICuentaDAO {
     }
 
     @Override
-    public List<Cuenta> findByDireccion(Object direccion) {
+    public List<Cuenta> findByDireccion(String direccion) {
         EntityManager em = getEntityManager();
         List<Cuenta> cuentaTemporal = null;
-        Query query = em.createNamedQuery("Cuenta.findByDireccion");
-        query.setParameter(CuentaDAOImpl.DIRECCION, direccion);
         try {
+            Query query = em.createNamedQuery("Cuenta.findByDireccion");
+            query.setParameter(CuentaDAOImpl.DIRECCION, direccion);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("Error : " + re.getMessage());
@@ -177,12 +193,12 @@ public class CuentaDAOImpl implements ICuentaDAO {
     }
 
     @Override
-    public List<Cuenta> findByTelefono(Object telefono) {
+    public List<Cuenta> findByTelefono(String telefono) {
         EntityManager em = getEntityManager();
         List<Cuenta> cuentaTemporal = null;
-        Query query = em.createNamedQuery("Cuenta.findByTelefono");
-        query.setParameter(CuentaDAOImpl.TELEFONO, telefono);
         try {
+            Query query = em.createNamedQuery("Cuenta.findByTelefono");
+            query.setParameter(CuentaDAOImpl.TELEFONO, telefono);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("Error : " + re.getMessage());
@@ -193,12 +209,12 @@ public class CuentaDAOImpl implements ICuentaDAO {
     }
 
     @Override
-    public List<Cuenta> findByRool(Object rool) {
+    public List<Cuenta> findByRool(String rool) {
         EntityManager em = getEntityManager();
         List<Cuenta> cuentaTemporal = null;
-        Query query = em.createNamedQuery("Cuenta.findByRool");
-        query.setParameter(CuentaDAOImpl.ROOL, rool);
         try {
+            Query query = em.createNamedQuery("Cuenta.findByRool");
+            query.setParameter(CuentaDAOImpl.ROOL, rool);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("Error : " + re.getMessage());
@@ -209,7 +225,7 @@ public class CuentaDAOImpl implements ICuentaDAO {
     }
 
     @Override
-    public List<Cuenta> findByActivo(Object activo) {
+    public List<Cuenta> findByActivo(boolean activo) {
         EntityManager em = getEntityManager();
         List<Cuenta> cuentaTemporal = null;
         Query query = em.createNamedQuery("Cuenta.findByActivo");

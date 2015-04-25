@@ -215,7 +215,7 @@ public class Cuenta implements Serializable {
 
     @Override
     public String toString() {
-        return "Cuenta{" + "cuentaPK=" + cuentaPK + ", primerNombre=" + primerNombre + ", segundoNombre=" + segundoNombre + ", primerApellido=" + primerApellido + ", segundoApellido=" + segundoApellido + ", direccion=" + direccion + ", telefono=" + telefono + ", rool=" + rool + ", activo=" + activo + ", domicilio=" + domicilio + ", usuarioidUsuario=" + usuarioidUsuario.getIdUsuario() + '}';
+        return "Cuenta{" + "cuentaPK=" + cuentaPK + ", primerNombre=" + primerNombre + ", segundoNombre=" + segundoNombre + ", primerApellido=" + primerApellido + ", segundoApellido=" + segundoApellido + ", direccion=" + direccion + ", telefono=" + telefono + ", rool=" + rool + ", activo=" + activo +  ", usuarioidUsuario=" + usuarioidUsuario.getIdUsuario() + '}';
     }
 
     

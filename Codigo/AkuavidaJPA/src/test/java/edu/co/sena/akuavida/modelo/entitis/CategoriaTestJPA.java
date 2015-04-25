@@ -44,7 +44,7 @@ public class CategoriaTestJPA {
     public void setUp() {
 
         categoria = new Categorias();
-        categoria.setIDCategoria(46);
+        categoria.setIDCategoria(1);
         categoria.setNombre("Purificadores Prueba");
         categoria.setPariente(1);
         categoria.setActiva(true);

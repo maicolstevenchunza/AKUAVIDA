@@ -6,6 +6,7 @@
 package edu.co.sena.akuavida.modelo.jpa.dao.interfaces;
 
 import edu.co.sena.akuavida.modelo.entitis.Pedido;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,9 +18,10 @@ public interface IPedidoDAO {
     public void update(Pedido entity);
     public void delete(Pedido entity);
     
-    public Pedido findByAll();
+    public Pedido findByFacturaIDFactura(int idFactura);
     
-    public List<Pedido> findByFecha (Object fecha);
-    public List<Pedido> findBySubtotal(Object subtotal);
-    public List<Pedido> findByTotal(Object total);  
+    public Pedido findByAll();
+    public List<Pedido> findByFecha (Date fecha);
+    public List<Pedido> findBySubtotal(float subtotal);
+    public List<Pedido> findByTotal(float total);  
 }
