@@ -6,6 +6,7 @@
 package edu.co.sena.akuavida.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.akuavida.modelo.entitis.Domicilio;
+import edu.co.sena.akuavida.modelo.entitis.DomicilioPK;
 import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IDomicilioDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
@@ -66,9 +67,8 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-           entity = em.getReference(Domicilio.class,
-                    entity);
-            em.remove(em.find(Domicilio.class, entity));
+           entity = em.getReference(Domicilio.class, entity.getDomicilioPK());
+            em.remove(entity);
             EntityManagerHelper.commit();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -80,13 +80,13 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
     }
 
     @Override
-    public Domicilio findByIDDomicilio() {
+    public Domicilio findByIDDomicilio(DomicilioPK domicilioPK) {
     
         Domicilio domicilioTemporal = null;
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
 
-            domicilioTemporal = em.find(Domicilio.class, findByIDDomicilio().getDomicilioPK().getCuentaTipoDocumento());
+            domicilioTemporal = em.find(Domicilio.class, domicilioPK);
 
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -116,7 +116,7 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
     }
 
     @Override
-    public List<Domicilio> findByCiudad(Object ciudad) {
+    public List<Domicilio> findByCiudad(String ciudad) {
     
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Domicilio> domicilioTemporal = null;
@@ -133,7 +133,7 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
     }
 
     @Override
-    public List<Domicilio> findByDireccion(Object direccion) {
+    public List<Domicilio> findByDireccion(String direccion) {
     
          EntityManager em = EntityManagerHelper.getEntityManager();
         List<Domicilio> domicilioTemporal = null;
@@ -150,7 +150,7 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
     }
 
     @Override
-    public List<Domicilio> findByTelefono(Object telefono) {
+    public List<Domicilio> findByTelefono(String telefono) {
     
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Domicilio> domicilioTemporal = null;

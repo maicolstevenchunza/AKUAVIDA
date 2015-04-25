@@ -6,6 +6,7 @@
 package edu.co.sena.akuavida.modelo.jpa.dao.interfaces;
 
 import edu.co.sena.akuavida.modelo.entitis.Domicilio;
+import edu.co.sena.akuavida.modelo.entitis.DomicilioPK;
 import java.util.List;
 
 /**
@@ -18,10 +19,10 @@ public interface IDomicilioDAO {
     public void update(Domicilio entity);
     public void delete(Domicilio entity);
 
-    public Domicilio findByIDDomicilio();
+    public Domicilio findByIDDomicilio(DomicilioPK domicilioPK);
 
     public List<Domicilio> findByAll();
-    public List<Domicilio> findByCiudad(Object ciudad);
-    public List<Domicilio> findByDireccion(Object direccion);
-    public List<Domicilio> findByTelefono(Object telefono);
+    public List<Domicilio> findByCiudad(String ciudad);
+    public List<Domicilio> findByDireccion(String direccion);
+    public List<Domicilio> findByTelefono(String telefono);
 }
