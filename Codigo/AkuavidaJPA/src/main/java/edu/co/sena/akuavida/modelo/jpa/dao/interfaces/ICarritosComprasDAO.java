@@ -18,9 +18,9 @@ public interface ICarritosComprasDAO {
     public void update(CarritoDeCompras entity);
     public void delete(CarritoDeCompras entity);
     
-    public CarritoDeCompras findByIDCarrito();
+    public CarritoDeCompras findByIDCarrito(String idCarrito);
     
     public List<CarritoDeCompras> findByAll();
-    public List<CarritoDeCompras> findByTotal(Object total);
-    public List<CarritoDeCompras> findBySubtotal(Object subtotal);        
+    public List<CarritoDeCompras> findByTotal(Double total);
+    public List<CarritoDeCompras> findBySubtotal(Double subtotal);        
 }

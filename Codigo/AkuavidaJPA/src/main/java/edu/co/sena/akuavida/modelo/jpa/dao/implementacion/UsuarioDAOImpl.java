@@ -78,13 +78,13 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
     }
 
     @Override
-    public Usuario findByIDUsuario() {
+    public Usuario findByIDUsuario(String idUsuario) {
 
         Usuario usuarioTemporal = null;
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
 
-            usuarioTemporal = em.find(Usuario.class, findByIDUsuario().getIdUsuario());
+            usuarioTemporal = em.find(Usuario.class, idUsuario);
 
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -112,7 +112,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
     }
 
     @Override
-    public List<Usuario> findByRol(Object rol) {
+    public List<Usuario> findByRol(String rol) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Usuario> usuarioTemporal = null;
         Query query = em.createNamedQuery("Usuario.findByRol");
@@ -128,7 +128,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
     }
 
     @Override
-    public List<Usuario> findByEstado(Object estado) {
+    public List<Usuario> findByEstado(String estado) {
     
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Usuario> usuarioTemporal = null;
@@ -145,7 +145,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
     }
 
     @Override
-    public List<Usuario> findByContrasena(Object contrasena) {
+    public List<Usuario> findByContrasena(String contrasena) {
     
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Usuario> usuarioTemporal = null;
@@ -162,7 +162,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
     }
 
     @Override
-    public List<Usuario> findByCorreo(Object correo) {
+    public List<Usuario> findByCorreo(String correo) {
     
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Usuario> usuarioTemporal = null;

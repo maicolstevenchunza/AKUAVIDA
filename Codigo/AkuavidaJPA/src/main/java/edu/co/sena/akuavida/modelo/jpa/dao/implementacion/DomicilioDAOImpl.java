@@ -66,7 +66,9 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-            em.remove(em.find(Domicilio.class, entity.getDomicilioPK().getCuentaTipoDocumento()));
+           entity = em.getReference(Domicilio.class,
+                    entity);
+            em.remove(em.find(Domicilio.class, entity));
             EntityManagerHelper.commit();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());

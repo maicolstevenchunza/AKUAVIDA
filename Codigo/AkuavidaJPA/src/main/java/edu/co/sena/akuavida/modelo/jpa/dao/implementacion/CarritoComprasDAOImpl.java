@@ -76,14 +76,14 @@ public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
             }
         }
     }
-
+    
     @Override
-    public CarritoDeCompras findByIDCarrito() {
+    public CarritoDeCompras findByIDCarrito(String idCarrito) {
         CarritoDeCompras carritoTemporal = null;
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
 
-            carritoTemporal = em.find(CarritoDeCompras.class, findByIDCarrito().getIDCarrito());
+            carritoTemporal = em.find(CarritoDeCompras.class, idCarrito);
 
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -113,7 +113,7 @@ public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
     }
 
     @Override
-    public List<CarritoDeCompras> findByTotal(Object total) {
+    public List<CarritoDeCompras> findByTotal(Double total) {
 
          EntityManager em = EntityManagerHelper.getEntityManager();
         List<CarritoDeCompras> carritoTemporal = null;
@@ -130,7 +130,7 @@ public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
     }
 
     @Override
-    public List<CarritoDeCompras> findBySubtotal(Object subtotal) {
+    public List<CarritoDeCompras> findBySubtotal(Double subtotal) {
     
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<CarritoDeCompras> carritoTemporal = null;

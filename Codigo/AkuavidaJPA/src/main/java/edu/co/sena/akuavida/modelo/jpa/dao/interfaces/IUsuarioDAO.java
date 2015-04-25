@@ -18,12 +18,12 @@ public interface IUsuarioDAO {
     public void update(Usuario entity);
     public void delete(Usuario entity);
 
-    public Usuario findByIDUsuario();
+    public Usuario findByIDUsuario(String idUsuario);
 
     public List<Usuario> findByAll();
-    public List<Usuario> findByRol(Object rol);
-    public List<Usuario> findByEstado(Object estado);
-    public List<Usuario> findByContrasena(Object contrasena);
-    public List<Usuario> findByCorreo(Object correo);
+    public List<Usuario> findByRol(String rol);
+    public List<Usuario> findByEstado(String estado);
+    public List<Usuario> findByContrasena(String contrasena);
+    public List<Usuario> findByCorreo(String correo);
     
 }

@@ -77,13 +77,13 @@ public class MunicipioDAOImpl implements IMunicipioDAO{
     }
 
     @Override
-    public Municipio findByIDMunicipio() {
+    public Municipio findByIDMunicipio(String idMunicipio) {
     
         Municipio municipioTemporal = null;
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
 
-            municipioTemporal = em.find(Municipio.class, findByIDMunicipio().getIdMunicipio());
+            municipioTemporal = em.find(Municipio.class, idMunicipio);
 
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -114,7 +114,7 @@ public class MunicipioDAOImpl implements IMunicipioDAO{
     }
 
     @Override
-    public List<Municipio> findByNombre(Object nombreMunicipio) {
+    public List<Municipio> findByNombre(String nombreMunicipio) {
     
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Municipio> municipioTemporal = null;

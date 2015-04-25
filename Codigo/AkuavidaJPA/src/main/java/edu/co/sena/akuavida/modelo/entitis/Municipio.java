@@ -115,7 +115,7 @@ public class Municipio implements Serializable {
 
     @Override
     public String toString() {
-        return "Municipio{" + "idMunicipio=" + idMunicipio + ", nombreMunicipio=" + nombreMunicipio + ", departamentoidDepartamento=" + departamentoidDepartamento + '}';
+        return "Municipio{" + "idMunicipio=" + idMunicipio + ", nombreMunicipio=" + nombreMunicipio + ", departamentoidDepartamento=" + departamentoidDepartamento.getIdDepartamento() + '}';
     }
 
     

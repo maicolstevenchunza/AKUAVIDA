@@ -18,9 +18,9 @@ public interface IMunicipioDAO {
     public void update(Municipio entity);
     public void delete(Municipio entity);
 
-    public Municipio findByIDMunicipio();
+    public Municipio findByIDMunicipio(String idMunicipio);
 
     public List<Municipio> findByAll();
-    public List<Municipio> findByNombre(Object nombreMunicipio);
+    public List<Municipio> findByNombre(String nombreMunicipio);
     
 }

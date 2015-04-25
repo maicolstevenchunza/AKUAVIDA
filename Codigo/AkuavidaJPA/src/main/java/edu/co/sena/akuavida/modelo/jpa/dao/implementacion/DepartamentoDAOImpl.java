@@ -76,13 +76,13 @@ public class DepartamentoDAOImpl implements IDepartamentoDAO {
     }
 
     @Override
-    public Departamento findByIDDepartamento() {
+    public Departamento findByIDDepartamento(String idDepartamento) {
 
         Departamento departamentoTemporal = null;
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
 
-            departamentoTemporal = em.find(Departamento.class, findByIDDepartamento().getIdDepartamento());
+            departamentoTemporal = em.find(Departamento.class, idDepartamento);
 
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -111,7 +111,7 @@ public class DepartamentoDAOImpl implements IDepartamentoDAO {
     }
 
     @Override
-    public List<Departamento> findByNombre(Object nombreDepartamento) {
+    public List<Departamento> findByNombre(String nombreDepartamento) {
 
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Departamento> departamentoTemporal = null;

@@ -18,8 +18,8 @@ public interface IDepartamentoDAO {
     public void update(Departamento entity);
     public void delete(Departamento entity);
 
-    public Departamento findByIDDepartamento();
+    public Departamento findByIDDepartamento(String idDepartamento);
 
     public List<Departamento> findByAll();
-    public List<Departamento> findByNombre(Object nombreDepartamento);
+    public List<Departamento> findByNombre(String nombreDepartamento);
 }
