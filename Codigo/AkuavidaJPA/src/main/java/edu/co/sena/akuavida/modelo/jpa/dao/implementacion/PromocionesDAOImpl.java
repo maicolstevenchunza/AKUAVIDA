@@ -151,7 +151,7 @@ public class PromocionesDAOImpl implements IPromocionesDAO {
     public List<Promociones> findByPrecio(Object precio) {
         EntityManager em = getEntityManager();
         List<Promociones> promoTemporales = null;
-        Query query = em.createNamedQuery("Promociones.findByDescuentos");
+        Query query = em.createNamedQuery("Promociones.findByPrecio");
         query.setParameter(PromocionesDAOImpl.PRECIO, precio);
 
         try {

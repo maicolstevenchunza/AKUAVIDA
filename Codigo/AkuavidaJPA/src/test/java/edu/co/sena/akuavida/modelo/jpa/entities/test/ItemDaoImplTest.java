@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.akuavida.modelo.jpa.dao.implementacion;
+package edu.co.sena.akuavida.modelo.jpa.entities.test;
 
 import edu.co.sena.akuavida.modelo.entitis.Item;
 import edu.co.sena.akuavida.modelo.entitis.ItemPK;
+import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.ItemDaoImpl;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;

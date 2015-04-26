@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.akuavida.modelo.jpa.dao.implementacion;
+package edu.co.sena.akuavida.modelo.jpa.entities.test;
 
 import edu.co.sena.akuavida.modelo.entitis.Cuenta;
 import edu.co.sena.akuavida.modelo.entitis.CuentaPK;
 import edu.co.sena.akuavida.modelo.entitis.Usuario;
+import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.CuentaDAOImpl;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -52,7 +53,7 @@ public class CuentaDAOImplTest {
         entity.setTelefono("3134194242");
         entity.setRool("Usuario");
         entity.setActivo(true);
-        entity.setUsuarioidUsuario(new Usuario("2"));
+        entity.setUsuarioidUsuario(new Usuario("Usuario1"));
     }
 
     @After

@@ -19,13 +19,11 @@ import org.junit.Test;
  * @author ColsutecR
  */
 public class UsuarioDAOImplTest {
-    
+
     Usuario entity = new Usuario();
 
     public UsuarioDAOImplTest() {
     }
-    
-    
 
     @BeforeClass
     public static void setUpClass() {
@@ -39,30 +37,24 @@ public class UsuarioDAOImplTest {
     public void setUp() {
 
         entity.setIdUsuario("Usuario1");
-        entity.setContrasena("123456");
-        entity.setRol("Cliente");        
+        entity.setRol("Cliente");
         entity.setEstado("Activo");
         entity.setCorreo("usuario1@gmail.com");
+        entity.setContrasena("123456");
+
     }
 
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-    
-    
     @Test
     public void testInsert() {
         System.out.println("Insert");
         UsuarioDAOImpl instance = new UsuarioDAOImpl();
         instance.insert(entity);
     }
-    
+
     @Test
     public void testUpdate() {
         System.out.println("Update");
@@ -70,7 +62,7 @@ public class UsuarioDAOImplTest {
         UsuarioDAOImpl instance = new UsuarioDAOImpl();
         instance.update(entity);
     }
-    
+
     @Test
     public void testDelete() {
         System.out.println("delete");
@@ -78,7 +70,7 @@ public class UsuarioDAOImplTest {
         Usuario cct = instance.findByIDUsuario("Usuario1");
         instance.delete(cct);
     }
-    
+
     @Test
     public void testFindByIdUsuario() {
         System.out.println("findByIdUsuario");
@@ -88,7 +80,7 @@ public class UsuarioDAOImplTest {
         cct = usu.findByIDUsuario(idUsuario);
         System.out.println(cct.toString());
     }
-    
+
     @Test
     public void testFindbyAll() {
         System.out.println("findByAll");
@@ -98,8 +90,7 @@ public class UsuarioDAOImplTest {
             System.out.println(result1.toString());
         }
     }
-    
-    
+
     @Test
     public void testFindByContrasena() {
         System.out.println("findByContrasena");
@@ -110,7 +101,7 @@ public class UsuarioDAOImplTest {
             System.out.println(result1.toString());
         }
     }
-    
+
     @Test
     public void testFindByRol() {
         System.out.println("findByRol");
@@ -121,7 +112,7 @@ public class UsuarioDAOImplTest {
             System.out.println(result1.toString());
         }
     }
-    
+
     @Test
     public void testFindByEstado() {
         System.out.println("findByEstado");
@@ -132,8 +123,7 @@ public class UsuarioDAOImplTest {
             System.out.println(result1.toString());
         }
     }
-    
-    
+
     @Test
     public void testFindByCorreo() {
         System.out.println("findByCorreo");
@@ -144,5 +134,5 @@ public class UsuarioDAOImplTest {
             System.out.println(result1.toString());
         }
     }
-    
+
 }

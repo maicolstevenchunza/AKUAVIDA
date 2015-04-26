@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.akuavida.modelo.jpa.dao.implementacion;
+package edu.co.sena.akuavida.modelo.jpa.entities.test;
 
 import edu.co.sena.akuavida.modelo.entitis.Pago;
+import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.PagoDAOImpl;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;

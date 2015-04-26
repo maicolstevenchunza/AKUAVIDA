@@ -95,6 +95,7 @@ public class Producto implements Serializable {
         this.impuesto = impuesto;
     }
 
+
     public String getIDproducto() {
         return iDproducto;
     }
