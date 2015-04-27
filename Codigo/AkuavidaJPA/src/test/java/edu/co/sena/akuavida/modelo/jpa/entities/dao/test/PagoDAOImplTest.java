@@ -7,7 +7,11 @@ package edu.co.sena.akuavida.modelo.jpa.entities.dao.test;
 
 import edu.co.sena.akuavida.modelo.jpa.entities.test.*;
 import edu.co.sena.akuavida.modelo.entitis.Pago;
+import edu.co.sena.akuavida.modelo.factory.DAOAbstractFactory;
+import edu.co.sena.akuavida.modelo.factory.DAOFactory;
+import edu.co.sena.akuavida.modelo.factory.mysql.MysqlJPADAOFactory;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.PagoDAOImpl;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IPagoDAO;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -47,54 +51,60 @@ public class PagoDAOImplTest {
     }
 
     @Test
-    public void testInsert() {
+    public void testInsert() throws Exception {
         System.out.println("insert");
-        PagoDAOImpl instance = new PagoDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IPagoDAO instance = fabrica.createPagoDAO();
         instance.insert(entity);
     }
 
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws Exception {
         System.out.println("update");
-        PagoDAOImpl instance = new PagoDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IPagoDAO instance = fabrica.createPagoDAO();
         Pago pt = instance.findByFacturaIDFactura(1);
         pt.setTipoPago("Tarjeta Credito ");
         instance.update(pt);
     }
 
     @Test
-    public void testDelete() {
+    public void testDelete() throws Exception {
         System.out.println("delete");
-        PagoDAOImpl instance = new PagoDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IPagoDAO instance = fabrica.createPagoDAO();
         Pago pt = instance.findByFacturaIDFactura(1);
         instance.delete(pt);
 
     }
 
     @Test
-    public void testFindByAll() {
+    public void testFindByAll() throws Exception {
         System.out.println("findByAll");
         Pago pt;
-        PagoDAOImpl instance = new PagoDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IPagoDAO instance = fabrica.createPagoDAO();
         pt = instance.findByFacturaIDFactura(1);
         System.out.println(pt.toString());
 
     }
 
     @Test
-    public void testFindByFacturaIDFactura() {
+    public void testFindByFacturaIDFactura() throws Exception {
         System.out.println("findByFacturaIDFactura");
         Pago pt;
-        PagoDAOImpl instance = new PagoDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IPagoDAO instance = fabrica.createPagoDAO();
         pt = instance.findByFacturaIDFactura(1);
         System.out.println(pt.toString());
     }
 
     @Test
-    public void testFindByTipoPago() {
+    public void testFindByTipoPago() throws Exception {
         System.out.println("findByTipoPago");
         String tipoPago = "Tarjeta Debito";
-        PagoDAOImpl instance = new PagoDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IPagoDAO instance = fabrica.createPagoDAO();
         List<Pago> result = instance.findByTipoPago(tipoPago);
         for (Pago result1 : result) {
             System.out.println(result1.toString());
@@ -102,10 +112,11 @@ public class PagoDAOImplTest {
     }
 
     @Test
-    public void testFindByNumeroTarjeta() {
+    public void testFindByNumeroTarjeta() throws Exception {
         System.out.println("findByNumeroTarjeta");
         String numeroTarjeta = "1234-5678-9876-5432";
-        PagoDAOImpl instance = new PagoDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IPagoDAO instance = fabrica.createPagoDAO();
         List<Pago> result = instance.findByNumeroTarjeta(numeroTarjeta);
         for (Pago result1 : result) {
             System.out.println(result1.toString());

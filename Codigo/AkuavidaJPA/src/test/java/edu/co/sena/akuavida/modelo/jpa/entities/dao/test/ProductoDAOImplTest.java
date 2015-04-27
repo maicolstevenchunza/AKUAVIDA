@@ -8,7 +8,12 @@ package edu.co.sena.akuavida.modelo.jpa.entities.dao.test;
 import edu.co.sena.akuavida.modelo.jpa.entities.test.*;
 import edu.co.sena.akuavida.modelo.entitis.Categorias;
 import edu.co.sena.akuavida.modelo.entitis.Producto;
+import edu.co.sena.akuavida.modelo.factory.DAOAbstractFactory;
+import edu.co.sena.akuavida.modelo.factory.DAOFactory;
+import edu.co.sena.akuavida.modelo.factory.mysql.MysqlJPADAOFactory;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.ProductoDAOImpl;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IProductoDAO;
+
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -58,40 +63,45 @@ public class ProductoDAOImplTest {
     // public void hello() {}
     
     @Test
-    public void testInsert() {
+    public void testInsert() throws Exception {
         System.out.println("insert");
-        ProductoDAOImpl instance = new ProductoDAOImpl();
+         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IProductoDAO instance = fabrica.createProductoDAO();
         instance.insert(entity);
         
     }
     @Test
     public void testUpdate() throws Exception{
         System.out.println("update");  
-        ProductoDAOImpl instance = new ProductoDAOImpl();
+       DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IProductoDAO instance = fabrica.createProductoDAO();
         instance.findByIDproducto("1");
         entity.setNombre("moe1");        
         instance.update(entity);
    }
      @Test
-    public void testDelete() {
+    public void testDelete() throws Exception {
         System.out.println("delete");
-        ProductoDAOImpl instance = new ProductoDAOImpl();
+       DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IProductoDAO instance = fabrica.createProductoDAO();
         Producto pt = instance.findByIDproducto("1");
         instance.delete(pt);        
     }
     @Test
-    public void testFindByIdProducto() {
+    public void testFindByIdProducto() throws Exception {
         System.out.println("FindByIdProducto");
         Producto pt;        
-        ProductoDAOImpl instance = new ProductoDAOImpl();
+       DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IProductoDAO instance = fabrica.createProductoDAO();
         pt = instance.findByIDproducto("1");
         System.out.println(pt.getIDproducto());
 
     }
      @Test
-    public void testFindByAll() {
+    public void testFindByAll() throws Exception {
         System.out.println("findByAll");
-         ProductoDAOImpl instance = new ProductoDAOImpl();
+         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IProductoDAO instance = fabrica.createProductoDAO();
         List<Producto> result = instance.findByAll();
         for (Producto result1 : result) {
             System.out.println(result1.toString());
@@ -99,30 +109,33 @@ public class ProductoDAOImplTest {
     }
     
     @Test
-    public void testFindByNombre() {
+    public void testFindByNombre() throws Exception {
         System.out.println("findByNombre");
         String nombre = "moe1";
-        ProductoDAOImpl instance = new ProductoDAOImpl();
+     DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IProductoDAO instance = fabrica.createProductoDAO();
         List<Producto> result = instance.findByNombre(nombre);
         for (Producto result1 : result) {
             System.out.println(result1.toString());
         }
     }
     @Test
-    public void testFindByPrecio() {
+    public void testFindByPrecio() throws Exception {
         System.out.println("findByPrecio");
         float precio = 180000;
-        ProductoDAOImpl instance = new ProductoDAOImpl();
+      DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IProductoDAO instance = fabrica.createProductoDAO();
         List<Producto> result = instance.findByPrecio(precio);
         for (Producto result1 : result) {
             System.out.println(result1.toString());
         }
     }
      @Test
-    public void testFindByCantidad() {
+    public void testFindByCantidad() throws Exception {
         System.out.println("findByCantidad");
         int cantidad = 30;
-        ProductoDAOImpl instance = new ProductoDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IProductoDAO instance = fabrica.createProductoDAO();
         List<Producto> result = instance.findByCantidad(cantidad);
         for (Producto result1 : result) {
             System.out.println(result1.toString());
@@ -130,20 +143,22 @@ public class ProductoDAOImplTest {
     }
     
      @Test
-    public void testFindByActivo() {
+    public void testFindByActivo() throws Exception {
         System.out.println("findByActivo");
         boolean activo = true;
-        ProductoDAOImpl instance = new ProductoDAOImpl();
+      DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IProductoDAO instance = fabrica.createProductoDAO();
         List<Producto> result = instance.findByActivo(activo);
         for (Producto result1 : result) {
             System.out.println(result1.toString());
         }
     }
      @Test
-    public void testFindByImpuesto() {
+    public void testFindByImpuesto() throws Exception {
         System.out.println("findByImpuesto");
         float impuesto = 16;
-        ProductoDAOImpl instance = new ProductoDAOImpl();
+      DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IProductoDAO instance = fabrica.createProductoDAO();
         List<Producto> result = instance.findByImpuesto(impuesto);
         for (Producto result1 : result) {
             System.out.println(result1.toString());
