@@ -36,7 +36,7 @@ public class UsuarioDAOImplTest {
     @Before
     public void setUp() {
 
-        entity.setIdUsuario("Usuario1");
+        entity.setIdUsuario("Usuario8");
         entity.setRol("Cliente");
         entity.setEstado("Activo");
         entity.setContrasena("123456");

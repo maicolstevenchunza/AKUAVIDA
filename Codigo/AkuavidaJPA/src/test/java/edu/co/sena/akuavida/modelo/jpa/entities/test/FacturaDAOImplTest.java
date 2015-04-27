@@ -10,6 +10,7 @@ import edu.co.sena.akuavida.modelo.entitis.Factura;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.FacturaDAOImpl;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -26,7 +27,6 @@ public class FacturaDAOImplTest {
     Factura entity= new Factura();
     Calendar hoy = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
     Date fechaActual = hoy.getTime();
-    Date fechaTemporal = hoy.getTime();
     
     public FacturaDAOImplTest() {
     }
@@ -65,5 +65,52 @@ public class FacturaDAOImplTest {
         FacturaDAOImpl instance = new FacturaDAOImpl();
         instance.insert(entity);
         
+    }
+     @Test
+    public void testUpdate() {
+        System.out.println("update");
+        entity.setIDFactura(1);
+        FacturaDAOImpl instance = new FacturaDAOImpl();
+        instance.update(entity);
+    }
+    
+    @Test
+    public void testDelete() {
+        System.out.println("delete");
+        FacturaDAOImpl instance = new FacturaDAOImpl();
+        Factura fact = instance.findByIDFactura(1);
+        instance.delete(fact);
+    }
+    
+     @Test
+    public void testFindbyAll() {
+        System.out.println("findByAll");
+        FacturaDAOImpl instance = new FacturaDAOImpl();
+        List<Factura> result = instance.findByAll();
+        for (Factura result1 : result) {
+            System.out.println(result1.getIDFactura());
+        }
+    }
+    
+     @Test
+    public void testFindByIdFactura() {
+        System.out.println("findByIdFactura");
+        Factura factt;
+        int idFactura = 1;
+        FacturaDAOImpl factura = new FacturaDAOImpl();
+        factt = factura.findByIDFactura(idFactura);
+        
+    }
+    
+    @Test
+    public void testFindByFecha() {
+
+        System.out.println("FindByFecha");              
+        FacturaDAOImpl instance = new FacturaDAOImpl();
+        List<Factura> result = instance.findByFecha(fechaActual);
+        for (Factura result1 : result) {
+            System.out.println(result1.toString());
+        }
+
     }
 }

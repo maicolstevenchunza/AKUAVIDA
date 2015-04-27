@@ -53,7 +53,7 @@ public class CuentaDAOImplTest {
         entity.setTelefono("3134194242");
         entity.setRool("Usuario");
         entity.setActivo(true);
-        entity.setUsuarioidUsuario(new Usuario("Usuario1"));
+        entity.setUsuarioidUsuario(new Usuario("Usuario8"));
     }
 
     @After
