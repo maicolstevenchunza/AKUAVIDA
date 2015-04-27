@@ -9,7 +9,11 @@ import edu.co.sena.akuavida.modelo.jpa.entities.test.*;
 import edu.co.sena.akuavida.modelo.entitis.Cuenta;
 import edu.co.sena.akuavida.modelo.entitis.CuentaPK;
 import edu.co.sena.akuavida.modelo.entitis.Usuario;
+import edu.co.sena.akuavida.modelo.factory.DAOAbstractFactory;
+import edu.co.sena.akuavida.modelo.factory.DAOFactory;
+import edu.co.sena.akuavida.modelo.factory.mysql.MysqlJPADAOFactory;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.CuentaDAOImpl;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.ICuentaDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -62,134 +66,147 @@ public class CuentaDAOImplTest {
     }
 
     @Test
-    public void testInsert() {
+    public void testInsert() throws Exception {
         System.out.println("insert");
-        CuentaDAOImpl instance = new CuentaDAOImpl();
-        instance.insert(entity);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICuentaDAO ejemplo = fabrica.createCuentaDAO();
+        ejemplo.insert(entity);
 
     }
 
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws Exception {
         System.out.println("update");
-        CuentaDAOImpl instance = new CuentaDAOImpl();
-        Cuenta ct = instance.finByCuentaPk(new CuentaPK("C.C", "1033757632"));
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICuentaDAO ejemplo = fabrica.createCuentaDAO();
+        Cuenta ct = ejemplo.finByCuentaPk(new CuentaPK("C.C", "1033757632"));
         ct.setTelefono("7605996");
-        instance.update(ct);
+        ejemplo.update(ct);
     }
 
     @Test
-    public void testDelete() {
+    public void testDelete() throws Exception {
         System.out.println("delete");
-        CuentaDAOImpl instance = new CuentaDAOImpl();
-        Cuenta ct = instance.finByCuentaPk(new CuentaPK("C.C", "1033757632"));
-        instance.delete(entity);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICuentaDAO ejemplo = fabrica.createCuentaDAO();
+        Cuenta ct = ejemplo.finByCuentaPk(new CuentaPK("C.C", "1033757632"));
+        ejemplo.delete(entity);
     }
 
     @Test
-    public void testFinByCuentaPk() {
+    public void testFinByCuentaPk() throws Exception {
         System.out.println("finByCuentaPk");
         Cuenta ct;
         String tipoDocumento = "C.C";
         String numerodocumento = "1033757632";
-        CuentaDAOImpl instance = new CuentaDAOImpl();
-        ct = instance.finByCuentaPk(new CuentaPK(tipoDocumento, numerodocumento));
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICuentaDAO ejemplo = fabrica.createCuentaDAO();
+        ct = ejemplo.finByCuentaPk(new CuentaPK(tipoDocumento, numerodocumento));
         System.out.println(ct.toString());
     }
 
     @Test
-    public void testFindByAll() {
+    public void testFindByAll() throws Exception {
         System.out.println("findByAll");
-        CuentaDAOImpl instance = new CuentaDAOImpl();
-        List<Cuenta> result = instance.findByAll();
+       DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICuentaDAO ejemplo = fabrica.createCuentaDAO();
+        List<Cuenta> result = ejemplo.findByAll();
         for (Cuenta result1 : result) {
             System.out.println(result1.toString());
         }
     }
 
     @Test
-    public void testFindByPrimerNombre() {
+    public void testFindByPrimerNombre() throws Exception {
         System.out.println("findByPrimerNombre");
         String primerNombre = "Miguel";
-        CuentaDAOImpl instance = new CuentaDAOImpl();
-        List<Cuenta> result = instance.findByPrimerNombre(primerNombre);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICuentaDAO ejemplo = fabrica.createCuentaDAO();
+        List<Cuenta> result = ejemplo.findByPrimerNombre(primerNombre);
         for (Cuenta result1 : result) {
             System.out.println(result1.toString());
         }
     }
 
     @Test
-    public void testFindBySegundoNombre() {
+    public void testFindBySegundoNombre() throws Exception {
         System.out.println("findBySegundoNombre");
         String segundoNombre = "Angel";
-        CuentaDAOImpl instance = new CuentaDAOImpl();
-        List<Cuenta> result = instance.findBySegundoNombre(segundoNombre);
+       DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICuentaDAO ejemplo = fabrica.createCuentaDAO();
+        List<Cuenta> result = ejemplo.findBySegundoNombre(segundoNombre);
         for (Cuenta result1 : result) {
             System.out.println(result1.toString());
         }
     }
 
     @Test
-    public void testFindByPrimerApellido() {
+    public void testFindByPrimerApellido() throws Exception {
         System.out.println("findByPrimerApellido");
         String primerApellido = "Montero";
-        CuentaDAOImpl instance = new CuentaDAOImpl();
-        List<Cuenta> result = instance.findByPrimerApellido(primerApellido);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICuentaDAO ejemplo = fabrica.createCuentaDAO();
+        List<Cuenta> result = ejemplo.findByPrimerApellido(primerApellido);
         for (Cuenta result1 : result) {
             System.out.println(result1.toString());
         }
     }
 
     @Test
-    public void testFindBySegundoApellido() {
+    public void testFindBySegundoApellido() throws Exception {
         System.out.println("findBySegundoApellido");
         String segundoApellido = "Bogota";
-        CuentaDAOImpl instance = new CuentaDAOImpl();
-        List<Cuenta> result = instance.findBySegundoApellido(segundoApellido);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICuentaDAO ejemplo = fabrica.createCuentaDAO();
+        List<Cuenta> result = ejemplo.findBySegundoApellido(segundoApellido);
         for (Cuenta result1 : result) {
             System.out.println(result1.toString());
         }
     }
 
     @Test
-    public void testFindByDireccion() {
+    public void testFindByDireccion() throws Exception {
         System.out.println("findByDireccion");
         String direccion = "Calle $9 G # 6 A 29 Sur";
-        CuentaDAOImpl instance = new CuentaDAOImpl();
-        List<Cuenta> result = instance.findByDireccion(direccion);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICuentaDAO ejemplo = fabrica.createCuentaDAO();
+        List<Cuenta> result = ejemplo.findByDireccion(direccion);
         for (Cuenta result1 : result) {
             System.out.println(result1.toString());
         }
     }
 
     @Test
-    public void testFindByTelefono() {
+    public void testFindByTelefono() throws Exception {
         System.out.println("findByTelefono");
         String telefono = "3134194242";
-        CuentaDAOImpl instance = new CuentaDAOImpl();
-        List<Cuenta> result = instance.findByTelefono(telefono);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICuentaDAO ejemplo = fabrica.createCuentaDAO();
+        List<Cuenta> result = ejemplo.findByTelefono(telefono);
         for (Cuenta result1 : result) {
             System.out.println(result1.toString());
         }
     }
 
     @Test
-    public void testFindByRool() {
+    public void testFindByRool() throws Exception {
         System.out.println("findByRool");
         String rool = "Usuario";
-        CuentaDAOImpl instance = new CuentaDAOImpl();
-        List<Cuenta> result = instance.findByRool(rool);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICuentaDAO ejemplo = fabrica.createCuentaDAO();
+        List<Cuenta> result = ejemplo.findByRool(rool);
         for (Cuenta result1 : result) {
             System.out.println(result1.toString());
         }
     }
 
     @Test
-    public void testFindByActivo() {
+    public void testFindByActivo() throws Exception {
         System.out.println("findByActivo");
         boolean activo = true;
-        CuentaDAOImpl instance = new CuentaDAOImpl();
-        List<Cuenta> result = instance.findByActivo(activo);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICuentaDAO ejemplo = fabrica.createCuentaDAO();
+        List<Cuenta> result = ejemplo.findByActivo(activo);
         for (Cuenta result1 : result) {
             System.out.println(result1.toString());
         }

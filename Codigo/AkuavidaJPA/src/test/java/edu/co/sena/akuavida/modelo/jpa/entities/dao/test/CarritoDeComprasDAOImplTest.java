@@ -59,7 +59,6 @@ public class CarritoDeComprasDAOImplTest {
     public void testInsert() throws Exception {
         System.out.println("insert");
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
-
         ICarritosComprasDAO ejemplo = fabrica.createCarritoComprasDAO();
         ejemplo.insert(entity);
 
@@ -69,57 +68,63 @@ public class CarritoDeComprasDAOImplTest {
     public void testUpdate() throws Exception {
         System.out.println("update");
         entity.setTotal(420000);
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
-        instance.update(entity);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICarritosComprasDAO ejemplo = fabrica.createCarritoComprasDAO();
+        ejemplo.update(entity);
     }
 
     @Test
     public void testDelete() throws Exception {
         System.out.println("delete");
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
-        CarritoDeCompras ct = instance.findByIDCarrito("1");
-        instance.delete(ct);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICarritosComprasDAO ejemplo = fabrica.createCarritoComprasDAO();
+        CarritoDeCompras ct = ejemplo.findByIDCarrito("1");
+        ejemplo.delete(ct);
 
     }
 
     @Test
-    public void testFindByIdCarrito() {
+    public void testFindByIdCarrito() throws Exception {
         System.out.println("findByIDCarrito");
         CarritoDeCompras ct;
         String idcarrito = "1";
-        CarritoComprasDAOImpl carrito = new CarritoComprasDAOImpl();
-        ct = carrito.findByIDCarrito(idcarrito);
+         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICarritosComprasDAO ejemplo = fabrica.createCarritoComprasDAO();
+        ct = ejemplo.findByIDCarrito(idcarrito);
         System.out.println(ct.toString());
 
     }
 
     @Test
-    public void testFindByAll() {
+    public void testFindByAll() throws Exception {
         System.out.println("findByAll");
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
-        List<CarritoDeCompras> result = instance.findByAll();
+       DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICarritosComprasDAO ejemplo = fabrica.createCarritoComprasDAO();
+        List<CarritoDeCompras> result = ejemplo.findByAll();
         for (CarritoDeCompras result1 : result) {
             System.out.println(result1.toString());
         }
     }
 
     @Test
-    public void testFindByTotal() {
+    public void testFindByTotal() throws Exception {
         System.out.println("findByTotal");
         double total = 0;
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
-        List<CarritoDeCompras> result = instance.findByTotal(total);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICarritosComprasDAO ejemplo = fabrica.createCarritoComprasDAO();
+        List<CarritoDeCompras> result = ejemplo.findByTotal(total);
         for (CarritoDeCompras result1 : result) {
             System.out.println(result1.toString());
         }
     }
 
     @Test
-    public void testFindBySubtotal() {
+    public void testFindBySubtotal() throws Exception {
         System.out.println("findBySubtotal");
         double subtotal = 0;
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
-        List<CarritoDeCompras> result = instance.findBySubtotal(subtotal);
+         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICarritosComprasDAO ejemplo = fabrica.createCarritoComprasDAO();
+        List<CarritoDeCompras> result = ejemplo.findBySubtotal(subtotal);
         for (CarritoDeCompras result1 : result) {
             System.out.println(result1.toString());
         }

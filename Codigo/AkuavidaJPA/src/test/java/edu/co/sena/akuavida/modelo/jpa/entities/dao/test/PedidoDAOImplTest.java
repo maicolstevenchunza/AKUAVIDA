@@ -95,7 +95,6 @@ public class PedidoDAOImplTest {
         PedidoDAOImpl instance = new PedidoDAOImpl();
         pt = instance.findByFacturaIDFactura(1);
         System.out.println(pt.toString());
-
     }
 
     @Test

@@ -8,7 +8,11 @@ package edu.co.sena.akuavida.modelo.jpa.entities.dao.test;
 import edu.co.sena.akuavida.modelo.jpa.entities.test.*;
 import edu.co.sena.akuavida.modelo.entitis.Cuenta;
 import edu.co.sena.akuavida.modelo.entitis.Factura;
+import edu.co.sena.akuavida.modelo.factory.DAOAbstractFactory;
+import edu.co.sena.akuavida.modelo.factory.DAOFactory;
+import edu.co.sena.akuavida.modelo.factory.mysql.MysqlJPADAOFactory;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.FacturaDAOImpl;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IFacturaDAO;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -61,54 +65,60 @@ public class FacturaDAOImplTest {
     // public void hello() {}
     
     @Test
-    public void testInsert() {
+    public void testInsert() throws Exception {
         System.out.println("insert");
-        FacturaDAOImpl instance = new FacturaDAOImpl();
-        instance.insert(entity);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IFacturaDAO ejemplo = fabrica.createFacturaDAO();
+        ejemplo.insert(entity);
         
     }
+    
      @Test
-    public void testUpdate() {
+    public void testUpdate() throws Exception {
         System.out.println("update");
         entity.setIDFactura(1);
-        FacturaDAOImpl instance = new FacturaDAOImpl();
-        instance.update(entity);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IFacturaDAO ejemplo = fabrica.createFacturaDAO();
+        ejemplo.update(entity);
     }
     
     @Test
-    public void testDelete() {
+    public void testDelete() throws Exception {
         System.out.println("delete");
-        FacturaDAOImpl instance = new FacturaDAOImpl();
-        Factura fact = instance.findByIDFactura(1);
-        instance.delete(fact);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IFacturaDAO ejemplo = fabrica.createFacturaDAO();
+        Factura fact = ejemplo.findByIDFactura(1);
+        ejemplo.delete(fact);
     }
     
      @Test
-    public void testFindbyAll() {
+    public void testFindbyAll() throws Exception {
         System.out.println("findByAll");
-        FacturaDAOImpl instance = new FacturaDAOImpl();
-        List<Factura> result = instance.findByAll();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IFacturaDAO ejemplo = fabrica.createFacturaDAO();
+        List<Factura> result = ejemplo.findByAll();
         for (Factura result1 : result) {
             System.out.println(result1.getIDFactura());
         }
     }
     
      @Test
-    public void testFindByIdFactura() {
+    public void testFindByIdFactura() throws Exception {
         System.out.println("findByIdFactura");
         Factura factt;
         int idFactura = 1;
-        FacturaDAOImpl factura = new FacturaDAOImpl();
-        factt = factura.findByIDFactura(idFactura);
+         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IFacturaDAO ejemplo = fabrica.createFacturaDAO();
+        factt = ejemplo.findByIDFactura(idFactura);
         
     }
     
     @Test
-    public void testFindByFecha() {
-
+    public void testFindByFecha() throws Exception {
         System.out.println("FindByFecha");              
-        FacturaDAOImpl instance = new FacturaDAOImpl();
-        List<Factura> result = instance.findByFecha(fechaActual);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IFacturaDAO ejemplo = fabrica.createFacturaDAO();
+        List<Factura> result = ejemplo.findByFecha(fechaActual);
         for (Factura result1 : result) {
             System.out.println(result1.toString());
         }

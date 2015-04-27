@@ -7,7 +7,11 @@ package edu.co.sena.akuavida.modelo.jpa.entities.dao.test;
 
 import edu.co.sena.akuavida.modelo.jpa.entities.test.*;
 import edu.co.sena.akuavida.modelo.entitis.Categorias;
+import edu.co.sena.akuavida.modelo.factory.DAOAbstractFactory;
+import edu.co.sena.akuavida.modelo.factory.DAOFactory;
+import edu.co.sena.akuavida.modelo.factory.mysql.MysqlJPADAOFactory;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.CategoriaDAOImpl;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.ICategoriaDAO;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,28 +25,29 @@ import static org.junit.Assert.*;
  * @author Tatiana
  */
 public class CategoriaDAOImplTest {
-    Categorias entity=new  Categorias();
-    
+
+    Categorias entity = new Categorias();
+
     public CategoriaDAOImplTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         entity.setIDCategoria(1);
         entity.setNombre("Categoria prueba");
         entity.setActiva(true);
         entity.setPariente(1);
-        
+
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -53,81 +58,90 @@ public class CategoriaDAOImplTest {
     // @Test
     // public void hello() {}
     @Test
-    public void testInsert() {
+    public void testInsert() throws Exception {
         System.out.println("insert");
-        CategoriaDAOImpl instance = new CategoriaDAOImpl();
-        instance.insert(entity);
-        
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICategoriaDAO ejemplo = fabrica.createCategoriaDAO();
+        ejemplo.insert(entity);
+
     }
+
     @Test
-    public void testUpdate() throws Exception{
-        System.out.println("update");  
-        CategoriaDAOImpl instance = new CategoriaDAOImpl();
-        instance.findByIDCategoria(1);
-        entity.setNombre("moe");        
-        instance.update(entity);
+    public void testUpdate() throws Exception {
+        System.out.println("update");
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICategoriaDAO ejemplo = fabrica.createCategoriaDAO();
+        ejemplo.findByIDCategoria(1);
+        entity.setNombre("moe");
+        ejemplo.update(entity);
     }
+
     @Test
-    public void testDelete() {
+    public void testDelete() throws Exception {
         System.out.println("delete");
-        CategoriaDAOImpl instance = new CategoriaDAOImpl();
-        Categorias ct = instance.findByIDCategoria(1);
-        instance.delete(ct);        
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICategoriaDAO ejemplo = fabrica.createCategoriaDAO();
+        Categorias ct = ejemplo.findByIDCategoria(1);
+        ejemplo.delete(ct);
     }
+
     @Test
-    public void testFindByIdCategoria() {
+    public void testFindByIdCategoria() throws Exception {
         System.out.println("findByIdCategoria");
         Categorias ct;
-        int idCategoria = 3;
-        CategoriaDAOImpl instance = new CategoriaDAOImpl();
-        ct = instance.findByIDCategoria(idCategoria);
-        System.out.println(ct.getIDCategoria());
+        int idCategoria = 2;
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICategoriaDAO ejemplo = fabrica.createCategoriaDAO();
+        ct = ejemplo.findByIDCategoria(idCategoria);
+        System.out.println(ct.toString());
 
     }
-     @Test
-    public void testFindByAll() {
+
+    @Test
+    public void testFindByAll() throws Exception {
         System.out.println("findByAll");
-         CategoriaDAOImpl instance = new CategoriaDAOImpl();
-        List<Categorias> result = instance.findByAll();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICategoriaDAO ejemplo = fabrica.createCategoriaDAO();
+        List<Categorias> result = ejemplo.findByAll();
         for (Categorias result1 : result) {
             System.out.println(result1.toString());
         }
     }
+
     @Test
-    public void testFindByNombre() {
+    public void testFindByNombre() throws Exception {
         System.out.println("findByNombre");
-        String nombre = "moe";
-        CategoriaDAOImpl instance = new CategoriaDAOImpl();
-        List<Categorias> result = instance.findByNombre(nombre);
+        String nombre = "Categoria prueba";
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICategoriaDAO ejemplo = fabrica.createCategoriaDAO();
+        List<Categorias> result = ejemplo.findByNombre(nombre);
         for (Categorias result1 : result) {
             System.out.println(result1.toString());
         }
     }
-    
+
     @Test
-    public void testFindByActiva() {
+    public void testFindByActiva() throws Exception {
         System.out.println("findByActiva");
-        boolean activa=true;
-        CategoriaDAOImpl instance = new CategoriaDAOImpl();
-        List<Categorias> result = instance.findByActiva(activa);
+        boolean activa = true;
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICategoriaDAO ejemplo = fabrica.createCategoriaDAO();
+        List<Categorias> result = ejemplo.findByActiva(activa);
         for (Categorias result1 : result) {
             System.out.println(result1.toString());
         }
     }
-    
+
     @Test
-    public void testFindByPariente() {
+    public void testFindByPariente() throws Exception {
         System.out.println("findByPariente");
-        int pariente=1;
-        CategoriaDAOImpl instance = new CategoriaDAOImpl();
-        List<Categorias> result = instance.findByPariente(pariente);
+        int pariente = 1;
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICategoriaDAO ejemplo = fabrica.createCategoriaDAO();
+        List<Categorias> result = ejemplo.findByPariente(pariente);
         for (Categorias result1 : result) {
             System.out.println(result1.toString());
         }
     }
-    
 
-
-
-    
 }

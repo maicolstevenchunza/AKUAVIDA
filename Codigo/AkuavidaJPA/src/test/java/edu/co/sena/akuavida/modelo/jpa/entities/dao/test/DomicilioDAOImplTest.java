@@ -10,8 +10,12 @@ import edu.co.sena.akuavida.modelo.entitis.Departamento;
 import edu.co.sena.akuavida.modelo.entitis.Domicilio;
 import edu.co.sena.akuavida.modelo.entitis.DomicilioPK;
 import edu.co.sena.akuavida.modelo.entitis.Municipio;
-import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.DepartamentoDAOImpl;
+import edu.co.sena.akuavida.modelo.factory.DAOAbstractFactory;
+import edu.co.sena.akuavida.modelo.factory.DAOFactory;
+import edu.co.sena.akuavida.modelo.factory.mysql.MysqlJPADAOFactory;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.DomicilioDAOImpl;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IDepartamentoDAO;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IDomicilioDAO;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -61,44 +65,49 @@ public class DomicilioDAOImplTest {
     
     
     @Test
-    public void testInsert() {
+    public void testInsert() throws Exception {
         System.out.println("Insert");
-        DomicilioDAOImpl instance = new DomicilioDAOImpl();
-        instance.insert(entity);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IDomicilioDAO ejemplo = fabrica.createDomicilioDAO();
+        ejemplo.insert(entity);
     }
     
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws Exception {
         System.out.println("Update");
         entity.setTelefono("3125487264");
-        DomicilioDAOImpl instance = new DomicilioDAOImpl();
-        instance.update(entity);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IDomicilioDAO ejemplo = fabrica.createDomicilioDAO();
+        ejemplo.update(entity);
     }
     
     @Test
-    public void testDelete() {
+    public void testDelete() throws Exception {
         System.out.println("delete");
-        DomicilioDAOImpl instance = new DomicilioDAOImpl();
-        Domicilio cct = instance.findByIDDomicilio(new DomicilioPK("C.C", "1033757632"));
-        instance.delete(cct);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IDomicilioDAO ejemplo = fabrica.createDomicilioDAO();
+        Domicilio cct = ejemplo.findByIDDomicilio(new DomicilioPK("C.C", "1033757632"));
+        ejemplo.delete(cct);
     }
     
     @Test
-    public void testFindByIDDomicilio() {
+    public void testFindByIDDomicilio() throws Exception {
         System.out.println("findByIDDomicilio");
         Domicilio cct;
         String idDomicilio = "C.C";
         String idDomicilio2 = "1033757632";
-        DomicilioDAOImpl dom = new DomicilioDAOImpl();
-        cct = dom.findByIDDomicilio(new DomicilioPK(idDomicilio, idDomicilio2));
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IDomicilioDAO ejemplo = fabrica.createDomicilioDAO();
+        cct =ejemplo.findByIDDomicilio(new DomicilioPK(idDomicilio, idDomicilio2));
         System.out.println(cct.toString());
     }
     
     @Test
-    public void testFindbyAll() {
+    public void testFindbyAll() throws Exception {
         System.out.println("findByAll");
-        DomicilioDAOImpl instance = new DomicilioDAOImpl();
-        List<Domicilio> result = instance.findByAll();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IDomicilioDAO ejemplo = fabrica.createDomicilioDAO();
+        List<Domicilio> result = ejemplo.findByAll();
         for (Domicilio result1 : result) {
             System.out.println(result1.toString());
         }
@@ -106,33 +115,36 @@ public class DomicilioDAOImplTest {
     
     
     @Test
-    public void testFindByCiudad() {
+    public void testFindByCiudad() throws Exception {
         System.out.println("findByCiudad");
         String ciudad = "El Bronx";
-        DomicilioDAOImpl instance = new DomicilioDAOImpl();
-        List<Domicilio> result = instance.findByCiudad(ciudad);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IDomicilioDAO ejemplo = fabrica.createDomicilioDAO();
+        List<Domicilio> result = ejemplo.findByCiudad(ciudad);
         for (Domicilio result1 : result) {
             System.out.println(result1.toString());
         }
     }
     
     @Test
-    public void testFindByDireccion() {
+    public void testFindByDireccion() throws Exception {
         System.out.println("findByDireccion");
         String direccion = "Calle 49 G # 6 A 29 sur";
-        DomicilioDAOImpl instance = new DomicilioDAOImpl();
-        List<Domicilio> result = instance.findByDireccion(direccion);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IDomicilioDAO ejemplo = fabrica.createDomicilioDAO();
+        List<Domicilio> result = ejemplo.findByDireccion(direccion);
         for (Domicilio result1 : result) {
             System.out.println(result1.toString());
         }
     }
     
     @Test
-    public void testFindByTelefono() {
+    public void testFindByTelefono() throws Exception {
         System.out.println("findByTelefono");
         String telefono = "3217915742";
-        DomicilioDAOImpl instance = new DomicilioDAOImpl();
-        List<Domicilio> result = instance.findByTelefono(telefono);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IDomicilioDAO ejemplo = fabrica.createDomicilioDAO();
+        List<Domicilio> result = ejemplo.findByTelefono(telefono);
         for (Domicilio result1 : result) {
             System.out.println(result1.toString());
         }

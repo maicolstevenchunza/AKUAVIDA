@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface IDomicilioDAO {
     
-     public void insert(Domicilio entity);
+    public void insert(Domicilio entity);
     public void update(Domicilio entity);
     public void delete(Domicilio entity);
 

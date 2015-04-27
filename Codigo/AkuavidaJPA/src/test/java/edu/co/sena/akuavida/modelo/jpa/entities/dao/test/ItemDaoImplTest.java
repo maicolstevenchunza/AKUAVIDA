@@ -8,7 +8,12 @@ package edu.co.sena.akuavida.modelo.jpa.entities.dao.test;
 import edu.co.sena.akuavida.modelo.jpa.entities.test.*;
 import edu.co.sena.akuavida.modelo.entitis.Item;
 import edu.co.sena.akuavida.modelo.entitis.ItemPK;
+import edu.co.sena.akuavida.modelo.factory.DAOAbstractFactory;
+import edu.co.sena.akuavida.modelo.factory.DAOFactory;
+import edu.co.sena.akuavida.modelo.factory.mysql.MysqlJPADAOFactory;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.ItemDaoImpl;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IInventarioDAO;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IItemDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -56,80 +61,88 @@ public class ItemDaoImplTest {
     }
 
     @Test
-    public void testInsert() {
+    public void testInsert() throws Exception {
         System.out.println("insert");
-        ItemDaoImpl instance = new ItemDaoImpl();
-        instance.insert(entity);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IItemDAO ejemplo = fabrica.createItemDAO();
+        ejemplo.insert(entity);
 
     }
 
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws Exception {
         System.out.println("update");
-        ItemDaoImpl instance = new ItemDaoImpl();
-        Item it = instance.findByIDItem(new ItemPK("1", 1));
+         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IItemDAO ejemplo = fabrica.createItemDAO();
+        Item it = ejemplo.findByIDItem(new ItemPK("1", 1));
         it.setCantidad(5);
-        instance.update(it);
+        ejemplo.update(it);
     }
 
     @Test
-    public void testDelete() {
+    public void testDelete() throws Exception {
         System.out.println("delete");
-        ItemDaoImpl instance = new ItemDaoImpl();
-        Item it = instance.findByIDItem(new ItemPK("1", 1));
-        instance.delete(entity);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IItemDAO ejemplo = fabrica.createItemDAO();
+        Item it = ejemplo.findByIDItem(new ItemPK("1", 1));
+        ejemplo.delete(entity);
 
     }
 
     @Test
-    public void testFindByAll() {
+    public void testFindByAll() throws Exception {
         System.out.println("findByAll");
-        ItemDaoImpl instance = new ItemDaoImpl();
-        List<Item> result = instance.findByAll();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IItemDAO ejemplo = fabrica.createItemDAO();
+        List<Item> result = ejemplo.findByAll();
         for (Item result1 : result) {
             System.out.println(result1.toString());
         }
     }
 
     @Test
-    public void testFindByIDItem() {
+    public void testFindByIDItem() throws Exception {
         Item it;
         String idProducto = "1";
         int idPedidoFactura = 1;
-        ItemDaoImpl instance = new ItemDaoImpl();
-        it = instance.findByIDItem(new ItemPK(idProducto, idPedidoFactura));
+         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IItemDAO ejemplo = fabrica.createItemDAO();
+        it = ejemplo.findByIDItem(new ItemPK(idProducto, idPedidoFactura));
         System.out.println(it.toString());
 
     }
 
     @Test
-    public void testFindByCantidad() {
+    public void testFindByCantidad() throws Exception {
         System.out.println("findByCantidad");
         int cantidad = 2;
-        ItemDaoImpl instance = new ItemDaoImpl();
-        List<Item> result = instance.findByCantidad(cantidad);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IItemDAO ejemplo = fabrica.createItemDAO();
+        List<Item> result = ejemplo.findByCantidad(cantidad);
         for (Item result1 : result) {
             System.out.println(result1.toString());
         }
     }
 
     @Test
-    public void testFindByCostoTotal() {
+    public void testFindByCostoTotal() throws Exception {
         System.out.println("findByCostoTotal");
         float costoTotal = 30000;
-        ItemDaoImpl instance = new ItemDaoImpl();
-        List<Item> result = instance.findByCostoTotal(costoTotal);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IItemDAO ejemplo = fabrica.createItemDAO();
+        List<Item> result = ejemplo.findByCostoTotal(costoTotal);
         for (Item result1 : result) {
             System.out.println(result1.toString());
         }
     }
 
     @Test
-    public void testFindByCostoUnitario() {
+    public void testFindByCostoUnitario() throws Exception {
         System.out.println("findByCostoUnitario");
         float costoUnitario = 150000;
-        ItemDaoImpl instance = new ItemDaoImpl();
-        List<Item> result = instance.findByCostoUnitario(costoUnitario);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IItemDAO ejemplo = fabrica.createItemDAO();
+        List<Item> result = ejemplo.findByCostoUnitario(costoUnitario);
         for (Item result1 : result) {
             System.out.println(result1.toString());
         }

@@ -7,7 +7,11 @@ package edu.co.sena.akuavida.modelo.jpa.entities.dao.test;
 
 import edu.co.sena.akuavida.modelo.jpa.entities.test.*;
 import edu.co.sena.akuavida.modelo.entitis.Departamento;
+import edu.co.sena.akuavida.modelo.factory.DAOAbstractFactory;
+import edu.co.sena.akuavida.modelo.factory.DAOFactory;
+import edu.co.sena.akuavida.modelo.factory.mysql.MysqlJPADAOFactory;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.DepartamentoDAOImpl;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IDepartamentoDAO;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -20,7 +24,7 @@ import org.junit.Test;
  * @author ColsutecR
  */
 public class DepartamentoDAOImplTest {
-    
+
     Departamento entity = new Departamento();
 
     public DepartamentoDAOImplTest() {
@@ -50,58 +54,61 @@ public class DepartamentoDAOImplTest {
     //
     // @Test
     // public void hello() {}
-    
-    
     @Test
-    public void testInsert() {
+    public void testInsert() throws Exception {
         System.out.println("Insert");
-        DepartamentoDAOImpl instance = new DepartamentoDAOImpl();
-        instance.insert(entity);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IDepartamentoDAO ejemplo = fabrica.createDepartamentoDAO();
+        ejemplo.insert(entity);
     }
-    
+
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws Exception {
         System.out.println("Update");
         entity.setNombreDepartamento("Maicol");
-        DepartamentoDAOImpl instance = new DepartamentoDAOImpl();
-        instance.update(entity);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IDepartamentoDAO ejemplo = fabrica.createDepartamentoDAO();
+        ejemplo.update(entity);
     }
-    
+
     @Test
-    public void testDelete() {
+    public void testDelete() throws Exception {
         System.out.println("delete");
-        DepartamentoDAOImpl instance = new DepartamentoDAOImpl();
-        Departamento cct = instance.findByIDDepartamento("33");
-        instance.delete(cct);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IDepartamentoDAO ejemplo = fabrica.createDepartamentoDAO();
+        Departamento cct = ejemplo.findByIDDepartamento("33");
+        ejemplo.delete(cct);
     }
-    
+
     @Test
-    public void testFindByIdDepartamento() {
+    public void testFindByIdDepartamento() throws Exception {
         System.out.println("findByIdDepartamento");
         Departamento cct;
         String idDepartamento = "33";
-        DepartamentoDAOImpl dep = new DepartamentoDAOImpl();
-        cct = dep.findByIDDepartamento(idDepartamento);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IDepartamentoDAO ejemplo = fabrica.createDepartamentoDAO();
+        cct = ejemplo.findByIDDepartamento(idDepartamento);
         System.out.println(cct.toString());
     }
-    
+
     @Test
-    public void testFindbyAll() {
+    public void testFindbyAll() throws Exception {
         System.out.println("findByAll");
-        DepartamentoDAOImpl instance = new DepartamentoDAOImpl();
-        List<Departamento> result = instance.findByAll();
+       DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IDepartamentoDAO ejemplo = fabrica.createDepartamentoDAO();
+        List<Departamento> result = ejemplo.findByAll();
         for (Departamento result1 : result) {
             System.out.println(result1.toString());
         }
     }
-    
-    
+
     @Test
-    public void testFindByNombre() {
+    public void testFindByNombre() throws Exception {
         System.out.println("findByNombre");
         String nombre = "Johana";
-        DepartamentoDAOImpl instance = new DepartamentoDAOImpl();
-        List<Departamento> result = instance.findByNombre(nombre);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IDepartamentoDAO ejemplo = fabrica.createDepartamentoDAO();
+        List<Departamento> result = ejemplo.findByNombre(nombre);
         for (Departamento result1 : result) {
             System.out.println(result1.toString());
         }
