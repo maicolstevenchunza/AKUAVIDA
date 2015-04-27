@@ -60,17 +60,15 @@ public class PedidoDAOImplTest {
     @Test
     public void testInsert() throws Exception {
         System.out.println("insert");
-        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
-        IPedidoDAO instance = fabrica.createPedidoDAO();
+       PedidoDAOImpl instance = new PedidoDAOImpl();
         instance.insert(entity);
 
     }
 
     @Test
     public void testUpdate() throws Exception {
-        System.out.println("update");
-        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
-        IPedidoDAO instance = fabrica.createPedidoDAO();
+        System.out.println("update");       
+        PedidoDAOImpl instance = new PedidoDAOImpl();
         Pedido pt = instance.findByFacturaIDFactura(1);
         pt.setSubtotal(430000);
         instance.update(pt);
@@ -79,8 +77,8 @@ public class PedidoDAOImplTest {
     @Test
     public void testDelete() throws Exception {
         System.out.println("delete");
-        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
-        IPedidoDAO instance = fabrica.createPedidoDAO();
+       
+        PedidoDAOImpl instance = new PedidoDAOImpl();
         Pedido pt = instance.findByFacturaIDFactura(1);
         instance.delete(pt);
     }
@@ -89,8 +87,8 @@ public class PedidoDAOImplTest {
     public void testFindByFacturaIDFactura() throws Exception {
         System.out.println("findByFacturaIDFactura");
         Pedido pt;
-        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
-        IPedidoDAO instance = fabrica.createPedidoDAO();
+        
+        PedidoDAOImpl instance = new PedidoDAOImpl();
         pt = instance.findByFacturaIDFactura(1);
         System.out.println(pt.toString());
     }
@@ -98,16 +96,19 @@ public class PedidoDAOImplTest {
     @Test
     public void testFindByAll() {
         System.out.println("findByAll");
+        Pedido pt;
         PedidoDAOImpl instance = new PedidoDAOImpl();
+        pt = instance.findByFacturaIDFactura(1);
+        System.out.println(pt.toString());
+        
 
     }
 
     @Test
     public void testFindBySubtotal() throws Exception {
         System.out.println("findBySubtotal");
-        float subtotal = 420000;
-       DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
-        IPedidoDAO instance = fabrica.createPedidoDAO();
+        float subtotal = 420000;       
+        PedidoDAOImpl instance = new PedidoDAOImpl();
         List<Pedido> result = instance.findBySubtotal(subtotal);
         for (Pedido result1 : result) {
             System.out.println(result1.toString());
@@ -117,9 +118,8 @@ public class PedidoDAOImplTest {
     @Test
     public void testFindByTotal() throws Exception {
         System.out.println("findByTotal");
-        float total = 500000;
-        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
-        IPedidoDAO instance = fabrica.createPedidoDAO();
+        float total = 500000;       
+        PedidoDAOImpl instance = new PedidoDAOImpl();
         List<Pedido> result = instance.findByTotal(total);
         for (Pedido result1 : result) {
             System.out.println(result1.toString());
@@ -128,9 +128,8 @@ public class PedidoDAOImplTest {
 
     @Test
     public void testFindByFecha() throws Exception {
-        System.out.println("findByFecha");
-        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
-        IPedidoDAO instance = fabrica.createPedidoDAO();
+        System.out.println("findByFecha");       
+        PedidoDAOImpl instance = new PedidoDAOImpl();
         List<Pedido> result = instance.findByFecha(fechaActual);
         for (Pedido result1 : result) {
             System.out.println(result1.toString());

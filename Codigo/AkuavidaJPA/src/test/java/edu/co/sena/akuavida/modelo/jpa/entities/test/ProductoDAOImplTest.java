@@ -63,8 +63,7 @@ public class ProductoDAOImplTest {
     @Test
     public void testInsert() throws Exception {
         System.out.println("insert");
-       DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
-        IProductoDAO instance = fabrica.createProductoDAO();
+      ProductoDAOImpl instance = new ProductoDAOImpl();
         instance.insert(entity);
         
     }
