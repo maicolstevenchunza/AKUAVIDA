@@ -7,7 +7,11 @@ package edu.co.sena.akuavida.modelo.jpa.entities.test;
 
 import edu.co.sena.akuavida.modelo.entitis.Categorias;
 import edu.co.sena.akuavida.modelo.entitis.Producto;
+import edu.co.sena.akuavida.modelo.factory.DAOAbstractFactory;
+import edu.co.sena.akuavida.modelo.factory.DAOFactory;
+import edu.co.sena.akuavida.modelo.factory.mysql.MysqlJPADAOFactory;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.ProductoDAOImpl;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IProductoDAO;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -57,9 +61,9 @@ public class ProductoDAOImplTest {
     // public void hello() {}
     
     @Test
-    public void testInsert() {
+    public void testInsert() throws Exception {
         System.out.println("insert");
-        ProductoDAOImpl instance = new ProductoDAOImpl();
+      ProductoDAOImpl instance = new ProductoDAOImpl();
         instance.insert(entity);
         
     }

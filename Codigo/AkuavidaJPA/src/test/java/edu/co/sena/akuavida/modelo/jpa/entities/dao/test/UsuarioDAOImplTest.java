@@ -7,7 +7,12 @@ package edu.co.sena.akuavida.modelo.jpa.entities.dao.test;
 
 import edu.co.sena.akuavida.modelo.jpa.entities.test.*;
 import edu.co.sena.akuavida.modelo.entitis.Usuario;
+import edu.co.sena.akuavida.modelo.factory.DAOAbstractFactory;
+import edu.co.sena.akuavida.modelo.factory.DAOFactory;
+import edu.co.sena.akuavida.modelo.factory.mysql.MysqlJPADAOFactory;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.UsuarioDAOImpl;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IUsuarioDAO;
+
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -51,42 +56,47 @@ public class UsuarioDAOImplTest {
     }
 
     @Test
-    public void testInsert() {
+    public void testInsert() throws Exception {
         System.out.println("Insert");
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
+         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+         IUsuarioDAO instance = fabrica.createUsuarioDAO();
         instance.insert(entity);
     }
 
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws Exception {
         System.out.println("Update");
         entity.setCorreo("Maicol45@gmail.com");
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
+         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+         IUsuarioDAO instance = fabrica.createUsuarioDAO();
         instance.update(entity);
     }
 
     @Test
-    public void testDelete() {
+    public void testDelete() throws Exception {
         System.out.println("delete");
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
+         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+         IUsuarioDAO instance = fabrica.createUsuarioDAO();
         Usuario cct = instance.findByIDUsuario("Usuario1");
         instance.delete(cct);
     }
 
     @Test
-    public void testFindByIdUsuario() {
+    public void testFindByIdUsuario() throws Exception {
         System.out.println("findByIdUsuario");
         Usuario cct;
         String idUsuario = "Usuario1";
-        UsuarioDAOImpl usu = new UsuarioDAOImpl();
-        cct = usu.findByIDUsuario(idUsuario);
+         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+         IUsuarioDAO instance = fabrica.createUsuarioDAO();
+        cct = instance.findByIDUsuario(idUsuario);
         System.out.println(cct.toString());
     }
 
     @Test
-    public void testFindbyAll() {
+    public void testFindbyAll() throws Exception {
         System.out.println("findByAll");
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+         IUsuarioDAO instance = fabrica.createUsuarioDAO();
         List<Usuario> result = instance.findByAll();
         for (Usuario result1 : result) {
             System.out.println(result1.toString());
@@ -94,10 +104,11 @@ public class UsuarioDAOImplTest {
     }
 
     @Test
-    public void testFindByContrasena() {
+    public void testFindByContrasena() throws Exception {
         System.out.println("findByContrasena");
         String contrasena = "123456";
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+         IUsuarioDAO instance = fabrica.createUsuarioDAO();
         List<Usuario> result = instance.findByContrasena(contrasena);
         for (Usuario result1 : result) {
             System.out.println(result1.toString());
@@ -105,10 +116,11 @@ public class UsuarioDAOImplTest {
     }
 
     @Test
-    public void testFindByRol() {
+    public void testFindByRol() throws Exception {
         System.out.println("findByRol");
         String rol = "Cliente";
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+         IUsuarioDAO instance = fabrica.createUsuarioDAO();
         List<Usuario> result = instance.findByRol(rol);
         for (Usuario result1 : result) {
             System.out.println(result1.toString());
@@ -116,10 +128,11 @@ public class UsuarioDAOImplTest {
     }
 
     @Test
-    public void testFindByEstado() {
+    public void testFindByEstado() throws Exception {
         System.out.println("findByEstado");
         String activo = "Activo";
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
+      DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+         IUsuarioDAO instance = fabrica.createUsuarioDAO();
         List<Usuario> result = instance.findByEstado(activo);
         for (Usuario result1 : result) {
             System.out.println(result1.toString());
@@ -127,10 +140,11 @@ public class UsuarioDAOImplTest {
     }
 
     @Test
-    public void testFindByCorreo() {
+    public void testFindByCorreo() throws Exception {
         System.out.println("findByCorreo");
         String correo = "usuario1@gmail.com";
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
+       DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+         IUsuarioDAO instance = fabrica.createUsuarioDAO();
         List<Usuario> result = instance.findByCorreo(correo);
         for (Usuario result1 : result) {
             System.out.println(result1.toString());

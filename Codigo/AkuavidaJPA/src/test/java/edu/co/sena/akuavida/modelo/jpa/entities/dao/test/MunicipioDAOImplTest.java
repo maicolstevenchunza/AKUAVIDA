@@ -8,7 +8,11 @@ package edu.co.sena.akuavida.modelo.jpa.entities.dao.test;
 import edu.co.sena.akuavida.modelo.jpa.entities.test.*;
 import edu.co.sena.akuavida.modelo.entitis.Departamento;
 import edu.co.sena.akuavida.modelo.entitis.Municipio;
+import edu.co.sena.akuavida.modelo.factory.DAOAbstractFactory;
+import edu.co.sena.akuavida.modelo.factory.DAOFactory;
+import edu.co.sena.akuavida.modelo.factory.mysql.MysqlJPADAOFactory;
 import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.MunicipioDAOImpl;
+import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IMunicipioDAO;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,7 +25,7 @@ import org.junit.Test;
  * @author ColsutecR
  */
 public class MunicipioDAOImplTest {
-    
+
     Municipio entity = new Municipio();
 
     public MunicipioDAOImplTest() {
@@ -52,61 +56,64 @@ public class MunicipioDAOImplTest {
     //
     // @Test
     // public void hello() {}
-    
-    
     @Test
-    public void testInsert() {
+    public void testInsert() throws Exception {
         System.out.println("Insert");
-        MunicipioDAOImpl instance = new MunicipioDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IMunicipioDAO instance = fabrica.createMunicipioDAO();
         instance.insert(entity);
     }
-    
+
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws Exception {
         System.out.println("Update");
         entity.setNombreMunicipio("Maicol");
-        MunicipioDAOImpl instance = new MunicipioDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IMunicipioDAO instance = fabrica.createMunicipioDAO();
         instance.update(entity);
     }
-    
+
     @Test
-    public void testDelete() {
+    public void testDelete() throws Exception {
         System.out.println("delete");
-         MunicipioDAOImpl instance = new MunicipioDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IMunicipioDAO instance = fabrica.createMunicipioDAO();
         Municipio cct = instance.findByIDMunicipio("2000");
         instance.delete(cct);
     }
-    
+
     @Test
-    public void testFindByIdMunicipio() {
+    public void testFindByIdMunicipio() throws Exception {
         System.out.println("findByIdMunicipio");
         Municipio cct;
-        String idMunicipio= "2000";
-        MunicipioDAOImpl mun = new MunicipioDAOImpl();
-        cct = mun.findByIDMunicipio(idMunicipio);
+        String idMunicipio = "2000";
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IMunicipioDAO instance = fabrica.createMunicipioDAO();
+        cct = instance.findByIDMunicipio(idMunicipio);
         System.out.println(cct.getIdMunicipio());
     }
-    
+
     @Test
-    public void testFindByAll() {
+    public void testFindByAll() throws Exception {
         System.out.println("findByAll");
-        MunicipioDAOImpl instance = new MunicipioDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IMunicipioDAO instance = fabrica.createMunicipioDAO();
         List<Municipio> result = instance.findByAll();
         for (Municipio result1 : result) {
             System.out.println(result1.toString());
         }
     }
-    
-    
+
     @Test
-    public void testFindByNombre() {
+    public void testFindByNombre() throws Exception {
         System.out.println("findByNombre");
         String nombre = "Johana";
-        MunicipioDAOImpl instance = new MunicipioDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IMunicipioDAO instance = fabrica.createMunicipioDAO();
         List<Municipio> result = instance.findByNombre(nombre);
         for (Municipio result1 : result) {
             System.out.println(result1.toString());
         }
     }
-    
+
 }
