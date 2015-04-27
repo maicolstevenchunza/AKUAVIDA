@@ -9,17 +9,20 @@ import edu.co.sena.akuavida.modelo.entitis.CarritoDeCompras;
 import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.ICarritosComprasDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
+import java.util.logging.Level;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author ColsutecR
  */
-public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
+public class CarritoComprasDAOImpl extends AbstractDAO implements ICarritosComprasDAO {
     
     public static final String TOTAL = "total";
     public static final String SUBTOTAL = "subtotal";
+    protected static final Logger logger = Logger.getLogger( CarritoComprasDAOImpl.class );
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -35,12 +38,14 @@ public class CarritoComprasDAOImpl implements ICarritosComprasDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto el carrito de compras");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+          logger.error("No se inserto el carrito", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
             }
+            EntityManagerHelper.log(TOTAL, Level.OFF, null);
         }
 
     }
