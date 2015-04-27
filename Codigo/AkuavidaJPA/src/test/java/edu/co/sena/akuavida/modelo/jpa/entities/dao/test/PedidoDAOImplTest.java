@@ -91,7 +91,10 @@ public class PedidoDAOImplTest {
     @Test
     public void testFindByAll() {
         System.out.println("findByAll");
+        Pedido pt;
         PedidoDAOImpl instance = new PedidoDAOImpl();
+        pt = instance.findByFacturaIDFactura(1);
+        System.out.println(pt.toString());
 
     }
 
