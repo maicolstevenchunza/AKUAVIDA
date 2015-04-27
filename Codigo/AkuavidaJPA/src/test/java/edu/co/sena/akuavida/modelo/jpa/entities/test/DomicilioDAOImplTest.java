@@ -42,7 +42,7 @@ public class DomicilioDAOImplTest {
     public void setUp() {
 
         entity.setMunicipioidMunicipio(new Municipio("2000"));
-        entity.setDomicilioPK(new DomicilioPK("C.C", "1033790199"));
+        entity.setDomicilioPK(new DomicilioPK("C.C", "1033757632"));
         entity.setCiudad("El Bronx");
         entity.setDireccion("Calle 49 G # 6 A 29 sur ");
         entity.setTelefono("3217915742");
@@ -78,38 +78,61 @@ public class DomicilioDAOImplTest {
     public void testDelete() {
         System.out.println("delete");
         DomicilioDAOImpl instance = new DomicilioDAOImpl();
-        Domicilio cct = instance.findByIDDomicilio(new DomicilioPK("C.C", "1033790199"));
+        Domicilio cct = instance.findByIDDomicilio(new DomicilioPK("C.C", "1033757632"));
         instance.delete(cct);
     }
     
     @Test
     public void testFindByIDDomicilio() {
         System.out.println("findByIDDomicilio");
-        Departamento cct;
-        String idDepartamento = "33";
-        DepartamentoDAOImpl dep = new DepartamentoDAOImpl();
-        cct = dep.findByIDDepartamento(idDepartamento);
+        Domicilio cct;
+        String idDomicilio = "C.C";
+        String idDomicilio2 = "1033757632";
+        DomicilioDAOImpl dom = new DomicilioDAOImpl();
+        cct = dom.findByIDDomicilio(new DomicilioPK(idDomicilio, idDomicilio2));
         System.out.println(cct.toString());
     }
     
     @Test
     public void testFindbyAll() {
         System.out.println("findByAll");
-        DepartamentoDAOImpl instance = new DepartamentoDAOImpl();
-        List<Departamento> result = instance.findByAll();
-        for (Departamento result1 : result) {
+        DomicilioDAOImpl instance = new DomicilioDAOImpl();
+        List<Domicilio> result = instance.findByAll();
+        for (Domicilio result1 : result) {
             System.out.println(result1.toString());
         }
     }
     
     
     @Test
-    public void testFindByNombre() {
-        System.out.println("findByNombre");
-        String nombre = "Johana";
-        DepartamentoDAOImpl instance = new DepartamentoDAOImpl();
-        List<Departamento> result = instance.findByNombre(nombre);
-        for (Departamento result1 : result) {
+    public void testFindByCiudad() {
+        System.out.println("findByCiudad");
+        String ciudad = "El Bronx";
+        DomicilioDAOImpl instance = new DomicilioDAOImpl();
+        List<Domicilio> result = instance.findByCiudad(ciudad);
+        for (Domicilio result1 : result) {
+            System.out.println(result1.toString());
+        }
+    }
+    
+    @Test
+    public void testFindByDireccion() {
+        System.out.println("findByDireccion");
+        String direccion = "Calle 49 G # 6 A 29 sur";
+        DomicilioDAOImpl instance = new DomicilioDAOImpl();
+        List<Domicilio> result = instance.findByDireccion(direccion);
+        for (Domicilio result1 : result) {
+            System.out.println(result1.toString());
+        }
+    }
+    
+    @Test
+    public void testFindByTelefono() {
+        System.out.println("findByTelefono");
+        String telefono = "3217915742";
+        DomicilioDAOImpl instance = new DomicilioDAOImpl();
+        List<Domicilio> result = instance.findByTelefono(telefono);
+        for (Domicilio result1 : result) {
             System.out.println(result1.toString());
         }
     }
