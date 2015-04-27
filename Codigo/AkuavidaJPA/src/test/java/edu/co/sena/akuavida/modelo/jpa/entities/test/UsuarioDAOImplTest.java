@@ -39,8 +39,9 @@ public class UsuarioDAOImplTest {
         entity.setIdUsuario("Usuario1");
         entity.setRol("Cliente");
         entity.setEstado("Activo");
-        entity.setCorreo("usuario1@gmail.com");
         entity.setContrasena("123456");
+        entity.setCorreo("usuario1@gmail.com");
+        
 
     }
 
