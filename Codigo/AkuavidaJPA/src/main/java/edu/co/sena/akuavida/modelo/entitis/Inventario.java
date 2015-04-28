@@ -78,7 +78,7 @@ public class Inventario implements Serializable {
         return cantidadProductoComprado;
     }
 
-    public void setCantidadProductoComprado(float cantidadProductoComprado) {
+    public void setCantidadProductoComprado(int cantidadProductoComprado) {
         this.cantidadProductoComprado = cantidadProductoComprado;
     }
 

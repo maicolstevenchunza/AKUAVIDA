@@ -18,56 +18,52 @@ import org.apache.log4j.Logger;
  *
  * @author Andrea
  */
-public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO{
-    
+public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO {
+
     public static final String PRODID = "producto";
     public static final String CANTIDADPROD = "cantidadProd";
     public static final String FECHA = "fechaDeCompra";
-    protected static final Logger logger = Logger.getLogger( InventarioDAOImpl.class );
-    
+    protected static final Logger logger = Logger.getLogger(InventarioDAOImpl.class);
+
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
     }
 
     @Override
     public void insert(Inventario entity) {
-     
-          EntityManager em = getEntityManager();
+
+        EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
             logger.info("Se pudo insertar el inventario");
         } catch (RuntimeException re) {
-           logger.error("No se pudo insertar el inventario", re);
+            logger.error("No se pudo insertar el inventario", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
     @Override
     public void update(Inventario entity) {
-        
-         EntityManager em = getEntityManager();
+
+        EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
             logger.info("Se pudo actualizar el inventario");
         } catch (RuntimeException re) {
-             logger.error("No se pudo actualizar el inventario", re);
+            logger.error("No se pudo actualizar el inventario", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
     @Override
     public void delete(Inventario entity) {
-        
+
         EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
@@ -77,16 +73,14 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO{
         } catch (RuntimeException re) {
             logger.error("No se pudo eliminar el inventario", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
     @Override
     public Inventario findByIDInventario(InventarioPK inventarioPK) {
-        
-         EntityManager em = getEntityManager();
+
+        EntityManager em = getEntityManager();
         Inventario inventarioTemporal = null;
         try {
 
@@ -95,9 +89,7 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO{
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar el inventario", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
 
         }
         return inventarioTemporal;
@@ -105,11 +97,12 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO{
 
     @Override
     public List<Inventario> findByAll() {
-       
+
         EntityManager em = getEntityManager();
         List<Inventario> inventarioTemporales = null;
-        Query query = em.createNamedQuery("Inventario.findAll");
+
         try {
+            Query query = em.createNamedQuery("Inventario.findAll");
             inventarioTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar todos los inventario", re);
@@ -121,16 +114,16 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO{
 
     @Override
     public List<Inventario> findByProductoIDproducto(Object prod) {
-       
-         EntityManager em = getEntityManager();
+
+        EntityManager em = getEntityManager();
         List<Inventario> inventarioTemporales = null;
-        Query query = em.createNamedQuery("Inventario.findByProductoIDproducto");
-        query.setParameter(InventarioDAOImpl.PRODID, prod);
 
         try {
+            Query query = em.createNamedQuery("Inventario.findByProductoIDproducto");
+            query.setParameter(InventarioDAOImpl.PRODID, prod);
             inventarioTemporales = query.getResultList();
         } catch (RuntimeException re) {
-           logger.error("No se pudo buscar por id de producto el inventario", re);
+            logger.error("No se pudo buscar por id de producto el inventario", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -138,14 +131,14 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO{
     }
 
     @Override
-    public List<Inventario> findByCantidadProductoComprado(Object cantProdComprado) {
-        
+    public List<Inventario> findByCantidadProductoComprado(float cantProdComprado) {
+
         EntityManager em = getEntityManager();
         List<Inventario> inventarioTemporales = null;
-        Query query = em.createNamedQuery("Inventario.findByCantidadProductoComprado");
-        query.setParameter(InventarioDAOImpl.CANTIDADPROD, cantProdComprado);
 
         try {
+            Query query = em.createNamedQuery("Inventario.findByCantidadProductoComprado");
+            query.setParameter(InventarioDAOImpl.CANTIDADPROD, cantProdComprado);
             inventarioTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar por cantidad comprada el inventario", re);
@@ -157,13 +150,13 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO{
 
     @Override
     public List<Inventario> findByFechaDeCompra(Object fecha) {
-       
-         EntityManager em = getEntityManager();
+
+        EntityManager em = getEntityManager();
         List<Inventario> inventarioTemporales = null;
-        Query query = em.createNamedQuery("Inventario.findByFechaDeCompra");
-        query.setParameter(InventarioDAOImpl.FECHA, fecha);
 
         try {
+            Query query = em.createNamedQuery("Inventario.findByFechaDeCompra");
+            query.setParameter(InventarioDAOImpl.FECHA, fecha);
             inventarioTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar por fecha el inventario", re);
@@ -172,8 +165,5 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO{
         }
         return inventarioTemporales;
     }
-    
-   
-    
-     
+
 }

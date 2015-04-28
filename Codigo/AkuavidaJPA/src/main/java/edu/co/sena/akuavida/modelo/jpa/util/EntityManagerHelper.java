@@ -5,28 +5,30 @@
  */
 package edu.co.sena.akuavida.modelo.jpa.util;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import edu.co.sena.akuavida.modelo.jpa.dao.implementacion.AbstractDAO;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author ColsutecR
  */
-public class EntityManagerHelper {
+public class EntityManagerHelper extends AbstractDAO{
 
     private static final EntityManagerFactory emf;
     private static final ThreadLocal<EntityManager> threadLocal;
-    private static final Logger logger;
+    
+    
 
     static {
         emf = Persistence.createEntityManagerFactory("edu.co.sena_TareaClasesJPA_jar_1.0-SNAPSHOTPU");
         threadLocal = new ThreadLocal<>();
-        logger = Logger.getLogger("Akuavida");
-        logger.setLevel(Level.ALL);
+           
+
     }
 
     public static EntityManager getEntityManager() {
@@ -68,8 +70,4 @@ public class EntityManagerHelper {
         return getEntityManager().createQuery(query);
     }
 
-    public static void log(String info, Level level, Throwable ex) {
-        logger.log(level, info, ex);
-    }
-    
 }

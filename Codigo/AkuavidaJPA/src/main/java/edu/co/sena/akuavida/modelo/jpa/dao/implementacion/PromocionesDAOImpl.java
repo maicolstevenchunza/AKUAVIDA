@@ -41,9 +41,7 @@ public class PromocionesDAOImpl extends AbstractDAO implements IPromocionesDAO {
         } catch (RuntimeException re) {
             logger.error("No se insertaron las promociones", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+           EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -59,9 +57,7 @@ public class PromocionesDAOImpl extends AbstractDAO implements IPromocionesDAO {
         } catch (RuntimeException re) {
             logger.error("No se actualizaron las promociones", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+          EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -78,15 +74,13 @@ public class PromocionesDAOImpl extends AbstractDAO implements IPromocionesDAO {
             logger.error("No se Borraron las promociones", re);
 
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+          EntityManagerHelper.closeEntityManager();
         }
 
     }
 
     @Override
-    public Promociones findByIDPromocion(int idPromocion) {
+    public Promociones findByIDPromocion(String idPromocion) {
         EntityManager em = getEntityManager();
         Promociones promoTemporal = null;
         try {
@@ -97,9 +91,7 @@ public class PromocionesDAOImpl extends AbstractDAO implements IPromocionesDAO {
             logger.error("No se pudieron busar las promociones por el Id", re);
 
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
 
         }
         return promoTemporal;
@@ -110,8 +102,9 @@ public class PromocionesDAOImpl extends AbstractDAO implements IPromocionesDAO {
 
         EntityManager em = getEntityManager();
         List<Promociones> promoTemporales = null;
-        Query query = em.createNamedQuery("Promociones.findAll");
+        
         try {
+            Query query = em.createNamedQuery("Promociones.findAll");
             promoTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudieron busar TODAS promociones ", re);
@@ -125,10 +118,11 @@ public class PromocionesDAOImpl extends AbstractDAO implements IPromocionesDAO {
     public List<Promociones> findByDescuentos(Object descuentos) {
         EntityManager em = getEntityManager();
         List<Promociones> promoTemporales = null;
-        Query query = em.createNamedQuery("Promociones.findByDescuentos");
-        query.setParameter(PromocionesDAOImpl.DEESCUENTOS, descuentos);
+       
 
         try {
+             Query query = em.createNamedQuery("Promociones.findByDescuentos");
+        query.setParameter(PromocionesDAOImpl.DEESCUENTOS, descuentos);
             promoTemporales = query.getResultList();
         } catch (RuntimeException re) {
            logger.error("No se pudieron busar las promociones por el Descuento", re);
@@ -142,10 +136,11 @@ public class PromocionesDAOImpl extends AbstractDAO implements IPromocionesDAO {
     public List<Promociones> findByNombre(Object nombre) {
         EntityManager em = getEntityManager();
         List<Promociones> promoTemporales = null;
-        Query query = em.createNamedQuery("Promociones.findByNombre");
-        query.setParameter(PromocionesDAOImpl.NOMBRE, nombre);
+      
 
         try {
+              Query query = em.createNamedQuery("Promociones.findByNombre");
+        query.setParameter(PromocionesDAOImpl.NOMBRE, nombre);
             promoTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudieron busar las promociones por el Nombre", re);
@@ -159,10 +154,11 @@ public class PromocionesDAOImpl extends AbstractDAO implements IPromocionesDAO {
     public List<Promociones> findByPrecio(Object precio) {
         EntityManager em = getEntityManager();
         List<Promociones> promoTemporales = null;
-        Query query = em.createNamedQuery("Promociones.findByPrecio");
-        query.setParameter(PromocionesDAOImpl.PRECIO, precio);
+       
 
         try {
+             Query query = em.createNamedQuery("Promociones.findByPrecio");
+        query.setParameter(PromocionesDAOImpl.PRECIO, precio);
             promoTemporales = query.getResultList();
         } catch (RuntimeException re) {
            logger.error("No se pudieron busar las promociones por el Precio", re);

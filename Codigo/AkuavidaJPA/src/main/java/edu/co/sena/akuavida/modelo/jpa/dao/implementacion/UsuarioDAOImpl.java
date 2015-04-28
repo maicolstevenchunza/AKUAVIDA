@@ -40,9 +40,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         } catch (RuntimeException re) {
             logger.error("No se insetaron los usuarios", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -59,9 +57,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         } catch (RuntimeException re) {
             logger.error("No se actualizaron los usuarios", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -79,9 +75,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             logger.error("No se Borraron los usuarios", re);
 
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -98,9 +92,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             logger.error("No se pudo buscar los usuarios por el ID", re);
 
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return usuarioTemporal;
     }
@@ -109,11 +101,12 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
     public List<Usuario> findByAll() {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Usuario> usuarioTemporal = null;
-        Query query = em.createNamedQuery("Usuario.findAll");
+
         try {
+            Query query = em.createNamedQuery("Usuario.findAll");
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-           logger.error("No se pudo buscar Todos los usuarios ", re);
+            logger.error("No se pudo buscar Todos los usuarios ", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -124,9 +117,10 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
     public List<Usuario> findByRol(String rol) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Usuario> usuarioTemporal = null;
-        Query query = em.createNamedQuery("Usuario.findByRol");
-        query.setParameter(UsuarioDAOImpl.ROL, rol);
+
         try {
+            Query query = em.createNamedQuery("Usuario.findByRol");
+            query.setParameter(UsuarioDAOImpl.ROL, rol);
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar los usuarios por el Rol", re);
@@ -141,9 +135,10 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
 
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Usuario> usuarioTemporal = null;
-        Query query = em.createNamedQuery("Usuario.findByEstado");
-        query.setParameter(UsuarioDAOImpl.ESTADO, estado);
+
         try {
+            Query query = em.createNamedQuery("Usuario.findByEstado");
+            query.setParameter(UsuarioDAOImpl.ESTADO, estado);
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar los usuarios por el Estado", re);
@@ -158,12 +153,13 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
 
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Usuario> usuarioTemporal = null;
-        Query query = em.createNamedQuery("Usuario.findByContrasena");
-        query.setParameter(UsuarioDAOImpl.CONTRASENA, contrasena);
+
         try {
+            Query query = em.createNamedQuery("Usuario.findByContrasena");
+            query.setParameter(UsuarioDAOImpl.CONTRASENA, contrasena);
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-           logger.error("No se pudo buscar los usuarios por la Contraseña", re);
+            logger.error("No se pudo buscar los usuarios por la Contraseña", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -175,9 +171,10 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
 
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Usuario> usuarioTemporal = null;
-        Query query = em.createNamedQuery("Usuario.findByCorreo");
-        query.setParameter(UsuarioDAOImpl.CORREO, correo);
+
         try {
+            Query query = em.createNamedQuery("Usuario.findByCorreo");
+            query.setParameter(UsuarioDAOImpl.CORREO, correo);
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar los usuarios por el Correo", re);

@@ -41,9 +41,7 @@ public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO {
         } catch (RuntimeException re) {
             logger.error("No se pudieron insertar el pedido", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -58,9 +56,7 @@ public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO {
         } catch (RuntimeException re) {
             logger.error("No se pudieron actualizar los pedido", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
 
     }
@@ -74,11 +70,9 @@ public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO {
             EntityManagerHelper.commit();
             logger.info("Se pudieron borrar los pedido");
         } catch (RuntimeException re) {
-           logger.error("No pudieron borrar los pedido", re);
+            logger.error("No pudieron borrar los pedido", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -89,11 +83,9 @@ public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO {
         try {
             pedidoTemporal = em.find(Pedido.class, findByAll().getFacturaIDFactura());
         } catch (RuntimeException re) {
-           logger.error("No pudieron buscar todos los pedido", re);
+            logger.error("No pudieron buscar todos los pedido", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pedidoTemporal;
     }
@@ -107,7 +99,7 @@ public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO {
             query.setParameter(PedidoDAOImpl.FECHA, fecha);
             pedidoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-           logger.error("No pudieron buscar todos los pedido por la Fecha", re);
+            logger.error("No pudieron buscar todos los pedido por la Fecha", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -118,7 +110,6 @@ public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO {
     public List<Pedido> findBySubtotal(float subtotal) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Pedido> pedidoTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Pedido.findBySubtotal");
             query.setParameter(PedidoDAOImpl.SUBTOTAL, subtotal);
@@ -159,10 +150,7 @@ public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO {
         } catch (RuntimeException re) {
             logger.error("NO pudieron buscar todos los pedido por El ID", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
-
+            EntityManagerHelper.closeEntityManager();
         }
         return pedidoTemporal;
     }

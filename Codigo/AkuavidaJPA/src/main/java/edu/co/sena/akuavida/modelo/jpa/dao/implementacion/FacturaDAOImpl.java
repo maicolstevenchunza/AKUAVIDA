@@ -18,10 +18,10 @@ import org.apache.log4j.Logger;
  *
  * @author Andrea
  */
-public class FacturaDAOImpl extends AbstractDAO implements IFacturaDAO{
-    
+public class FacturaDAOImpl extends AbstractDAO implements IFacturaDAO {
+
     public static final String FECHA = "fecha";
-    protected static final Logger logger = Logger.getLogger( FacturaDAOImpl.class );
+    protected static final Logger logger = Logger.getLogger(FacturaDAOImpl.class);
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -29,14 +29,14 @@ public class FacturaDAOImpl extends AbstractDAO implements IFacturaDAO{
 
     @Override
     public void insert(Factura entity) {
-         EntityManager em = EntityManagerHelper.getEntityManager();
+        EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-             logger.info("Se inserto la factura");
+            logger.info("Se inserto la factura");
         } catch (RuntimeException re) {
-           logger.error("No se inserto la factura", re);
+            logger.error("No se inserto la factura", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -46,67 +46,62 @@ public class FacturaDAOImpl extends AbstractDAO implements IFacturaDAO{
 
     @Override
     public void update(Factura entity) {
-        
+
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
-             logger.info("Se actualizo la factura");
+            logger.info("Se actualizo la factura");
         } catch (RuntimeException re) {
             logger.error("No se puedo actualizar la factura", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
     @Override
     public void delete(Factura entity) {
-        
-         EntityManager em = EntityManagerHelper.getEntityManager();
+
+        EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             em.remove(em.find(Factura.class, entity.getIDFactura()));
             EntityManagerHelper.commit();
-             logger.info("Se elimino la factura");
+            logger.info("Se elimino la factura");
         } catch (RuntimeException re) {
             logger.error("No se pudo eliminar la factura", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
     @Override
     public Factura findByIDFactura(int idFactura) {
-         Factura facTemporal = null;
+        Factura facTemporal = null;
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
 
-            facTemporal = em.find(Factura.class,idFactura);
+            facTemporal = em.find(Factura.class, idFactura);
 
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar la factura", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return facTemporal;
     }
 
     @Override
     public List<Factura> findByAll() {
-EntityManager em = getEntityManager();
+        EntityManager em = getEntityManager();
         List<Factura> facTemporales = null;
-        Query query = em.createNamedQuery("Factura.findAll");
+
         try {
+            Query query = em.createNamedQuery("Factura.findAll");
             facTemporales = query.getResultList();
         } catch (RuntimeException re) {
-           logger.error("No se pudo buscar todas las facturas", re);
+            logger.error("No se pudo buscar todas las facturas", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -115,18 +110,19 @@ EntityManager em = getEntityManager();
 
     @Override
     public List<Factura> findByFecha(Date fecha) {
-  EntityManager em = getEntityManager();
+        EntityManager em = getEntityManager();
         List<Factura> facTemporales = null;
-        Query query = em.createNamedQuery("Factura.findByFecha");
-        query.setParameter(FacturaDAOImpl.FECHA, fecha);
 
         try {
+            Query query = em.createNamedQuery("Factura.findByFecha");
+            query.setParameter(FacturaDAOImpl.FECHA, fecha);
             facTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar la factura por fecha", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
-        return facTemporales;    }
-    
+        return facTemporales;
+    }
+
 }

@@ -79,7 +79,7 @@ public class CuentaDAOImplTest {
         System.out.println("update");
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         ICuentaDAO ejemplo = fabrica.createCuentaDAO();
-        Cuenta ct = ejemplo.finByCuentaPk(new CuentaPK("C.C", "1033757632"));
+        Cuenta ct = ejemplo.finByCuentaPk(new CuentaPK("C.C", "10337576329"));
         ct.setTelefono("7605996");
         ejemplo.update(ct);
     }
@@ -98,7 +98,7 @@ public class CuentaDAOImplTest {
         System.out.println("finByCuentaPk");
         Cuenta ct;
         String tipoDocumento = "C.C";
-        String numerodocumento = "1033757632";
+        String numerodocumento = "10337576329";
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         ICuentaDAO ejemplo = fabrica.createCuentaDAO();
         ct = ejemplo.finByCuentaPk(new CuentaPK(tipoDocumento, numerodocumento));

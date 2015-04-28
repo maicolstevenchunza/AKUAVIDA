@@ -73,7 +73,7 @@ public class PromocionesDAOImplTest {
         System.out.println("update");  
           DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
          IPromocionesDAO instance = fabrica.createPromocionesDAO();
-        instance.findByIDPromocion(1);
+        instance.findByIDPromocion("1");
         entity.setNombre("super promocion");        
         instance.update(entity);
    }
@@ -82,7 +82,7 @@ public class PromocionesDAOImplTest {
         System.out.println("delete");
          DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
          IPromocionesDAO instance = fabrica.createPromocionesDAO();
-        Promociones prot = instance.findByIDPromocion(1);
+        Promociones prot = instance.findByIDPromocion("1");
         instance.delete(prot);        
     }
     
@@ -101,10 +101,10 @@ public class PromocionesDAOImplTest {
     public void testFindByIdPromocion() throws Exception {
         System.out.println("FindByIdPromocion");
         Promociones promt;   
-        int idPromocion=1;
-         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
-         IPromocionesDAO instance = fabrica.createPromocionesDAO();
-        promt = instance.findByIDPromocion(idPromocion);        
+        String idPromocion="1";
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        IPromocionesDAO instance = fabrica.createPromocionesDAO();
+        promt = instance.findByIDPromocion(idPromocion);
         System.out.println(promt.toString());
 
     }

@@ -18,7 +18,7 @@ public interface IPromocionesDAO {
     public void update(Promociones entity);
     public void delete(Promociones entity);
     
-    public Promociones findByIDPromocion(int idPromocion);
+    public Promociones findByIDPromocion(String idPromocion);
     public List<Promociones> findByAll();
     public List<Promociones> findByDescuentos(Object descuentos);
     public List<Promociones> findByNombre(Object nombre);

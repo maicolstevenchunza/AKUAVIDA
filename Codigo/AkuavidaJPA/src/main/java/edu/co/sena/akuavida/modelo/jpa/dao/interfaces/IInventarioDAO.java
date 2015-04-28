@@ -24,7 +24,7 @@ public interface IInventarioDAO {
     
     public List<Inventario> findByAll();
     public List<Inventario> findByProductoIDproducto(Object prod);
-    public List<Inventario> findByCantidadProductoComprado(Object cantProdComprado);
+    public List<Inventario> findByCantidadProductoComprado(float cantProdComprado);
     public List<Inventario> findByFechaDeCompra(Object fecha);
     
 }

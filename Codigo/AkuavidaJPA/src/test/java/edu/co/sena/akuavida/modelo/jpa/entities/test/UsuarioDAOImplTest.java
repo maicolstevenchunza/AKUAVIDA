@@ -59,8 +59,9 @@ public class UsuarioDAOImplTest {
     @Test
     public void testUpdate() {
         System.out.println("Update");
-        entity.setCorreo("Maicol45@gmail.com");
         UsuarioDAOImpl instance = new UsuarioDAOImpl();
+        instance.findByIDUsuario("Usuario8");
+        entity.setCorreo("Maicol45@gmail.com");        
         instance.update(entity);
     }
 
@@ -68,7 +69,7 @@ public class UsuarioDAOImplTest {
     public void testDelete() {
         System.out.println("delete");
         UsuarioDAOImpl instance = new UsuarioDAOImpl();
-        Usuario cct = instance.findByIDUsuario("Usuario1");
+        Usuario cct = instance.findByIDUsuario("Usuario8");
         instance.delete(cct);
     }
 
@@ -76,7 +77,7 @@ public class UsuarioDAOImplTest {
     public void testFindByIdUsuario() {
         System.out.println("findByIdUsuario");
         Usuario cct;
-        String idUsuario = "Usuario1";
+        String idUsuario = "Usuario8";
         UsuarioDAOImpl usu = new UsuarioDAOImpl();
         cct = usu.findByIDUsuario(idUsuario);
         System.out.println(cct.toString());

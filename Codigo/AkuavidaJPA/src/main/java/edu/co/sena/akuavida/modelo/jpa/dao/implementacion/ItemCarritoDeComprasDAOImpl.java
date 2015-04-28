@@ -40,9 +40,7 @@ public class ItemCarritoDeComprasDAOImpl extends AbstractDAO implements IItemCar
         } catch (RuntimeException re) {
             logger.error("No se pudieron insertar los items del carrito", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -57,9 +55,7 @@ public class ItemCarritoDeComprasDAOImpl extends AbstractDAO implements IItemCar
         } catch (RuntimeException re) {
             logger.error("No se pudieron actualizar los items del carrito", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -75,9 +71,7 @@ public class ItemCarritoDeComprasDAOImpl extends AbstractDAO implements IItemCar
         } catch (RuntimeException re) {
             logger.error("No se pudieron borrar los items del carrito", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -85,8 +79,9 @@ public class ItemCarritoDeComprasDAOImpl extends AbstractDAO implements IItemCar
     public List<ItemsDelCarrito> findByAll() {
         EntityManager em = getEntityManager();
         List<ItemsDelCarrito> itemDecarritoTemporales = null;
-        Query query = em.createNamedQuery("ItemsDelCarrito.findAll");
+        
         try {
+            Query query = em.createNamedQuery("ItemsDelCarrito.findAll");
             itemDecarritoTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudieron buscar los items del carrito", re);
@@ -154,9 +149,7 @@ public class ItemCarritoDeComprasDAOImpl extends AbstractDAO implements IItemCar
         } catch (RuntimeException re) {
             logger.error("No se puedieron buscar los items del carrito por id del item de carrito", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
 
         }
         return itemDecarritoTemporales;

@@ -39,11 +39,9 @@ public class ItemDaoImpl extends AbstractDAO implements IItemDAO {
             EntityManagerHelper.commit();
             logger.info("Se pudieron insertar los items");
         } catch (RuntimeException re) {
-            logger.error("No se pudieron insertar los items",re);
+            logger.error("No se pudieron insertar los items", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
 
     }
@@ -59,9 +57,7 @@ public class ItemDaoImpl extends AbstractDAO implements IItemDAO {
         } catch (RuntimeException re) {
             logger.error("No se pudieron actualizar los items", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -76,9 +72,7 @@ public class ItemDaoImpl extends AbstractDAO implements IItemDAO {
         } catch (RuntimeException re) {
             logger.error("No se pudieron eliminar los items", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -89,11 +83,9 @@ public class ItemDaoImpl extends AbstractDAO implements IItemDAO {
         try {
             itemTemporales = em.find(Item.class, itemsPK);
         } catch (RuntimeException re) {
-             logger.error("No se pudieron buscar los items por id", re);
+            logger.error("No se pudieron buscar los items por id", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return itemTemporales;
     }
@@ -102,11 +94,11 @@ public class ItemDaoImpl extends AbstractDAO implements IItemDAO {
     public List<Item> findByAll() {
         EntityManager em = getEntityManager();
         List<Item> itemTemporales = null;
-        Query query = em.createNamedQuery("Item.findAll");
         try {
+            Query query = em.createNamedQuery("Item.findAll");
             itemTemporales = query.getResultList();
         } catch (RuntimeException re) {
-           logger.error("No se pudieron buscar todos los items por id", re);
+            logger.error("No se pudieron buscar todos los items por id", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -117,9 +109,10 @@ public class ItemDaoImpl extends AbstractDAO implements IItemDAO {
     public List<Item> findByCantidad(int cantidad) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Item> itemTemporal = null;
-        Query query = em.createNamedQuery("Item.findByCantidad");
-        query.setParameter(ItemDaoImpl.CANTIDAD, cantidad);
+
         try {
+            Query query = em.createNamedQuery("Item.findByCantidad");
+            query.setParameter(ItemDaoImpl.CANTIDAD, cantidad);
             itemTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudieron buscar los items por cantidad", re);

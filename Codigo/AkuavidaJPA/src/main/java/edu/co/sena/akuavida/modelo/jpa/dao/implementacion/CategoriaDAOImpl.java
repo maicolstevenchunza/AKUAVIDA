@@ -22,7 +22,7 @@ public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
     public static final String NOMBRE = "nombre";
     public static final String ACTIVA = "activa";
     public static final String PARIENTE = "pariente";
-    protected static final Logger logger = Logger.getLogger( CategoriaDAOImpl.class );
+    protected static final Logger logger = Logger.getLogger(CategoriaDAOImpl.class);
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -65,7 +65,7 @@ public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
 
     @Override
     public void delete(Categorias entity) {
-       EntityManager em = getEntityManager();
+        EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             entity = em.getReference(Categorias.class,
@@ -91,7 +91,7 @@ public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
             categoriaTemporal = em.find(Categorias.class, idCategoria);
 
         } catch (RuntimeException re) {
-           logger.error("No se pudo buscar por el ID de la categoria", re);
+            logger.error("No se pudo buscar por el ID de la categoria", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -105,8 +105,9 @@ public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
     public List<Categorias> findByAll() {
         EntityManager em = getEntityManager();
         List<Categorias> categoriasTemporales = null;
-        Query query = em.createNamedQuery("Categorias.findAll");
+
         try {
+            Query query = em.createNamedQuery("Categorias.findAll");
             categoriasTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar todas las categorias", re);
@@ -120,10 +121,11 @@ public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
     public List<Categorias> findByNombre(String nombre) {
         EntityManager em = getEntityManager();
         List<Categorias> categoriasTemporales = null;
-        Query query = em.createNamedQuery("Categorias.findByNombre");
-        query.setParameter(CategoriaDAOImpl.NOMBRE, nombre);
 
         try {
+            Query query = em.createNamedQuery("Categorias.findByNombre");
+            query.setParameter(CategoriaDAOImpl.NOMBRE, nombre);
+
             categoriasTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar por el nombre de la categoria", re);
@@ -137,9 +139,10 @@ public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
     public List<Categorias> findByActiva(boolean activa) {
         EntityManager em = getEntityManager();
         List<Categorias> categoriasTemporales = null;
-        Query query = em.createNamedQuery("Categorias.findByActiva");
-        query.setParameter(CategoriaDAOImpl.ACTIVA, activa);
+
         try {
+            Query query = em.createNamedQuery("Categorias.findByActiva");
+            query.setParameter(CategoriaDAOImpl.ACTIVA, activa);
             categoriasTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar por activa la categoria", re);
@@ -153,9 +156,10 @@ public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
     public List<Categorias> findByPariente(int pariente) {
         EntityManager em = getEntityManager();
         List<Categorias> categoriasTemporales = null;
-        Query query = em.createNamedQuery("Categorias.findByPariente");
-        query.setParameter(CategoriaDAOImpl.PARIENTE, pariente);
+
         try {
+            Query query = em.createNamedQuery("Categorias.findByPariente");
+            query.setParameter(CategoriaDAOImpl.PARIENTE, pariente);
             categoriasTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar por el Pariente de la categoria", re);

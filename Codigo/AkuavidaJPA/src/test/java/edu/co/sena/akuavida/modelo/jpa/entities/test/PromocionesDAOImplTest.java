@@ -65,7 +65,7 @@ public class PromocionesDAOImplTest {
     public void testUpdate() throws Exception{
         System.out.println("update");  
         PromocionesDAOImpl instance = new PromocionesDAOImpl();
-        instance.findByIDPromocion(1);
+        instance.findByIDPromocion("1");
         entity.setNombre("super promocion");        
         instance.update(entity);
    }
@@ -73,7 +73,7 @@ public class PromocionesDAOImplTest {
     public void testDelete() {
         System.out.println("delete");
         PromocionesDAOImpl instance = new PromocionesDAOImpl();
-        Promociones prot = instance.findByIDPromocion(1);
+        Promociones prot = instance.findByIDPromocion("1");
         instance.delete(prot);        
     }
     
@@ -91,7 +91,7 @@ public class PromocionesDAOImplTest {
     public void testFindByIdPromocion() {
         System.out.println("FindByIdPromocion");
         Promociones promt;   
-        int idPromocion=1;
+        String idPromocion="1";
         PromocionesDAOImpl instance = new PromocionesDAOImpl();
         promt = instance.findByIDPromocion(idPromocion);        
         System.out.println(promt.toString());

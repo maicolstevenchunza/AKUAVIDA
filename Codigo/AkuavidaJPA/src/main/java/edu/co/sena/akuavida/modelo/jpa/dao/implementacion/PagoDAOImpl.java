@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
  *
  * @author toshiba_
  */
-public class PagoDAOImpl  extends AbstractDAO implements IPagoDAO {
+public class PagoDAOImpl extends AbstractDAO implements IPagoDAO {
 
     public static final String IDFACTURA = "facturaIDFactura";
     public static final String TIPOPAGO = "tipoPago";
@@ -40,9 +40,7 @@ public class PagoDAOImpl  extends AbstractDAO implements IPagoDAO {
         } catch (RuntimeException re) {
             logger.error("No se pudieron insertar el pago", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -59,9 +57,7 @@ public class PagoDAOImpl  extends AbstractDAO implements IPagoDAO {
             logger.error("No se pudo actualizar el pago", re);
 
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
 
     }
@@ -80,9 +76,7 @@ public class PagoDAOImpl  extends AbstractDAO implements IPagoDAO {
             logger.error("No se pudo borrar el pago", re);
 
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -90,8 +84,8 @@ public class PagoDAOImpl  extends AbstractDAO implements IPagoDAO {
     public List<Pago> findByAll() {
         EntityManager em = getEntityManager();
         List<Pago> pagoTemporal = null;
-        Query query = em.createNamedQuery("Pago.findAll");
         try {
+            Query query = em.createNamedQuery("Pago.findAll");
             pagoTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudieron buscar todos los pagos", re);
@@ -112,9 +106,7 @@ public class PagoDAOImpl  extends AbstractDAO implements IPagoDAO {
         } catch (RuntimeException re) {
             logger.error("No se pudieron buscar los pagos por ID", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pagoTemporal;
     }
@@ -123,7 +115,6 @@ public class PagoDAOImpl  extends AbstractDAO implements IPagoDAO {
     public List<Pago> findByTipoPago(String tipoPago) {
         EntityManager em = getEntityManager();
         List<Pago> pagoTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Pago.findByTipoPago");
             query.setParameter(PagoDAOImpl.TIPOPAGO, tipoPago);

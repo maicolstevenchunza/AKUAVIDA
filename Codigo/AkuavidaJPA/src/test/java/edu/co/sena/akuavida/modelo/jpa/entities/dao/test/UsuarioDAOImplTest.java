@@ -85,7 +85,7 @@ public class UsuarioDAOImplTest {
     public void testFindByIdUsuario() throws Exception {
         System.out.println("findByIdUsuario");
         Usuario cct;
-        String idUsuario = "Usuario1";
+        String idUsuario = "Usuariolool";
          DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
          IUsuarioDAO instance = fabrica.createUsuarioDAO();
         cct = instance.findByIDUsuario(idUsuario);

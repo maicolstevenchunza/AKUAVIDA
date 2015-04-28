@@ -28,7 +28,7 @@ public class CuentaDAOImpl extends AbstractDAO implements ICuentaDAO {
     public static final String TELEFONO = "telefono";
     public static final String ROOL = "rool";
     public static final String ACTIVO = "activo";
-    protected static final Logger logger = Logger.getLogger( CuentaDAOImpl.class );
+    protected static final Logger logger = Logger.getLogger(CuentaDAOImpl.class);
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -46,9 +46,7 @@ public class CuentaDAOImpl extends AbstractDAO implements ICuentaDAO {
         } catch (RuntimeException re) {
             logger.error("No se inserto la cuenta", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -63,9 +61,7 @@ public class CuentaDAOImpl extends AbstractDAO implements ICuentaDAO {
         } catch (RuntimeException re) {
             logger.error("No se actualizo la cuenta", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -80,9 +76,7 @@ public class CuentaDAOImpl extends AbstractDAO implements ICuentaDAO {
         } catch (RuntimeException re) {
             logger.error("No se borro la cuenta", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -95,9 +89,7 @@ public class CuentaDAOImpl extends AbstractDAO implements ICuentaDAO {
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar por la llave primaria", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return cuentaTemporales;
     }
@@ -106,11 +98,11 @@ public class CuentaDAOImpl extends AbstractDAO implements ICuentaDAO {
     public List<Cuenta> findByAll() {
         EntityManager em = getEntityManager();
         List<Cuenta> cuentaTemporal = null;
-        Query query = em.createNamedQuery("Cuenta.findAll");
         try {
+            Query query = em.createNamedQuery("Cuenta.findAll");
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
-           logger.error("No se pudo buscar todas las cuentas", re);
+            logger.error("No se pudo buscar todas las cuentas", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -206,7 +198,7 @@ public class CuentaDAOImpl extends AbstractDAO implements ICuentaDAO {
             query.setParameter(CuentaDAOImpl.TELEFONO, telefono);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
-           logger.error("No se pudo buscar por el telefono", re);
+            logger.error("No se pudo buscar por el telefono", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }

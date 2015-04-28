@@ -112,7 +112,7 @@ public class InventarioDAOImplTest {
     @Test
     public void testFindByCantidadProductoComprado() {
         System.out.println("FindByCantidadProductoComprado");
-        float cantidad = 1;
+        int cantidad = 1;
         InventarioDAOImpl instance = new InventarioDAOImpl();
         List<Inventario> result = instance.findByCantidadProductoComprado(cantidad);
         for (Inventario result1 : result) {

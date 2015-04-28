@@ -38,9 +38,7 @@ public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO {
         } catch (RuntimeException re) {
             logger.error("No se pudieron insertar los municipios", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -56,9 +54,7 @@ public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO {
         } catch (RuntimeException re) {
             logger.error("No se pudieron actuzalizar los municipios", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -74,9 +70,7 @@ public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO {
         } catch (RuntimeException re) {
             logger.error("No se pudieron borrar los municipios", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
 
     }
@@ -91,9 +85,7 @@ public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO {
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar el municipio por id", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return municipioTemporal;
 
@@ -104,8 +96,9 @@ public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO {
 
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Municipio> municipioTemporal = null;
-        Query query = em.createNamedQuery("Municipio.findAll");
+
         try {
+            Query query = em.createNamedQuery("Municipio.findAll");
             municipioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudieron buscar todos los municipios", re);

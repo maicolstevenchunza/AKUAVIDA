@@ -37,9 +37,7 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
         } catch (RuntimeException re) {
             logger.error("Se pudieron insertar los productos", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -54,9 +52,7 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
         } catch (RuntimeException re) {
             logger.error("No pudieron actualizar los productos", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -73,9 +69,7 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
         } catch (RuntimeException re) {
             logger.error("No pudieron borrar los productos", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -90,10 +84,7 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
         } catch (RuntimeException re) {
             logger.error("No pudieron buscar los productos por el ID", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
-
+            EntityManagerHelper.closeEntityManager();
         }
         return productoTemporal;
     }
@@ -102,8 +93,9 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByAll() {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findAll");
+        
         try {
+            Query query = em.createNamedQuery("Producto.findAll");
             productosTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No pudieron buscar todos los productos ", re);
@@ -118,10 +110,11 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByNombre(String nombre) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findByNombre");
-        query.setParameter(ProductoDAOImpl.NOMBRE, nombre);
+        
 
         try {
+            Query query = em.createNamedQuery("Producto.findByNombre");
+        query.setParameter(ProductoDAOImpl.NOMBRE, nombre);
             productosTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No pudieron buscar los productos por el Nombre", re);
@@ -137,13 +130,14 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByPrecio(float precio) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findByPrecio");
-        query.setParameter(ProductoDAOImpl.PRECIO, precio);
+        
 
         try {
+            Query query = em.createNamedQuery("Producto.findByPrecio");
+        query.setParameter(ProductoDAOImpl.PRECIO, precio);
             productosTemporales = query.getResultList();
         } catch (RuntimeException re) {
-           logger.error("No pudieron buscar los productos por el Precio", re);
+            logger.error("No pudieron buscar los productos por el Precio", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -154,10 +148,11 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByCantidad(int cantidad) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findByCantidad");
-        query.setParameter(ProductoDAOImpl.CANTIDAD, cantidad);
+        
 
         try {
+            Query query = em.createNamedQuery("Producto.findByCantidad");
+        query.setParameter(ProductoDAOImpl.CANTIDAD, cantidad);
             productosTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No pudieron buscar los productos por la Cantidad", re);
@@ -172,10 +167,11 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByActivo(boolean activo) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findByActivo");
-        query.setParameter(ProductoDAOImpl.ACTIVO, activo);
+        
 
         try {
+            Query query = em.createNamedQuery("Producto.findByActivo");
+        query.setParameter(ProductoDAOImpl.ACTIVO, activo);
             productosTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No pudieron buscar los productos por el Activo", re);
@@ -190,10 +186,10 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByImpuesto(float impuesto) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Producto> productosTemporales = null;
-        Query query = em.createNamedQuery("Producto.findByImpuesto");
-        query.setParameter(ProductoDAOImpl.IMPUESTO, impuesto);
 
         try {
+            Query query = em.createNamedQuery("Producto.findByImpuesto");
+            query.setParameter(ProductoDAOImpl.IMPUESTO, impuesto);
             productosTemporales = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No pudieron buscar los productos por el Impuesto", re);

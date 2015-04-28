@@ -121,7 +121,7 @@ public class InventarioDAOImplTest {
     @Test
     public void testFindByCantidadProductoComprado() throws Exception {
         System.out.println("FindByCantidadProductoComprado");
-        float cantidad = 1;
+        int cantidad = 1;
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         IInventarioDAO ejemplo = fabrica.createInventarioDAO();
         List<Inventario> result = ejemplo.findByCantidadProductoComprado(cantidad);

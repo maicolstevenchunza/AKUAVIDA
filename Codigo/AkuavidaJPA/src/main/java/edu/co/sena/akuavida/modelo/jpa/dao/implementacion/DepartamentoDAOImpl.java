@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
 public class DepartamentoDAOImpl extends AbstractDAO implements IDepartamentoDAO {
 
     public static final String NOMBREDEPARTAMENTO = "nombreDepartamento";
-    protected static final Logger logger = Logger.getLogger( DepartamentoDAOImpl.class );
+    protected static final Logger logger = Logger.getLogger(DepartamentoDAOImpl.class);
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -38,9 +38,7 @@ public class DepartamentoDAOImpl extends AbstractDAO implements IDepartamentoDAO
         } catch (RuntimeException re) {
             logger.error("No se inserto el departamento", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -56,9 +54,7 @@ public class DepartamentoDAOImpl extends AbstractDAO implements IDepartamentoDAO
         } catch (RuntimeException re) {
             logger.error("No se actualizo el departamento", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -74,9 +70,7 @@ public class DepartamentoDAOImpl extends AbstractDAO implements IDepartamentoDAO
         } catch (RuntimeException re) {
             logger.error("No se borro el departamento", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -92,9 +86,7 @@ public class DepartamentoDAOImpl extends AbstractDAO implements IDepartamentoDAO
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar por el ID", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return departamentoTemporal;
     }
@@ -104,8 +96,9 @@ public class DepartamentoDAOImpl extends AbstractDAO implements IDepartamentoDAO
 
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Departamento> departamentoTemporal = null;
-        Query query = em.createNamedQuery("Departamento.findAll");
+
         try {
+            Query query = em.createNamedQuery("Departamento.findAll");
             departamentoTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se ipudo buscar todos los departamentos", re);
@@ -120,12 +113,13 @@ public class DepartamentoDAOImpl extends AbstractDAO implements IDepartamentoDAO
 
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Departamento> departamentoTemporal = null;
-        Query query = em.createNamedQuery("Departamento.findByNombreDepartamento");
-        query.setParameter(DepartamentoDAOImpl.NOMBREDEPARTAMENTO, nombreDepartamento);
+
         try {
+            Query query = em.createNamedQuery("Departamento.findByNombreDepartamento");
+            query.setParameter(DepartamentoDAOImpl.NOMBREDEPARTAMENTO, nombreDepartamento);
             departamentoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-           logger.error("No se pudo buscar por nombre", re);
+            logger.error("No se pudo buscar por nombre", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }

@@ -18,12 +18,12 @@ import org.apache.log4j.Logger;
  *
  * @author maicolsteven
  */
-public class DomicilioDAOImpl extends AbstractDAO implements IDomicilioDAO{
-    
+public class DomicilioDAOImpl extends AbstractDAO implements IDomicilioDAO {
+
     public static final String CIUDAD = "ciudad";
     public static final String DIRECCION = "direccion";
     public static final String TELEFONO = "telefono";
-     protected static final Logger logger = Logger.getLogger( DomicilioDAOImpl.class );
+    protected static final Logger logger = Logger.getLogger(DomicilioDAOImpl.class);
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -31,7 +31,7 @@ public class DomicilioDAOImpl extends AbstractDAO implements IDomicilioDAO{
 
     @Override
     public void insert(Domicilio entity) {
-            
+
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
@@ -41,15 +41,13 @@ public class DomicilioDAOImpl extends AbstractDAO implements IDomicilioDAO{
         } catch (RuntimeException re) {
             logger.error("No se inserto el domicilio", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
     @Override
     public void update(Domicilio entity) {
-    
+
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
@@ -59,34 +57,30 @@ public class DomicilioDAOImpl extends AbstractDAO implements IDomicilioDAO{
         } catch (RuntimeException re) {
             logger.error("No se actualizo el domicilio", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
     @Override
     public void delete(Domicilio entity) {
-    
+
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-           entity = em.getReference(Domicilio.class, entity.getDomicilioPK());
+            entity = em.getReference(Domicilio.class, entity.getDomicilioPK());
             em.remove(entity);
             EntityManagerHelper.commit();
             logger.info("Se borro el domicilio");
         } catch (RuntimeException re) {
             logger.error("No se borro el domicilio", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
     @Override
     public Domicilio findByIDDomicilio(DomicilioPK domicilioPK) {
-    
+
         Domicilio domicilioTemporal = null;
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
@@ -96,20 +90,19 @@ public class DomicilioDAOImpl extends AbstractDAO implements IDomicilioDAO{
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar por el ID", re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return domicilioTemporal;
     }
 
     @Override
     public List<Domicilio> findByAll() {
-    
-         EntityManager em = EntityManagerHelper.getEntityManager();
+
+        EntityManager em = EntityManagerHelper.getEntityManager();
         List<Domicilio> domicilioTemporal = null;
-        Query query = em.createNamedQuery("Domicilio.findAll");
+
         try {
+            Query query = em.createNamedQuery("Domicilio.findAll");
             domicilioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar todos los domicilios", re);
@@ -117,20 +110,21 @@ public class DomicilioDAOImpl extends AbstractDAO implements IDomicilioDAO{
             EntityManagerHelper.closeEntityManager();
         }
         return domicilioTemporal;
-    
+
     }
 
     @Override
     public List<Domicilio> findByCiudad(String ciudad) {
-    
+
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Domicilio> domicilioTemporal = null;
-        Query query = em.createNamedQuery("Domicilio.findByCiudad");
-        query.setParameter(DomicilioDAOImpl.CIUDAD, ciudad);
+
         try {
+            Query query = em.createNamedQuery("Domicilio.findByCiudad");
+            query.setParameter(DomicilioDAOImpl.CIUDAD, ciudad);
             domicilioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-           logger.error("No se pudo buscar por la cuidad", re);
+            logger.error("No se pudo buscar por la cuidad", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -139,15 +133,16 @@ public class DomicilioDAOImpl extends AbstractDAO implements IDomicilioDAO{
 
     @Override
     public List<Domicilio> findByDireccion(String direccion) {
-    
-         EntityManager em = EntityManagerHelper.getEntityManager();
+
+        EntityManager em = EntityManagerHelper.getEntityManager();
         List<Domicilio> domicilioTemporal = null;
-        Query query = em.createNamedQuery("Domicilio.findByDireccion");
-        query.setParameter(DomicilioDAOImpl.DIRECCION, direccion);
+
         try {
+            Query query = em.createNamedQuery("Domicilio.findByDireccion");
+            query.setParameter(DomicilioDAOImpl.DIRECCION, direccion);
             domicilioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-           logger.error("No se pudo buscar por la direccion", re);
+            logger.error("No se pudo buscar por la direccion", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -156,12 +151,13 @@ public class DomicilioDAOImpl extends AbstractDAO implements IDomicilioDAO{
 
     @Override
     public List<Domicilio> findByTelefono(String telefono) {
-    
+
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Domicilio> domicilioTemporal = null;
-        Query query = em.createNamedQuery("Domicilio.findByTelefono");
-        query.setParameter(DomicilioDAOImpl.TELEFONO, telefono);
+
         try {
+            Query query = em.createNamedQuery("Domicilio.findByTelefono");
+            query.setParameter(DomicilioDAOImpl.TELEFONO, telefono);
             domicilioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("No se pudo buscar por el telefono", re);
@@ -170,5 +166,5 @@ public class DomicilioDAOImpl extends AbstractDAO implements IDomicilioDAO{
         }
         return domicilioTemporal;
     }
-    
+
 }
