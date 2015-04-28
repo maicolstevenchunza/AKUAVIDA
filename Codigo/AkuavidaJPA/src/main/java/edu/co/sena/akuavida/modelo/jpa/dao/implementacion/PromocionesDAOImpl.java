@@ -12,16 +12,18 @@ import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Andrea
  */
-public class PromocionesDAOImpl implements IPromocionesDAO {
+public class PromocionesDAOImpl extends AbstractDAO implements IPromocionesDAO {
 
     public static final String DEESCUENTOS = "descuentos";
     public static final String PRECIO = "precio";
     public static final String NOMBRE = "nombre";
+    protected static final Logger logger = Logger.getLogger(PromocionesDAOImpl.class);
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -35,8 +37,9 @@ public class PromocionesDAOImpl implements IPromocionesDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se insertaron las promociones");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se insertaron las promociones", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -52,8 +55,9 @@ public class PromocionesDAOImpl implements IPromocionesDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizaron las promociones");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se actualizaron las promociones", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -68,8 +72,11 @@ public class PromocionesDAOImpl implements IPromocionesDAO {
             EntityManagerHelper.beginTransaction();
             em.remove(em.find(Promociones.class, entity.getIdPromocion()));
             EntityManagerHelper.commit();
+            logger.info("Se Borraron las promociones");
+
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se Borraron las promociones", re);
+
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -87,7 +94,8 @@ public class PromocionesDAOImpl implements IPromocionesDAO {
             promoTemporal = em.find(Promociones.class, idPromocion);
 
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudieron busar las promociones por el Id", re);
+
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -106,7 +114,7 @@ public class PromocionesDAOImpl implements IPromocionesDAO {
         try {
             promoTemporales = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudieron busar TODAS promociones ", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -123,7 +131,7 @@ public class PromocionesDAOImpl implements IPromocionesDAO {
         try {
             promoTemporales = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+           logger.error("No se pudieron busar las promociones por el Descuento", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -140,7 +148,7 @@ public class PromocionesDAOImpl implements IPromocionesDAO {
         try {
             promoTemporales = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudieron busar las promociones por el Nombre", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -157,7 +165,7 @@ public class PromocionesDAOImpl implements IPromocionesDAO {
         try {
             promoTemporales = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+           logger.error("No se pudieron busar las promociones por el Precio", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }

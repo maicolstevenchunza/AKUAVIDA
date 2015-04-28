@@ -11,6 +11,7 @@ import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -22,6 +23,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
     public static final String ESTADO = "estado";
     public static final String CONTRASENA = "contrasena";
     public static final String CORREO = "correo";
+    protected static final Logger logger = Logger.getLogger(UsuarioDAOImpl.class);
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -34,8 +36,9 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se insertaron los usuarios");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se insetaron los usuarios", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -51,8 +54,10 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se Actualizaron los usuarios");
+
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se actualizaron los usuarios", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -68,8 +73,11 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             EntityManagerHelper.beginTransaction();
             em.remove(em.find(Usuario.class, entity.getIdUsuario()));
             EntityManagerHelper.commit();
+            logger.info("Se Borraron los usuarios");
+
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se Borraron los usuarios", re);
+
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -87,7 +95,8 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             usuarioTemporal = em.find(Usuario.class, idUsuario);
 
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar los usuarios por el ID", re);
+
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -104,7 +113,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         try {
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+           logger.error("No se pudo buscar Todos los usuarios ", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -120,7 +129,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         try {
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar los usuarios por el Rol", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -129,7 +138,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
 
     @Override
     public List<Usuario> findByEstado(String estado) {
-    
+
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Usuario> usuarioTemporal = null;
         Query query = em.createNamedQuery("Usuario.findByEstado");
@@ -137,7 +146,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         try {
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar los usuarios por el Estado", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -146,7 +155,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
 
     @Override
     public List<Usuario> findByContrasena(String contrasena) {
-    
+
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Usuario> usuarioTemporal = null;
         Query query = em.createNamedQuery("Usuario.findByContrasena");
@@ -154,7 +163,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         try {
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+           logger.error("No se pudo buscar los usuarios por la Contraseña", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -163,7 +172,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
 
     @Override
     public List<Usuario> findByCorreo(String correo) {
-    
+
         EntityManager em = EntityManagerHelper.getEntityManager();
         List<Usuario> usuarioTemporal = null;
         Query query = em.createNamedQuery("Usuario.findByCorreo");
@@ -171,7 +180,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         try {
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar los usuarios por el Correo", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }

@@ -11,16 +11,18 @@ import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author toshiba_
  */
-public class PagoDAOImpl implements IPagoDAO {
+public class PagoDAOImpl  extends AbstractDAO implements IPagoDAO {
 
     public static final String IDFACTURA = "facturaIDFactura";
     public static final String TIPOPAGO = "tipoPago";
     public static final String NUMEROTARJETA = "numeroTarjeta";
+    protected static final Logger logger = Logger.getLogger(PagoDAOImpl.class);
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -34,8 +36,9 @@ public class PagoDAOImpl implements IPagoDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se pudieron insertar el pago");
         } catch (RuntimeException re) {
-            System.out.println(" Error : " + re.getMessage());
+            logger.error("No se pudieron insertar el pago", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -50,8 +53,11 @@ public class PagoDAOImpl implements IPagoDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se pudo actualizar el pago");
+
         } catch (RuntimeException re) {
-            System.out.println(" Error : " + re.getMessage());
+            logger.error("No se pudo actualizar el pago", re);
+
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -68,8 +74,11 @@ public class PagoDAOImpl implements IPagoDAO {
             entity = getEntityManager().getReference(Pago.class, entity.getFacturaIDFactura());
             em.remove(entity);
             EntityManagerHelper.commit();
+            logger.info("Se pudo borrar el pago");
+
         } catch (RuntimeException re) {
-            System.out.println(" Error : " + re.getMessage());
+            logger.error("No se pudo borrar el pago", re);
+
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -85,7 +94,8 @@ public class PagoDAOImpl implements IPagoDAO {
         try {
             pagoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println(" Error : " + re.getMessage());
+            logger.error("No se pudieron buscar todos los pagos", re);
+
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -100,7 +110,7 @@ public class PagoDAOImpl implements IPagoDAO {
             pagoTemporal = em.find(Pago.class, idFactura);
 
         } catch (RuntimeException re) {
-            System.out.println(" Error : " + re.getMessage());
+            logger.error("No se pudieron buscar los pagos por ID", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -119,7 +129,8 @@ public class PagoDAOImpl implements IPagoDAO {
             query.setParameter(PagoDAOImpl.TIPOPAGO, tipoPago);
             pagoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println(" Error : " + re.getMessage());
+            logger.error("No se pudieron buscar los pagos por Tipo de Pago", re);
+
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -137,7 +148,8 @@ public class PagoDAOImpl implements IPagoDAO {
             query.setParameter(PagoDAOImpl.NUMEROTARJETA, numeroTarjeta);
             pagoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println(" Error : " + re.getMessage());
+            logger.error("No se pudieron buscar los pagos por el Numero De Tarjeta", re);
+
         } finally {
             EntityManagerHelper.closeEntityManager();
         }

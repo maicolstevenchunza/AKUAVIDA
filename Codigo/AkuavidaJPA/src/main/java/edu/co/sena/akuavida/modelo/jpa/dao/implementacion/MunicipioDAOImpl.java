@@ -34,7 +34,7 @@ public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            logger.info("Se pudieron insertar los municipios");
+            logger.info("Se pudieron insertar el municipio");
         } catch (RuntimeException re) {
             logger.error("No se pudieron insertar los municipios", re);
         } finally {

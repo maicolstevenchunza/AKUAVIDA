@@ -12,17 +12,19 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author toshiba_
  */
-public class PedidoDAOImpl implements IPedidoDAO {
+public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO {
 
     public static final String IDFACTURA = "facturaIDFactura";
     public static final String SUBTOTAL = "subtotal";
     public static final String TOTAL = "total";
     public static final String FECHA = "fecha";
+    protected static final Logger logger = Logger.getLogger(PedidoDAOImpl.class);
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -35,8 +37,9 @@ public class PedidoDAOImpl implements IPedidoDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se pudieron insertar el pedido");
         } catch (RuntimeException re) {
-            System.out.println(" Error : " + re.getMessage());
+            logger.error("No se pudieron insertar el pedido", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -51,8 +54,9 @@ public class PedidoDAOImpl implements IPedidoDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se pudieron acctualizar los pedido");
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            logger.error("No se pudieron actualizar los pedido", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -68,8 +72,9 @@ public class PedidoDAOImpl implements IPedidoDAO {
             EntityManagerHelper.beginTransaction();
             em.remove(em.find(Pedido.class, entity.getFacturaIDFactura()));
             EntityManagerHelper.commit();
+            logger.info("Se pudieron borrar los pedido");
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+           logger.error("No pudieron borrar los pedido", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -84,7 +89,7 @@ public class PedidoDAOImpl implements IPedidoDAO {
         try {
             pedidoTemporal = em.find(Pedido.class, findByAll().getFacturaIDFactura());
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+           logger.error("No pudieron buscar todos los pedido", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -102,7 +107,7 @@ public class PedidoDAOImpl implements IPedidoDAO {
             query.setParameter(PedidoDAOImpl.FECHA, fecha);
             pedidoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+           logger.error("No pudieron buscar todos los pedido por la Fecha", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -119,7 +124,7 @@ public class PedidoDAOImpl implements IPedidoDAO {
             query.setParameter(PedidoDAOImpl.SUBTOTAL, subtotal);
             pedidoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            logger.error("No pudieron buscar todos los pedido por el Subtotal", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -136,7 +141,7 @@ public class PedidoDAOImpl implements IPedidoDAO {
             query.setParameter(PedidoDAOImpl.TOTAL, total);
             pedidoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            logger.error("No pudieron buscar todos los pedido por el Total", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -152,7 +157,7 @@ public class PedidoDAOImpl implements IPedidoDAO {
             pedidoTemporal = em.find(Pedido.class, idFactura);
 
         } catch (RuntimeException re) {
-            System.out.println(" Error : " + re.getMessage());
+            logger.error("NO pudieron buscar todos los pedido por El ID", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
