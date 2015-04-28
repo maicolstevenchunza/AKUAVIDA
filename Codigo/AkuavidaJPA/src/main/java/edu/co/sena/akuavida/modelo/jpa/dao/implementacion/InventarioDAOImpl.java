@@ -12,16 +12,18 @@ import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Andrea
  */
-public class InventarioDAOImpl implements IInventarioDAO{
+public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO{
     
-     public static final String PRODID = "producto";
+    public static final String PRODID = "producto";
     public static final String CANTIDADPROD = "cantidadProd";
     public static final String FECHA = "fechaDeCompra";
+    protected static final Logger logger = Logger.getLogger( InventarioDAOImpl.class );
     
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -35,8 +37,9 @@ public class InventarioDAOImpl implements IInventarioDAO{
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se pudo insertar el inventario");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+           logger.error("No se pudo insertar el inventario", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -52,8 +55,9 @@ public class InventarioDAOImpl implements IInventarioDAO{
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se pudo actualizar el inventario");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+             logger.error("No se pudo actualizar el inventario", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -69,8 +73,9 @@ public class InventarioDAOImpl implements IInventarioDAO{
             EntityManagerHelper.beginTransaction();
             em.remove(em.find(Inventario.class, entity.getInventarioPK()));
             EntityManagerHelper.commit();
+            logger.info("Se pudo eliminar el inventario");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo eliminar el inventario", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -88,7 +93,7 @@ public class InventarioDAOImpl implements IInventarioDAO{
             inventarioTemporal = em.find(Inventario.class, inventarioPK);
 
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar el inventario", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -107,7 +112,7 @@ public class InventarioDAOImpl implements IInventarioDAO{
         try {
             inventarioTemporales = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar todos los inventario", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -125,7 +130,7 @@ public class InventarioDAOImpl implements IInventarioDAO{
         try {
             inventarioTemporales = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+           logger.error("No se pudo buscar por id de producto el inventario", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -143,7 +148,7 @@ public class InventarioDAOImpl implements IInventarioDAO{
         try {
             inventarioTemporales = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar por cantidad comprada el inventario", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -161,7 +166,7 @@ public class InventarioDAOImpl implements IInventarioDAO{
         try {
             inventarioTemporales = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar por fecha el inventario", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }

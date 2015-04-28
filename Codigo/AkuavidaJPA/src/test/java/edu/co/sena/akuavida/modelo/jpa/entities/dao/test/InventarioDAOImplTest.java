@@ -33,7 +33,6 @@ public class InventarioDAOImplTest {
 
     Calendar hoy = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
     Date fechaActual = hoy.getTime();
-    Date fechaTemporal = hoy.getTime();
 
     Inventario entity = new Inventario();
 

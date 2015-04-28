@@ -12,14 +12,16 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Andrea
  */
-public class FacturaDAOImpl implements IFacturaDAO{
+public class FacturaDAOImpl extends AbstractDAO implements IFacturaDAO{
     
     public static final String FECHA = "fecha";
+    protected static final Logger logger = Logger.getLogger( FacturaDAOImpl.class );
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -32,8 +34,9 @@ public class FacturaDAOImpl implements IFacturaDAO{
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+             logger.info("Se inserto la factura");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+           logger.error("No se inserto la factura", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -49,8 +52,9 @@ public class FacturaDAOImpl implements IFacturaDAO{
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+             logger.info("Se actualizo la factura");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se puedo actualizar la factura", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -66,8 +70,9 @@ public class FacturaDAOImpl implements IFacturaDAO{
             EntityManagerHelper.beginTransaction();
             em.remove(em.find(Factura.class, entity.getIDFactura()));
             EntityManagerHelper.commit();
+             logger.info("Se elimino la factura");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo eliminar la factura", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -84,7 +89,7 @@ public class FacturaDAOImpl implements IFacturaDAO{
             facTemporal = em.find(Factura.class,idFactura);
 
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar la factura", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -101,7 +106,7 @@ EntityManager em = getEntityManager();
         try {
             facTemporales = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+           logger.error("No se pudo buscar todas las facturas", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -118,7 +123,7 @@ EntityManager em = getEntityManager();
         try {
             facTemporales = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar la factura por fecha", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }

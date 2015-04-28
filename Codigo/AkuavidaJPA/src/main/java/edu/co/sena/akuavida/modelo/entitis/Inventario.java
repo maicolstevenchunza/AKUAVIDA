@@ -120,7 +120,7 @@ public class Inventario implements Serializable {
 
     @Override
     public String toString() {
-        return "Inventario{" + "inventarioPK=" + inventarioPK + ", cantidadProductoComprado=" + cantidadProductoComprado + ", fechaDeCompra=" + fechaDeCompra + ", producto=" + producto + '}';
+        return "Inventario{" + "inventarioPK=" + inventarioPK + ", cantidadProductoComprado=" + cantidadProductoComprado + ", fechaDeCompra=" + fechaDeCompra + ", producto=" + producto.getIDproducto() + '}';
     }
 
      
