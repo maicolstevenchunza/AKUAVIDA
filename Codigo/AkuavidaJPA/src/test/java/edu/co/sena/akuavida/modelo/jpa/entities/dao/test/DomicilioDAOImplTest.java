@@ -46,8 +46,8 @@ public class DomicilioDAOImplTest {
     @Before
     public void setUp() {
 
-        entity.setMunicipioidMunicipio(new Municipio("2000"));
-        entity.setDomicilioPK(new DomicilioPK("C.C", "1033757632"));
+        entity.setMunicipioidMunicipio(new Municipio("20009"));
+        entity.setDomicilioPK(new DomicilioPK("C.C", "10337576329"));
         entity.setCiudad("El Bronx");
         entity.setDireccion("Calle 49 G # 6 A 29 sur ");
         entity.setTelefono("3217915742");

@@ -42,7 +42,7 @@ public class MunicipioDAOImplTest {
     @Before
     public void setUp() {
 
-        entity.setIdMunicipio("2000");
+        entity.setIdMunicipio("20009");
         entity.setNombreMunicipio("Johana");
         entity.setDepartamentoidDepartamento(new Departamento("1"));
     }

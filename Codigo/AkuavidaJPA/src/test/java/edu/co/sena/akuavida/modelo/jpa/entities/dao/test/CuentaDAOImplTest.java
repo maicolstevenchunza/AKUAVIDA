@@ -49,7 +49,7 @@ public class CuentaDAOImplTest {
     @Before
     public void setUp() {
         entity = new Cuenta();
-        entity.setCuentaPK(new CuentaPK("C.C", "1033757632"));
+        entity.setCuentaPK(new CuentaPK("C.C", "10337576329"));
         entity.setPrimerNombre("Miguel");
         entity.setSegundoNombre("Angel");
         entity.setPrimerApellido("Montero");
@@ -58,7 +58,7 @@ public class CuentaDAOImplTest {
         entity.setTelefono("3134194242");
         entity.setRool("Usuario");
         entity.setActivo(true);
-        entity.setUsuarioidUsuario(new Usuario("Usuario8"));
+        entity.setUsuarioidUsuario(new Usuario("Usuariolool"));
     }
 
     @After

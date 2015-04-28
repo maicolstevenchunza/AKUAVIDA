@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
  *
  * @author maicolsteven
  */
-public class DomicilioDAOImpl implements IDomicilioDAO{
+public class DomicilioDAOImpl extends AbstractDAO implements IDomicilioDAO{
     
     public static final String CIUDAD = "ciudad";
     public static final String DIRECCION = "direccion";

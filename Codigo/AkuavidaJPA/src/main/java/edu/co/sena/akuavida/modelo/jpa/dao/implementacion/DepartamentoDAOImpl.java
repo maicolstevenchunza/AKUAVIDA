@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
  *
  * @author maicolsteven
  */
-public class DepartamentoDAOImpl implements IDepartamentoDAO {
+public class DepartamentoDAOImpl extends AbstractDAO implements IDepartamentoDAO {
 
     public static final String NOMBREDEPARTAMENTO = "nombreDepartamento";
     protected static final Logger logger = Logger.getLogger( DepartamentoDAOImpl.class );

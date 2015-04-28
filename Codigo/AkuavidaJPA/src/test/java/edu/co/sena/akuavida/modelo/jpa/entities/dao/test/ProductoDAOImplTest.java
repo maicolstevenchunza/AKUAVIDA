@@ -49,7 +49,7 @@ public class ProductoDAOImplTest {
         entity.setCantidad(30);
         entity.setActivo(true);
         entity.setImpuesto(16);
-        entity.setCategoriasIDCategoria(new Categorias(1));
+        entity.setCategoriasIDCategoria(new Categorias(9));
     }
     
     @After
