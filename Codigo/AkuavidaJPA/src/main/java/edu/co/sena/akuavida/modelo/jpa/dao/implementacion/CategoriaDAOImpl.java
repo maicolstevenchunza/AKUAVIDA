@@ -11,16 +11,18 @@ import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Tatiana
  */
-public class CategoriaDAOImpl implements ICategoriaDAO {
+public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
 
     public static final String NOMBRE = "nombre";
     public static final String ACTIVA = "activa";
     public static final String PARIENTE = "pariente";
+    protected static final Logger logger = Logger.getLogger( CategoriaDAOImpl.class );
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -33,8 +35,9 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto la categoria con satisfaccion");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se inserto la categoria", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -50,8 +53,9 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo la categoria con satisfaccion");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se actualizo la categoria", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -68,8 +72,9 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
                     entity.getIDCategoria());
             em.remove(entity);
             EntityManagerHelper.commit();
+            logger.info("Se borro la categoria con satisfaccion");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se borro la categoria", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -86,7 +91,7 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
             categoriaTemporal = em.find(Categorias.class, idCategoria);
 
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+           logger.error("No se pudo buscar por el ID de la categoria", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -104,7 +109,7 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
         try {
             categoriasTemporales = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar todas las categorias", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -121,7 +126,7 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
         try {
             categoriasTemporales = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar por el nombre de la categoria", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -137,7 +142,7 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
         try {
             categoriasTemporales = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar por activa la categoria", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -153,7 +158,7 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
         try {
             categoriasTemporales = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar por el Pariente de la categoria", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
