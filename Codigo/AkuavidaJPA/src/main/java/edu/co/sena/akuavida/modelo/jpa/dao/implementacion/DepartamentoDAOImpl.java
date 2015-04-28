@@ -11,6 +11,7 @@ import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -19,6 +20,7 @@ import javax.persistence.Query;
 public class DepartamentoDAOImpl implements IDepartamentoDAO {
 
     public static final String NOMBREDEPARTAMENTO = "nombreDepartamento";
+    protected static final Logger logger = Logger.getLogger( DepartamentoDAOImpl.class );
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -32,8 +34,9 @@ public class DepartamentoDAOImpl implements IDepartamentoDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto el departamento");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se inserto el departamento", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -49,8 +52,9 @@ public class DepartamentoDAOImpl implements IDepartamentoDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo el departamento");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se actualizo el departamento", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -66,8 +70,9 @@ public class DepartamentoDAOImpl implements IDepartamentoDAO {
             EntityManagerHelper.beginTransaction();
             em.remove(em.find(Departamento.class, entity.getIdDepartamento()));
             EntityManagerHelper.commit();
+            logger.info("Se borro el departamento");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se borro el departamento", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -85,7 +90,7 @@ public class DepartamentoDAOImpl implements IDepartamentoDAO {
             departamentoTemporal = em.find(Departamento.class, idDepartamento);
 
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar por el ID", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -103,7 +108,7 @@ public class DepartamentoDAOImpl implements IDepartamentoDAO {
         try {
             departamentoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se ipudo buscar todos los departamentos", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -120,7 +125,7 @@ public class DepartamentoDAOImpl implements IDepartamentoDAO {
         try {
             departamentoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+           logger.error("No se pudo buscar por nombre", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }

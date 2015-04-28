@@ -12,6 +12,7 @@ import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -22,6 +23,7 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
     public static final String CIUDAD = "ciudad";
     public static final String DIRECCION = "direccion";
     public static final String TELEFONO = "telefono";
+     protected static final Logger logger = Logger.getLogger( DomicilioDAOImpl.class );
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -35,8 +37,9 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto el domicilio");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se inserto el domicilio", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -52,8 +55,9 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo el domicilio");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se actualizo el domicilio", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -70,8 +74,9 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
            entity = em.getReference(Domicilio.class, entity.getDomicilioPK());
             em.remove(entity);
             EntityManagerHelper.commit();
+            logger.info("Se borro el domicilio");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se borro el domicilio", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -89,7 +94,7 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
             domicilioTemporal = em.find(Domicilio.class, domicilioPK);
 
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar por el ID", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -107,7 +112,7 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
         try {
             domicilioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar todos los domicilios", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -125,7 +130,7 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
         try {
             domicilioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+           logger.error("No se pudo buscar por la cuidad", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -142,7 +147,7 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
         try {
             domicilioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+           logger.error("No se pudo buscar por la direccion", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -159,7 +164,7 @@ public class DomicilioDAOImpl implements IDomicilioDAO{
         try {
             domicilioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar por el telefono", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }

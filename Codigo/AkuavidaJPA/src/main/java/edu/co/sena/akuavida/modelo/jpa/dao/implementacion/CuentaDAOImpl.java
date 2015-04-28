@@ -12,12 +12,13 @@ import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author toshiba_
  */
-public class CuentaDAOImpl implements ICuentaDAO {
+public class CuentaDAOImpl extends AbstractDAO implements ICuentaDAO {
 
     public static final String PRIMERNOMBRE = "primerNombre";
     public static final String SEGUNDONOMBRE = "segundoNombre";
@@ -27,6 +28,7 @@ public class CuentaDAOImpl implements ICuentaDAO {
     public static final String TELEFONO = "telefono";
     public static final String ROOL = "rool";
     public static final String ACTIVO = "activo";
+    protected static final Logger logger = Logger.getLogger( CuentaDAOImpl.class );
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -40,8 +42,9 @@ public class CuentaDAOImpl implements ICuentaDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto la cuenta sin ningun problema");
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            logger.error("No se inserto la cuenta", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -56,8 +59,9 @@ public class CuentaDAOImpl implements ICuentaDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo la cuenta sin ningun problema");
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            logger.error("No se actualizo la cuenta", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -72,8 +76,9 @@ public class CuentaDAOImpl implements ICuentaDAO {
             EntityManagerHelper.beginTransaction();
             em.remove(em.find(Cuenta.class, entity.getCuentaPK()));
             EntityManagerHelper.commit();
+            logger.info("Se borro la cuenta sin ningun problema");
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            logger.error("No se borro la cuenta", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -88,7 +93,7 @@ public class CuentaDAOImpl implements ICuentaDAO {
         try {
             cuentaTemporales = em.find(Cuenta.class, cuentaPKLlaves);
         } catch (RuntimeException re) {
-            System.out.println(" Error : " + re.getMessage());
+            logger.error("No se pudo buscar por la llave primaria", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -105,7 +110,7 @@ public class CuentaDAOImpl implements ICuentaDAO {
         try {
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println(" Error : " + re.getMessage());
+           logger.error("No se pudo buscar todas las cuentas", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -121,7 +126,7 @@ public class CuentaDAOImpl implements ICuentaDAO {
             query.setParameter(CuentaDAOImpl.PRIMERNOMBRE, primerNombre);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            logger.error("No se pudo buscar por el primer nombre", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -137,7 +142,7 @@ public class CuentaDAOImpl implements ICuentaDAO {
             query.setParameter(CuentaDAOImpl.SEGUNDONOMBRE, segundoNombre);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            logger.error("No se pudo buscar por el segundo nombre", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -153,7 +158,7 @@ public class CuentaDAOImpl implements ICuentaDAO {
             query.setParameter(CuentaDAOImpl.PRIMERAAPELLIDO, primerApellido);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            logger.error("No se pudo buscar por el primer apellido", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -169,7 +174,7 @@ public class CuentaDAOImpl implements ICuentaDAO {
             query.setParameter(CuentaDAOImpl.SEGUNDOAPELLIDO, segundoApellido);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            logger.error("No se pudo buscar por el segundo apellido", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -185,7 +190,7 @@ public class CuentaDAOImpl implements ICuentaDAO {
             query.setParameter(CuentaDAOImpl.DIRECCION, direccion);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            logger.error("No se pudo buscar por la direccion", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -201,7 +206,7 @@ public class CuentaDAOImpl implements ICuentaDAO {
             query.setParameter(CuentaDAOImpl.TELEFONO, telefono);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+           logger.error("No se pudo buscar por el telefono", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -217,7 +222,7 @@ public class CuentaDAOImpl implements ICuentaDAO {
             query.setParameter(CuentaDAOImpl.ROOL, rool);
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            logger.error("No se pudo buscar por el Rool", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -233,7 +238,7 @@ public class CuentaDAOImpl implements ICuentaDAO {
         try {
             cuentaTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            logger.error("No se pudo buscar por el Activo", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }

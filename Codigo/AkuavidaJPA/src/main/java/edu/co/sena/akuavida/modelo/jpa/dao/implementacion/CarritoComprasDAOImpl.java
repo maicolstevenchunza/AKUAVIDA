@@ -57,8 +57,9 @@ public class CarritoComprasDAOImpl extends AbstractDAO implements ICarritosCompr
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo el carrito de compras");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo actualizar el carrito de compras", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -73,8 +74,9 @@ public class CarritoComprasDAOImpl extends AbstractDAO implements ICarritosCompr
             EntityManagerHelper.beginTransaction();
             em.remove(em.find(CarritoDeCompras.class, entity.getIDCarrito()));
             EntityManagerHelper.commit();
+            logger.info("Se borro el carrito de compras");
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se borrar  el carrito de compras", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -91,7 +93,7 @@ public class CarritoComprasDAOImpl extends AbstractDAO implements ICarritosCompr
             carritoTemporal = em.find(CarritoDeCompras.class, idCarrito);
 
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+           logger.error("No se pudo buscar por el ID del carritos", re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -109,7 +111,7 @@ public class CarritoComprasDAOImpl extends AbstractDAO implements ICarritosCompr
         try {
             carritoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar todos los carritos de compras", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -127,7 +129,7 @@ public class CarritoComprasDAOImpl extends AbstractDAO implements ICarritosCompr
         try {
             carritoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar por el total del carrito", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -144,7 +146,7 @@ public class CarritoComprasDAOImpl extends AbstractDAO implements ICarritosCompr
         try {
             carritoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("No se pudo buscar por el Subtotal del carrito", re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
