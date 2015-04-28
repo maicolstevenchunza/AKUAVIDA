@@ -42,7 +42,7 @@ public class UsuarioDAOImplTest {
     @Before
     public void setUp() {
 
-        entity.setIdUsuario("Usuario8");
+        entity.setIdUsuario("Usuariolool");
         entity.setRol("Cliente");
         entity.setEstado("Activo");
         entity.setContrasena("123456");

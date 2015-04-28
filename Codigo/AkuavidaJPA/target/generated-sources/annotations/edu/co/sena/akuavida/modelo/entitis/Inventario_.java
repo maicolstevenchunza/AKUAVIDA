@@ -7,13 +7,13 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-04-27T20:52:01")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-04-28T10:04:31")
 @StaticMetamodel(Inventario.class)
 public class Inventario_ { 
 
     public static volatile SingularAttribute<Inventario, InventarioPK> inventarioPK;
+    public static volatile SingularAttribute<Inventario, Float> cantidadProductoComprado;
     public static volatile SingularAttribute<Inventario, Date> fechaDeCompra;
     public static volatile SingularAttribute<Inventario, Producto> producto;
-    public static volatile SingularAttribute<Inventario, Float> cantidadProductoComprado;
 
 }

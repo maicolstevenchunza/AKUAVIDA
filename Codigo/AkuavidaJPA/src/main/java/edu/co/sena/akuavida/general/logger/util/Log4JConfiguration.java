@@ -11,6 +11,6 @@ package edu.co.sena.akuavida.general.logger.util;
  */
 public interface Log4JConfiguration {
 
-    public final static String PROPERTIES = "log4j.properties";
+    public final static String PROPERTIES = "log4jDB.properties";
     
 }
