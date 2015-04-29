@@ -20,9 +20,9 @@ public interface IPromocionesDAO {
     
     public Promociones findByIDPromocion(String idPromocion);
     public List<Promociones> findByAll();
-    public List<Promociones> findByDescuentos(Object descuentos);
-    public List<Promociones> findByNombre(Object nombre);
-    public List<Promociones> findByPrecio(Object precio);
+    public List<Promociones> findByDescuentos(float descuentos);
+    public List<Promociones> findByNombre(String nombre);
+    public List<Promociones> findByPrecio(float precio);
 
 
 }

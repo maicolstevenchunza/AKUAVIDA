@@ -7,6 +7,7 @@ package edu.co.sena.akuavida.modelo.jpa.dao.interfaces;
 
 import edu.co.sena.akuavida.modelo.entitis.Inventario;
 import edu.co.sena.akuavida.modelo.entitis.InventarioPK;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,6 +26,6 @@ public interface IInventarioDAO {
     public List<Inventario> findByAll();
     public List<Inventario> findByProductoIDproducto(Object prod);
     public List<Inventario> findByCantidadProductoComprado(float cantProdComprado);
-    public List<Inventario> findByFechaDeCompra(Object fecha);
+    public List<Inventario> findByFechaDeCompra(Date fecha);
     
 }

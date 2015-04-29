@@ -9,6 +9,7 @@ import edu.co.sena.akuavida.modelo.entitis.Inventario;
 import edu.co.sena.akuavida.modelo.entitis.InventarioPK;
 import edu.co.sena.akuavida.modelo.jpa.dao.interfaces.IInventarioDAO;
 import edu.co.sena.akuavida.modelo.jpa.util.EntityManagerHelper;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -149,7 +150,7 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO {
     }
 
     @Override
-    public List<Inventario> findByFechaDeCompra(Object fecha) {
+    public List<Inventario> findByFechaDeCompra(Date fecha) {
 
         EntityManager em = getEntityManager();
         List<Inventario> inventarioTemporales = null;

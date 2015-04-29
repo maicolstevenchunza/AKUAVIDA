@@ -115,7 +115,7 @@ public class PromocionesDAOImpl extends AbstractDAO implements IPromocionesDAO {
     }
 
     @Override
-    public List<Promociones> findByDescuentos(Object descuentos) {
+    public List<Promociones> findByDescuentos(float descuentos) {
         EntityManager em = getEntityManager();
         List<Promociones> promoTemporales = null;
        
@@ -133,7 +133,7 @@ public class PromocionesDAOImpl extends AbstractDAO implements IPromocionesDAO {
     }
 
     @Override
-    public List<Promociones> findByNombre(Object nombre) {
+    public List<Promociones> findByNombre(String nombre) {
         EntityManager em = getEntityManager();
         List<Promociones> promoTemporales = null;
       
@@ -151,7 +151,7 @@ public class PromocionesDAOImpl extends AbstractDAO implements IPromocionesDAO {
     }
 
     @Override
-    public List<Promociones> findByPrecio(Object precio) {
+    public List<Promociones> findByPrecio(float precio) {
         EntityManager em = getEntityManager();
         List<Promociones> promoTemporales = null;
        

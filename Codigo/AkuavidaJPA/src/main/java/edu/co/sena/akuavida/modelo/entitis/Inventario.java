@@ -78,7 +78,7 @@ public class Inventario implements Serializable {
         return cantidadProductoComprado;
     }
 
-    public void setCantidadProductoComprado(int cantidadProductoComprado) {
+    public void setCantidadProductoComprado(float cantidadProductoComprado) {
         this.cantidadProductoComprado = cantidadProductoComprado;
     }
 
@@ -118,10 +118,13 @@ public class Inventario implements Serializable {
         return true;
     }
 
+//    
+
     @Override
     public String toString() {
-        return "Inventario{" + "inventarioPK=" + inventarioPK + ", cantidadProductoComprado=" + cantidadProductoComprado + ", fechaDeCompra=" + fechaDeCompra + ", producto=" + producto.getIDproducto() + '}';
+        return "Inventario{" + "cantidadProductoComprado=" + cantidadProductoComprado + ", fechaDeCompra=" + fechaDeCompra + ", producto=" + producto + '}';
     }
+    
 
      
 }
